@@ -20,7 +20,11 @@ library(rgl)
 
 ibd_network <- function (path, fname1, fname2, max)
 {
+#### This function builds a network based on the IBD segments shared between individuals
+### It takes the directory path, file name, , and the maximum length allowed between individuals
+#### Read table
   ibd <- read.table(file.path(path, fname1), header = T)
+### Detect related individuals based on the max value
   related <- ibd[which(ibd$IBD_CM_SUM >= max),]
   relatives_1 <- ibd[which(ibd$IBD_CM_SUM >= max),]$ID1
   relatives_2 <- ibd[which(ibd$IBD_CM_SUM >= max),]$ID2
@@ -76,6 +80,7 @@ ibd_network <- function (path, fname1, fname2, max)
 }
 
 pca_network <- function (path, fname1, fname2, max) {
+#### This function makes an igraph network based on PCA results 
   PCS <- read.table(file.path(path, fname1), header = T)
   info <- read.csv(file.path(path, fname2), sep = ",", head = TRUE)
   #Retiramos individuos
