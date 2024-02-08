@@ -12,7 +12,7 @@ The Shiny app, was developed within the research titled "Beyond Continental Grou
 ## Shiny interface
 Follow [this link](https://sohail-lab.shinyapps.io/GG-NC/) for the interactive Shiny app. A screenshot of the interface is provided below.
 
-![Shiny app interface](www/app_image.jpg)
+![Shiny app interface](app_image.jpg)
 
 The Shiny app contains a toolbar with the following options:
 
@@ -24,17 +24,17 @@ The Shiny app contains a toolbar with the following options:
 
 As a result of setting the previous options, you will obtain: 
 
-+ __Resolution plot__: Where The y-axis represents the resolution values, while the x-axis denotes the index of individuals. 
++ __Resolution plot__: This plot displays the identified communities at various resolution values. At the bottom of the app you can activate the option "Similar colors" which enable communities of greater similarity (in a genetic sense) to be represented with more similar colors, promoting visual coherence. 
+
++ __Map__: In this map, cohorts are spatially linked to their respective sampling locations. Each pie chart corresponds to a cohort sourced from either the 1000 Genomes Project or The Human Genome Diversity Project.
 
 + __Pie chart__: The pie chart illustrates the distribution of individuals within a chosen cohort across various network communities.
 
-+ __Map__: In this map, cohorts are spatially linked to their respective sampling locations. Each pie chart corresponds to a cohort
-
 + __Community network__: This network is constructed by averaging the positions of individuals within each community in the network of individuals. The node sizes are proportional to the respective community sizes. Edges indicate the density of connections between these communities.
 
-
-
 Note that colors in the resolution plot correspond to those displayed in the accompanying map.
+
+If you want to know more about how the shiny app works and the interpretation of the results you can consult the [paper]() and the [tutorials]() made by the research team 
 
 ## Authors 
 
