@@ -36,6 +36,28 @@ Note that colors in the resolution plot correspond to those displayed in the acc
 
 If you want to know more about how the shiny app works and the interpretation of the results you can consult the [paper]() and the [tutorials]() made by the research team 
 
+## Run the pipeline by using parameters from terminal
+
++ __Clone the repository__: First, you need to clone the GitHub repository. You can do this by using the __'git clone'__ command.
+  <center>
+    
+  For example:
+```
+  git clone https://github.com/mariajpalma/GG-NC.git
+
+ ``` 
+  </center>
+  
++ __Change to the newly cloned directory__: Once the repository is cloned, access the directory that was created during cloning using the __'cd'__ command.
+  <center>
+```    
+  cd GG-NC
+
+```  
+  </center>
+
+With these steps, you should be able to run the shell script found in the GitHub repository from your system terminal. Remember that you will need to have Git installed on your system to clone the repository from GitHub.
+
 ## Authors 
 
 María J. Palma, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México.
