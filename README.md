@@ -36,7 +36,7 @@ Note that colors in the resolution plot correspond to those displayed in the acc
 
 If you want to know more about how the shiny app works and the interpretation of the results you can consult the [paper]() and the [tutorials]() made by the research team 
 
-## Run the pipeline by using parameters from terminal
+## Run the pipeline on the command-line
 
 + __Clone the repository__: First, you need to clone the GitHub repository. You can do this by using the __'git clone'__ command.
   <center>
