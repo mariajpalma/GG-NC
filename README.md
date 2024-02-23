@@ -56,6 +56,27 @@ If you want to know more about how the shiny app works and the interpretation of
 ```  
   </center>
 
+ + __Execute the '.sh' file__: Once you are in the repository directory, you can execute the __'.sh'__ file using the __'bash'__ command followed by the file name and the necessary parameters. You can see the required parameters in the ParametersV011223.sh file.
+   <center>
+    
+  For example:
+```
+  bash ParametersV011223.sh -k <param1_value> -p <param2_value> -d <param3_value> -i <param4_value> -m <param5_value> -s <param6_value> -l <param7_value> -n <param8_value>
+
+ ``` 
+   </center>
+   
+ + Make sure to replace \<paramX_value\> with the specific values you want to pass as arguments to the script.
+ 
+  For example:
+```
+  bash ParametersV011223.sh -k IBD -p /path/to/files -d data_file_name -i info_file_name -m 100 -s 5 -l 0.5 -n shiny_info_file
+
+ ``` 
+   </center>
+
+
+
 With these steps, you should be able to run the shell script found in the GitHub repository from your system terminal. Remember that you will need to have Git installed on your system to clone the repository from GitHub.
 
 ## Authors 
