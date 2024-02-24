@@ -1,9 +1,6 @@
-# GG-NC
-Here is the code for the Pipeline and shiny app, also the wrapper to run it
-
 ## Global Genomic Network Communities (GG-NC) Browser
 
-This github page contains the code and input data for the [Global Genomic Network Communities Browser](https://sohail-lab.shinyapps.io/GG-NC/) developed by the [Sohail Lab](https://www.sohaillab.com/) at the Center for Genomic Sciences - UNAM, financed by Conahcyt.
+This GitHub page contains the code, input data and the wrapper to run the Shiny app for the [Global Genomic Network Communities Browser](https://sohail-lab.shinyapps.io/GG-NC/) developed by the [Sohail Lab](https://www.sohaillab.com/) at the Center for Genomic Sciences - UNAM, financed by Conahcyt.
 
 Input data are obtained from the [1000 Genomes Project](https://www.nature.com/articles/nature15393) and [Human Genome Diversity Project](https://www.science.org/doi/10.1126/science.aay5012?url_ver=Z39.88-2003&rfr_id=ori:rid:crossref.org&rfr_dat=cr_pub%20%200pubmed).
 
@@ -52,7 +49,6 @@ If you want to know more about how the shiny app works and the interpretation of
   <center>
 ```    
   cd GG-NC
-
 ```  
   </center>
 
@@ -62,8 +58,24 @@ If you want to know more about how the shiny app works and the interpretation of
   For example:
 ```
   bash ParametersV011223.sh -k <param1_value> -p <param2_value> -d <param3_value> -i <param4_value> -m <param5_value> -s <param6_value> -l <param7_value> -n <param8_value>
-
- ``` 
+ ```
+ Where each parameter refers to: 
+ 
+ -k \<param1\>:   The genetic metric to consider. Kind: IBD, PCA or GRM
+ 
+ -p \<param2\>:   Path of your files
+ 
+ -d \<param3\>:   Name of your data files
+ 
+ -i \<param4\>:    Name of your info file
+ 
+ -m \<param5\>:   Maximum value
+ 
+ -s \<param6\>:   Number of steps inside lambda threshold
+ 
+ -l \<param7\>:   Lambda or resolution value to explore (logarithmic space from -2 to 2)
+ 
+ -n \<param8\>:   Info file to generate shiny input
    </center>
    
  + Make sure to replace \<paramX_value\> with the specific values you want to pass as arguments to the script.
@@ -71,7 +83,6 @@ If you want to know more about how the shiny app works and the interpretation of
   For example:
 ```
   bash ParametersV011223.sh -k IBD -p /path/to/files -d data_file_name -i info_file_name -m 100 -s 5 -l 0.5 -n shiny_info_file
-
  ``` 
    </center>
 
