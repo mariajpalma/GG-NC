@@ -41,7 +41,6 @@ If you want to know more about how the shiny app works and the interpretation of
   For example:
 ```
   git clone https://github.com/mariajpalma/GG-NC.git
-
  ``` 
   </center>
   
@@ -77,6 +76,7 @@ If you want to know more about how the shiny app works and the interpretation of
  
  -n \<param8\>:   Info file to generate shiny input
    </center>
+   
    
  + Make sure to replace \<paramX_value\> with the specific values you want to pass as arguments to the script.
  
