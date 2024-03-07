@@ -83,7 +83,7 @@ If you want to know more about how the shiny app works and the interpretation of
 
 **PCA:** For PCA analysis, the input file should be tabulated with the first column representing the ID, and the subsequent columns (from the second column onwards) should correspond to the PCA values.
 
-**GRM:** To estimate the genetic relationship matrix (GRM), we utilized the GCTA-GRM tool, and the pipeline anticipates the presence of .bin and .id files only.
+**GRM:** To estimate the genetic relationship matrix (GRM), we utilized the [GCTA-GRM](https://gcta.freeforums.net/thread/175/gcta-estimating-genetic-relationship-using) tool, and the pipeline anticipates the presence of .bin and .id files only.
 
 With these steps, you should be able to run the shell script found in the GitHub repository from your system terminal. Remember that you will need to have Git installed on your system to clone the repository from GitHub.
 
