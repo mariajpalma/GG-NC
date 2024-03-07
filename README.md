@@ -77,16 +77,6 @@ If you want to know more about how the shiny app works and the interpretation of
  -n \<param8\>:   Metadata file to generate shiny input
    </center>
 
-Format of 
-   
- + Make sure to replace \<paramX_value\> with the specific values you want to pass as arguments to the script.
- 
-  For example:
-```
-  bash ParametersV011223.sh -k IBD -p /path/to/files -d data_file_name -i info_file_name -m 100 -s 5 -l 0.5 -n shiny_info_file
- ``` 
-   </center>
-
 **Format of IBD/PCA/GRM Input Files:** 
 
 **IBD:** The pipeline expects a three-column file with tab-separated values for IBD analysis. The first and second columns should correspond to the ID, and the third column should represent the sum of IBD segments.
@@ -96,6 +86,16 @@ Format of
 **GRM:** To estimate the genetic relationship matrix (GRM), we utilized the GCTA-GRM tool, and the pipeline anticipates the presence of .bin and .id files only.
 
 With these steps, you should be able to run the shell script found in the GitHub repository from your system terminal. Remember that you will need to have Git installed on your system to clone the repository from GitHub.
+
+Format of 
+   
+ + Make sure to replace \<paramX_value\> with the specific values you want to pass as arguments to the script.
+ 
+  For example:
+```
+  bash ParametersV011223.sh -k IBD -p /path/to/files -d data_file_name -i info_file_name -m 100 -s 5 -l 0.5 -n shiny_info_file
+ ``` 
+   </center>
 
 ## Authors 
 
