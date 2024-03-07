@@ -87,9 +87,12 @@ Format of
  ``` 
    </center>
 
-**Format of IBD/PCA/GRM Input Files:**
+**Format of IBD/PCA/GRM Input Files:** 
+
 **IBD:** The pipeline expects a three-column file with tab-separated values for IBD analysis. The first and second columns should correspond to the ID, and the third column should represent the sum of IBD segments.
+
 **PCA:** For PCA analysis, the input file should be tabulated with the first column representing the ID, and the subsequent columns (from the second column onwards) should correspond to the PCA values.
+
 **GRM:** To estimate the genetic relationship matrix (GRM), we utilized the GCTA-GRM tool, and the pipeline anticipates the presence of .bin and .id files only.
 
 With these steps, you should be able to run the shell script found in the GitHub repository from your system terminal. Remember that you will need to have Git installed on your system to clone the repository from GitHub.
