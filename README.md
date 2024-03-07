@@ -64,9 +64,9 @@ If you want to know more about how the shiny app works and the interpretation of
  
  -p \<param2\>:   Path of your files
  
- -d \<param3\>:   Name of your data files
+ -d \<param3\>:   Name of your IBD/PCA/GRM files
  
- -i \<param4\>:    Name of your info file
+ -i \<param4\>:    Name of your metadata file
  
  -m \<param5\>:   Maximum value
  
@@ -74,9 +74,10 @@ If you want to know more about how the shiny app works and the interpretation of
  
  -l \<param7\>:   Lambda or resolution value to explore (logarithmic space from -2 to 2)
  
- -n \<param8\>:   Info file to generate shiny input
+ -n \<param8\>:   Metadata file to generate shiny input
    </center>
-   
+
+Format of 
    
  + Make sure to replace \<paramX_value\> with the specific values you want to pass as arguments to the script.
  
@@ -86,7 +87,10 @@ If you want to know more about how the shiny app works and the interpretation of
  ``` 
    </center>
 
-
+**Format of IBD/PCA/GRM Input Files:**
+**IBD:** The pipeline expects a three-column file with tab-separated values for IBD analysis. The first and second columns should correspond to the ID, and the third column should represent the sum of IBD segments.
+**PCA:** For PCA analysis, the input file should be tabulated with the first column representing the ID, and the subsequent columns (from the second column onwards) should correspond to the PCA values.
+**GRM:** To estimate the genetic relationship matrix (GRM), we utilized the GCTA-GRM tool, and the pipeline anticipates the presence of .bin and .id files only.
 
 With these steps, you should be able to run the shell script found in the GitHub repository from your system terminal. Remember that you will need to have Git installed on your system to clone the repository from GitHub.
 
