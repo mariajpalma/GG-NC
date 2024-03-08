@@ -66,15 +66,19 @@ If you want to know more about how the shiny app works and the interpretation of
  
  -d \<param3\>:   Name of your IBD/PCA/GRM files
  
- -i \<param4\>:    Name of your metadata file
+ -i \<param4\>:    Name of your metadata file. In this file, it is expected to find information about the proposed grouping for your samples.
  
- -m \<param5\>:   Maximum value
+ -m \<param5\>:   Maximum value of the sum of the length of the IBD segments to be allowed.
  
- -s \<param6\>:   Number of steps inside lambda threshold
+ -s \<param6\>:   Number of steps inside lambda range
  
  -l \<param7\>:   Lambda or resolution value to explore (logarithmic space from -2 to 2)
  
  -n \<param8\>:   Metadata file to generate shiny input
+
+ -w \<param9\>:   Minimum size of the communities to be labeled and colored
+ 
+
    </center>
 
 **Format of IBD/PCA/GRM Input Files:** 
