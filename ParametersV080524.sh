@@ -11,7 +11,7 @@ show_help() {
     echo "  -s <param6>    Steps"
     echo "  -l <param7>    Lambda value to explore"
     echo "  -u <param8>    Prune option"
-    echo "  -c <param9>    Minimun individuals in a community"
+    echo "  -c <param9>    Minimum individuals in a community"
     exit 1
 }
 
@@ -64,7 +64,7 @@ echo "The max value is: $max"
 echo "The number of steps is: $steps"
 echo "The lambda value is: $lambda"
 echo "The option for prune is: $prune"
-echi "The minnimun number of detected communities is: $min_comms"
+echi "The minimum number of individuals in a detected communities is: $min_comms"
 
 ### Call Rscript 
 #conda activate r422
