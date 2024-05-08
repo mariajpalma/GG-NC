@@ -18,8 +18,7 @@ library(rgl)
 ###############################################################################
 ################################# FUNCTIONS ###################################
 
-ibd_network <- function (path, fname1, fname2, max)
-{
+ibd_network <- function (path, fname1, fname2, max, prune){
   ibd <- read.table(file.path(path, fname1), header = T)
   related <- ibd[which(ibd$IBD_CM_SUM >= max),]
   relatives_1 <- ibd[which(ibd$IBD_CM_SUM >= max),]$ID1
@@ -45,6 +44,7 @@ ibd_network <- function (path, fname1, fname2, max)
   )
   ibd <- ibd[!(ibd$ID1 %in% Nohub),]
   unrelated <- ibd
+  print(dim(unrelated))
   unrelated_df <- unrelated[, c("ID1", "ID2", "IBD_CM_SUM")]
   colnames(unrelated_df) <- c("ID1", "ID2", "weight")
   
@@ -53,8 +53,8 @@ ibd_network <- function (path, fname1, fname2, max)
   id <- unique(id)
   
   info <-
-    read.csv(file.path(path, fname2), sep = ",", head = TRUE)
-  info = info[, c(1, 4, 7)]
+    read.csv(file.path(path, fname2), sep = "\t", head = TRUE)
+  info = info[, c(1, 5, 8)]
   filtrado <- info[info[, 1] %in% id, ]
   id_order <- match(filtrado[, 1], id)
   id_ordenado <- filtrado[order(id_order),]
@@ -64,20 +64,48 @@ ibd_network <- function (path, fname1, fname2, max)
   spop_color <- cbind(info_nodup$genetic_region, info_nodup$color)
   colnames(spop_color) <- c("genetic_region", "color")
   
+  
   ibd_graph <-
     graph_from_data_frame(unrelated_df, directed = F, vertices = id_ordenado)
+  
+  print(length(V(ibd_graph)))
   
   V(ibd_graph)$color <- V(ibd_graph)$color
   
   E(ibd_graph)$width <-
-    (E(ibd_graph)$weight / max(E(ibd_graph)$weight))#*50
+    (E(ibd_graph)$weight / max(E(ibd_graph)$weight))*50
   
+  if (prune)
+  {
+    ibd_graph <- prune_network(ibd_graph)
+    
+  }
   return(list(ibd_graph, spop_color))
+}
+
+prune_network <- function (net){
+  while (sum(degree(net) == 1)> 0){
+    net <- delete_vertices(net, names(which(degree(net) == 1)))
+    net <- delete_vertices(net, names(which(degree(net) == 0)))
+  }
+  
+  clusters <- cluster_louvain(net, resolution = 0.01)
+  print(table(clusters$membership))
+  to_remove <- names(which(table(clusters$membership)< 25))
+  print(to_remove)
+  ind_list <- c()
+  for (i in to_remove){
+    comm <- which(clusters$membership==i)
+    ind_list <- c(ind_list,clusters$names[comm])
+    net <- delete_vertices(net, clusters$names[comm])
+  }
+  print(ind_list)
+  return(net)
 }
 
 pca_network <- function (path, fname1, fname2, max) {
   PCS <- read.table(file.path(path, fname1), header = T)
-  info <- read.csv(file.path(path, fname2), sep = ",", head = TRUE)
+  info <- read.csv(file.path(path, fname2), sep = "\t", head = TRUE)
   #Retiramos individuos
   PCS_noidv = PCS
   rownames(PCS_noidv) <- PCS_noidv[, 1]
@@ -96,7 +124,7 @@ pca_network <- function (path, fname1, fname2, max) {
   pca_graph <- delete.edges(net_pca, which(E(net_pca)$weight < max))
   
   #Asignar colores
-  indv_spop_color <- info[, c(1, 4, 7)]
+  indv_spop_color <- info[, c(1, 5, 8)]
   #vert <- as_data_frame(pca_graph, what = "vertices")
   vert <- matrix(0, nrow = length(V(net_pca)$name), ncol = 1)
   vert[,1] <- V(net_pca)$name
@@ -183,8 +211,8 @@ grm_network <- function (path, fname1, fname2, max) {
   
   #Asignar colores y spop
   infofile <- file.path(path, fname2)
-  info <- read.csv(file.path(path, fname2), sep = ",", head = TRUE)
-  indv_spop_color <- info[, c(1, 4, 7)]
+  info <- read.csv(file.path(path, fname2), sep = "\t", head = TRUE)
+  indv_spop_color <- info[, c(1, 5, 8)]
   #vert <- as.data.frame(net_grm, what = "vertices")
   vert <- names(V(net_grm))
   
@@ -205,7 +233,7 @@ grm_network <- function (path, fname1, fname2, max) {
   return(list(net_grm, spop_color))
 }
 
-input <- function(kind, path, data, info, max) {
+input <- function(kind, path, data, info, max, prune) {
   # Verificar si la carpeta ya existe
   directorio = file.path(path,"output")
   if (!file.exists(directorio)) {
@@ -218,7 +246,7 @@ input <- function(kind, path, data, info, max) {
   
   if(kind == "IBD") {
     network <-
-      ibd_network(path, data, info, max)
+      ibd_network(path, data, info, max, prune)
   } else{
     if (kind == "PCA") {
       network <-
@@ -509,7 +537,7 @@ pollock <- function(Ssort, little, r, path) {
 
 plot_louvain_by_spop <- function(graph, cl_list, spop_color, R, lay, name) {
   cl <- cl_list[[as.character(R)]]
-  png(file= paste(path,name,sep="/"), width = 400, height = 325)
+  svg(file= paste(path,name,sep="/"), height = 20, width = 30)
   plot(
     cl,
     graph,
@@ -521,12 +549,12 @@ plot_louvain_by_spop <- function(graph, cl_list, spop_color, R, lay, name) {
   )
   legend(
     1.1,
-    1.2,
+    1.1,
     legend = levels(as.factor(spop_color[, 1])) ,
     bty = "n",
     pch = 20,
-    pt.cex = 1,
-    cex = 1 ,
+    pt.cex = 3,
+    cex = 3 ,
     horiz = FALSE,
     inset = c(0.1, 0.1),
     col = spop_color[, 2]
@@ -539,8 +567,8 @@ plot_louvain_by_spop <- function(graph, cl_list, spop_color, R, lay, name) {
 overlap_hm <- function(path, fname2, cl_list, R, spop_color,name){
   cl <- cl_list[[as.character(R)]]
   info <-
-    read.csv(file.path(path, fname2), sep = ",", head = TRUE)
-  info = info[, c(1, 3, 4, 7)]
+    read.csv(file.path(path, fname2), sep = "\t", head = TRUE)
+  info = info[, c(1, 3, 5, 8)]
   filtrado <- info[info[, 1] %in% cl$name, ]
   id_order <- match(filtrado[, 1], cl$name)
   id_ordenado <- filtrado[order(id_order),]
@@ -833,8 +861,8 @@ overlap_by_comm <- function(path, info, graph, im, ord, step, name){
   cl_name_ord <- cl_name[ord]
   #Metadata para tener las poblaciones
   info <-
-    read.csv(file.path(path, info), sep = ",", head = TRUE)
-  info = info[, c(1, 3, 4, 7)]
+    read.csv(file.path(path, info), sep = "\t", head = TRUE)
+  info = info[, c(1, 3, 5, 8)]
   #Dejamos sólo individuos en cl_name_ord y en ese orden
   filtrado <- info[info[, 1] %in% cl_name_ord, ]
   id_order <- match(filtrado[, 1], cl_name_ord)
@@ -945,7 +973,7 @@ plot_louvain_by_comm <- function(ord, im, step, graph, mapbig, lay, name, path) 
   V(graph)$carac <- id_ordenado[,2]
   V(graph)$color <- id_ordenado[,3]
   #Graficamos
-  png(file= paste(path,name,sep="/"), width = 400, height = 325)
+  svg(file= paste(path,name,sep="/"), width = 30, height = 20)
   plot(
     graph,
     layout = lay,
@@ -960,8 +988,8 @@ plot_louvain_by_comm <- function(ord, im, step, graph, mapbig, lay, name, path) 
     legend = comms_colors[,1] ,
     bty = "n",
     pch = 20,
-    pt.cex = 1,
-    cex = 1 ,
+    pt.cex = 3,
+    cex = 3 ,
     horiz = FALSE,
     inset = c(0.1, 0.1),
     col = comms_colors[, 2],
@@ -1150,22 +1178,38 @@ plot_by_density <- function(graph_only_comms_no1, means_table, path, plotname) {
   dev.off()
 }
 
+prune_network <- function (net){
+  while (sum(degree(net) == 1)> 0){
+    net <- delete_vertices(net, names(which(degree(net) == 1)))
+    net <- delete_vertices(net, names(which(degree(net) == 0)))
+  }
+  
+  clusters <- cluster_louvain(net, resolution = 0.01)
+  to_remove <- names(which(table(clusters$membership)< 25))
+  for (i in to_remove){
+    comm <- which(clusters$membership==i)
+    net <- delete_vertices(net, clusters$names[comm])
+  }
+  return(net)
+}
+
 ###############################################################################
 ################################SCRIPT#########################################
 ###############################################################################
 
 #For IBD
-kind = "IBD"
-path = "C:\\Users\\Brenda Elizabeth L\\Documents\\sohail_Lab\\data_pipeline\\IBD"
-data = "IBD_cM_sum_NoDivision_segmentSize5_NoSelf_relatedrm"#Must have 3 columns
-info = "info_file.txt"
-shiny_info = "info_file_031023.txt"
-max = 875#To filter
-steps = 3#Number of lambdas to explore
-min_comms = 20#Tamaño mínimo de las comunidades
-r = 0#r is which layer (counting from bottom) will be perfectly sorted
+#kind = "IBD"
+#path = "C:\\Users\\Brenda Elizabeth L\\Documents\\sohail_Lab\\Last_call\\IBD"
+#data = "IBD_cM_sum_NoDivision_segmentSize5_NoSelf_relatedrm"#Must have 3 columns
+#info = "info_file_180424.txt"
+#shiny_info = "info_file_180424.txt"
+#max = 1000#To filter
+#steps = 50#Number of lambdas to explore
+#min_comms = 6#Tamaño mínimo de las comunidades
+#r = 0#r is which layer (counting from bottom) will be perfectly sorted
 #(choose on what looks prettiest. Try 0 as default.)
-Lambda = 0.01#Resolución para cl
+#Lambda = 0.01#Resolución para cl
+#Prune = 1
 
 #For PCA
 #kind = "PCA"
@@ -1204,12 +1248,16 @@ info = args[4]
 max = as.numeric(args[5])
 steps = as.numeric(args[6])
 Lambda = as.numeric(args[7]) #Resolución para cl
-shiny_info = args[8]
-min_comms = 20 #Tamaño mínimo de las comunidades
+Prune = as.numeric(args[8])
+min_comms = as.numeric(args[9])
 r = 0 #r is which layer (counting from bottom) will be perfectly sorted
 
+#shiny_info = args[8]
+#min_comms = 6 #Tamaño mínimo de las comunidades
+#r = 0 #r is which layer (counting from bottom) will be perfectly sorted
+
 # Creating graph 
-network <- input(kind, path, data, info, max)
+network <- input(kind, path, data, info, max, Prune)
 graph <- network[[1]]
 spop_color <- network[[2]]
 lay <- layout_with_fr(graph)
@@ -1217,27 +1265,34 @@ tic()
 cl_list <- get_lambda_results(graph, steps, path, "output/M_IBD_50.txt")
 toc()
 
+set.seed(2)
+lay=layout_with_fr(graph)
+svg(paste(path,"Graph_Simple.svg",sep="/"))
+plot(graph, vertex.size = 3, layout=lay, vertex.label=NA)
+dev.off()
+
+
 # Plot: Network 
 plot_louvain_by_spop(graph = graph, cl_list= cl_list, R = Lambda, lay = lay, 
-                     spop_color = spop_color, name = "louvain_spop.png")
+                     spop_color = spop_color, name = "louvain_spop.svg")
 
 plot_louvain_by_spop(graph = graph, cl_list= cl_list, 
-                     R = as.character(logspace(-2,2,50)[14]), lay = lay, 
-                     spop_color = spop_color, name = "louvain_spop_14.png")
+                     R = as.character(logspace(-2,2,50)[5]), lay = lay, 
+                     spop_color = spop_color, name = "louvain_spop_5.svg")
 
 plot_louvain_by_spop(graph = graph, cl_list= cl_list, 
-                     R = as.character(logspace(-2,2,50)[20]), lay = lay, 
-                     spop_color = spop_color, name = "louvain_spop_20.png")
+                     R = as.character(logspace(-2,2,50)[9]), lay = lay, 
+                     spop_color = spop_color, name = "louvain_spop_9.svg")
 
 # Plot: Heatmap 
 overlap_hm(path, info, cl_list = cl_list, 
            R= Lambda, spop_color, name = "heatmap.png")
 
 overlap_hm(path, info, cl_list = cl_list, 
-           R= as.character(logspace(-2,2,50)[14]), spop_color, name = "heatmap_14.png")
+           R= as.character(logspace(-2,2,50)[5]), spop_color, name = "heatmap_5.png")
 
 overlap_hm(path, info, cl_list = cl_list, 
-           R= as.character(logspace(-2,2,50)[20]), spop_color, name = "heatmap_20.png")
+           R= as.character(logspace(-2,2,50)[9]), spop_color, name = "heatmap_9.png")
 
 plots_metric(df_metrics(graph, "nid", steps = steps), metric_name = "NID", 
              path = path, name = "TEST2_NID")
@@ -1308,12 +1363,12 @@ mapbig <- read.csv2(ma_file, sep = ",", header = F)
 
 # Llamando a la funcion: shiny info
 info_map(path= path, cl = cl, im = im, ord = ord, steps = steps, 
-         outputname = "shinny_info.txt", info=shiny_info)
+         outputname = "shinny_info.txt", info=info)
 
 ### Plot: Heatmap by comm
 overlap_by_comm(path, info, graph, res_mat, res_indv , step= which(logspace(-2,2,50)==Lambda), "heatmap_white_comm.png")
-overlap_by_comm(path, info, graph, res_mat, res_indv , step= 14, "heatmap_white_comm_14.png")
-overlap_by_comm(path, info, graph, res_mat, res_indv , step= 20, "heatmap_white_comm_20.png")
+overlap_by_comm(path, info, graph, res_mat, res_indv , step= 5, "heatmap_white_comm_5.png")
+overlap_by_comm(path, info, graph, res_mat, res_indv , step= 9, "heatmap_white_comm_9.png")
 
 ###################################################################################################################
 ############################################# OBTENER COLORES SIMILARES ###########################################
@@ -1339,7 +1394,7 @@ step = posicion_final
 # Aquí no importa si el lay es 2D porque sólo queremos el grafo
 # Para la lambda elegida:
 graph_by_comm <- plot_louvain_by_comm(ord, im, step, graph, mapbig, lay_2D,
-                                      name = "plot_louvain_final_step.png", path = path)
+                                      name = "plot_louvain_final_step.svg", path = path)
 
 # Obtenemos la posición media de los individuos por comunidad en 3D
 means_table_3D <- media_graph_3D(graph_by_comm, lay_3D)
@@ -1363,7 +1418,7 @@ if(comm_faltantes != 0) {
       #graph_by_comm para la comunidad i
       graph_by_comm_i <-
         plot_louvain_by_comm(ord, im, posicion_final_i, graph, mapbig, lay_2D,
-                             name = "plot_louvain_by_com_comunidades_faltantes.png", path = path)
+                             name = "plot_louvain_by_com_comunidades_faltantes.svg", path = path)
       #Medias para la comunidad i
       means_table_3D_i <- media_graph_3D(graph_by_comm_i, lay_3D)
       medias_i <-
@@ -1450,7 +1505,13 @@ graph_similar_list <- list()
 for (x in 1:50){
   ######################################################################## Colores distintivos 
   graph_by_comm <- plot_louvain_by_comm(ord, im, step= x, graph, mapbig, lay, 
-                                        name = paste0("plot_louvain_comm_L", x, ".png"), path = path)
+                                        name = paste0("plot_louvain_comm_L", x, ".svg"), path = path)
+
+  # Red de nodos coloreados por comunidad:
+  name_net <- paste0("Network_ColorNodesDistintive", x, ".svg")
+  svg(file= paste(path,name_net,sep="/"), width = 30, height = 20)
+  plot(graph_by_comm, vertex.size = 3, layout=lay, vertex.label=NA, mark.col= V(graph_by_comm)$color)
+  dev.off()
   
   means_table <- media_graph(graph_by_comm, lay)
   freq_ordenado <- num_vert(graph_by_comm)
@@ -1469,7 +1530,7 @@ for (x in 1:50){
   }
   
   plot_by_density(graph_only_comms_no1, means_table, path, 
-                  plotname= paste0("plot_comm_similarC_L", x , ".png"))
+                  plotname= paste0("plot_comm_DistintiveC_L", x , ".png"))
   
   # RED 3D
   graph_3d = graph_only_comms_no1
@@ -1486,11 +1547,17 @@ for (x in 1:50){
   
   # Delete objects 
   rm(graph_by_comm, means_table, freq_ordenado, tabla_freq_nonzeros, graph_only_comms, graph_only_comms_no1,
-     graph_3d, coords)
+     graph_3d, coords, name_net)
   
   ############################################################################ Plots with similar colors 
   graph_by_comm <- plot_louvain_by_comm(ord, im, step= x, graph, colors_cielab, lay_2D,
-                                        name = paste0("plot_louvain_similarC_L", x, ".png"), path = path)
+                                        name = paste0("plot_louvain_similarC_L", x, ".svg"), path = path)
+  
+  # Red de nodos coloreados por comunidad:
+  name_net <- paste0("Network_ColorNodesSimilar", x, ".svg")
+  svg(file= paste(path,name_net,sep="/"), width = 30, height = 20)
+  plot(graph_by_comm, vertex.size = 3, layout=lay, vertex.label=NA, mark.col= V(graph_by_comm)$color)
+  dev.off()
  
    means_table <- media_graph(graph_by_comm, lay_2D)
   freq_ordenado <- num_vert(graph_by_comm)
@@ -1522,7 +1589,7 @@ for (x in 1:50){
   
   # Delete objects 
   rm(graph_by_comm, means_table, freq_ordenado, tabla_freq_nonzeros, graph_only_comms, graph_only_comms_no1, 
-     graph_3d, coords)
+     graph_3d, coords, name_net)
 }
 
 # Guardamos todo en archivos
