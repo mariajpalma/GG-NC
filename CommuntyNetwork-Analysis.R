@@ -563,25 +563,27 @@ plot_louvain_by_spop <- function(graph, cl_list, spop_color, R, lay, name) {
   return(cl)
 }
 
-# Heatmap 
+#This function creates a heatmap that shows the overlap between communities and the defined populations and super populations.
 overlap_hm <- function(path, fname2, cl_list, R, spop_color,name){
+  # Get the list of community names
   cl <- cl_list[[as.character(R)]]
   info <-
     read.csv(file.path(path, fname2), sep = "\t", head = TRUE)
+  # Select relevant columns
   info = info[, c(1, 3, 5, 8)]
+  # Filter the information to include only names in cl
   filtrado <- info[info[, 1] %in% cl$name, ]
+  # Order the information according to the order in cl$name
   id_order <- match(filtrado[, 1], cl$name)
   id_ordenado <- filtrado[order(id_order),]
-  #idv_comm <- cbind(cl$name, cl$membership)
-  #idv_comm_ordenado <- idv_comm[order(idv_comm[, 1]),]
-  #idv_pop_spop <-
-  #read.csv(path.file(path,"lista_idv_pop_spop_ord.txt"), sep = "\t", head = FALSE)
+  # Combine the information with community assignments
   idv_comm_pop_spop <-
     cbind(id_ordenado,cl$membership)
   idv_comm_pop_spop <- idv_comm_pop_spop[,c(1,2,3,5,4)]
-  #colnames(idv_comm_pop_spop) <- c("ID", "Pop", "Spop", "Community", "Color")
+  # Calculate the community overlap table
   tabla <-
     xtabs( ~ idv_comm_pop_spop[, 4] + idv_comm_pop_spop[, 2], data = idv_comm_pop_spop)
+  # Normalize the overlap table
   tabla_overlap <- tabla
   hil = 1:nrow(tabla_overlap)
   sum_by_comm = sapply(hil,  function(hil) {
@@ -592,21 +594,28 @@ overlap_hm <- function(path, fname2, cl_list, R, spop_color,name){
       tabla_overlap[hil, col] = tabla[hil, col] / sum_by_comm[hil]
     }
   }
-  #Damos nombres dependiendo de la cantidad de comunidades
+  # Assign row names
   rownames(tabla_overlap) <- paste0("C", 1:nrow(tabla_overlap))
+  # Calculate the number of population levels
   num_2level <- length(unique(idv_comm_pop_spop[, 3]))
+  # Calculate the population count by subpopulation
   list_pop_by_spop <-
     aggregate(
       idv_comm_pop_spop[, 1] ~ idv_comm_pop_spop[, 3] + idv_comm_pop_spop[, 2],
       data = idv_comm_pop_spop,
       FUN = length
     )
+  # Create row annotation for subpopulations
   annotation_row_spop = data.frame(Spop = factor(list_pop_by_spop[, 1]))
   rownames(annotation_row_spop) = list_pop_by_spop[, 2]
+  # Get subpopulation colors
   Spop_colores = spop_color[, 2]
   names(Spop_colores) = spop_color[, 1]
+  # Create subpopulation color list
   ann_colors_spop = list(Spop = Spop_colores)
+  # Convert overlap table to data matrix format
   mat_overlap <- as.data.frame.matrix(tabla_overlap)
+  # Generate the heatmap
   #https://jokergoo.github.io/2020/05/06/translate-from-pheatmap-to-complexheatmap/
   png(file= paste(path,name,sep="/"),width=1000, height=1000)
   HM <- ComplexHeatmap::pheatmap(
