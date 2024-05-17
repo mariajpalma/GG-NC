@@ -1,5 +1,7 @@
 #PipelineV251023
-# LIBRARIES 
+###############################################################################
+################################# LIBRARIES ###################################
+###############################################################################
 
 library(igraph)
 library(foreach)
@@ -14,13 +16,12 @@ library(ucie)
 library(rgl)
 
 ###############################################################################
-###############################################################################
-###############################################################################
 ################################# FUNCTIONS ###################################
-#This function processes IBD (Identity by Descent) data to identify
-#related individuals, hubs, and unrelated individuals based on a given threshold.
-#It then constructs a network graph and returns the graph object along with
-#colors for genetic regions.
+###############################################################################
+# This function processes IBD (Identity by Descent) data to identify
+# related individuals, hubs, and unrelated individuals based on a given threshold.
+# It then constructs a network graph and returns the igraph object along with
+# colors for genetic regions.
 ibd_network <- function (path, fname1, fname2, max, prune){
   # Read the IBD file
   ibd <- read.table(file.path(path, fname1), header = T)
@@ -92,7 +93,7 @@ ibd_network <- function (path, fname1, fname2, max, prune){
   {
     ibd_graph <- prune_network(ibd_graph)
   }
-  # Return the graph and the colors by superpopulation pr genetic region
+  # Return the graph and the colors by superpopulation per genetic region
   return(list(ibd_graph, spop_color))
 }
 
@@ -116,15 +117,22 @@ prune_network <- function (net){
   return(net)
 }
 
+# This function reads PCA data and additional information about individuals (such as population labels) from files.
+# It then calculates a correlation matrix, creates an adjacency matrix, and constructs a network graph based on
+# a specified threshold. Population labels and colors are assigned to vertices in the graph, and the function returns
+# the igraph object along with information about genetic regions and their colors.
 pca_network <- function (path, fname1, fname2, max) {
+  # Read the PCA data
   PCS <- read.table(file.path(path, fname1), header = T)
+  # Read additional information
   info <- read.csv(file.path(path, fname2), sep = "\t", head = TRUE)
-  #Retiramos individuos
+  # Remove individuals from PC
   PCS_noidv = PCS
   rownames(PCS_noidv) <- PCS_noidv[, 1]
   PCS_noidv <- PCS_noidv[, -1]
-  #Creamos matriz de adjacencia
+  # Calculate correlation matrix
   cor_mat <- cor(t(PCS_noidv))
+  # Create an adjacency matrix
   net_pca <-
     graph.adjacency(
       adjmatrix = cor_mat,
@@ -134,26 +142,25 @@ pca_network <- function (path, fname1, fname2, max) {
     )
   #An undirected graph will be created, only the upper right triangle (including the diagonal) 
   # is used (for the edge weights).
+  # Remove edges with weight below the threshold
   pca_graph <- delete.edges(net_pca, which(E(net_pca)$weight < max))
-  
-  #Asignar colores
+  # Assign colors based on genetic regions
   indv_spop_color <- info[, c(1, 5, 8)]
-  #vert <- as_data_frame(pca_graph, what = "vertices")
   vert <- matrix(0, nrow = length(V(net_pca)$name), ncol = 1)
   vert[,1] <- V(net_pca)$name
-  
+  # Filter and order individuals
   filtrado <- indv_spop_color[indv_spop_color[, 1] %in% vert[, 1],]
   id_order <- match(filtrado[, 1], vert[, 1])
   id_ordenado <- filtrado[order(id_order), ]
-  
+  # Colors by genetic region
   info_nodup <-
     info[!duplicated(info$genetic_region, fromLast = FALSE), ]
   spop_color <- cbind(info_nodup$genetic_region, info_nodup$color)
   colnames(spop_color) <- c("genetic_region", "color")
-  
+  # Add genetic region and color to the igraph object
   V(pca_graph)$spop <- id_ordenado[, 2]
   V(pca_graph)$color <- id_ordenado[, 3]
-  
+  # Return the graph and the colors by superpopulation per genetic region
   return(list(pca_graph, spop_color))
 }
 
