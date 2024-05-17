@@ -17,15 +17,24 @@ library(rgl)
 ###############################################################################
 ###############################################################################
 ################################# FUNCTIONS ###################################
-
+#This function processes IBD (Identity by Descent) data to identify
+#related individuals, hubs, and unrelated individuals based on a given threshold.
+#It then constructs a network graph and returns the graph object along with
+#colors for genetic regions.
 ibd_network <- function (path, fname1, fname2, max, prune){
+  # Read the IBD file
   ibd <- read.table(file.path(path, fname1), header = T)
+  # Select related individuals based on IBD threshold
   related <- ibd[which(ibd$IBD_CM_SUM >= max),]
+  # Extract IDs of related individuals
   relatives_1 <- ibd[which(ibd$IBD_CM_SUM >= max),]$ID1
   relatives_2 <- ibd[which(ibd$IBD_CM_SUM >= max),]$ID2
   relatives <- c(relatives_1, relatives_2)
+  # Calculate frequency of each individual
   freq <- table(relatives)
+  # Identify hubs (individuals with IBD connections above threshold)
   hubs <- names(freq[freq > 1])
+  # Write hubs to a text file for information
   write.table(
     hubs,
     file = file.path(path, "output/hubs.txt"),
@@ -33,8 +42,11 @@ ibd_network <- function (path, fname1, fname2, max, prune){
     row.names = F,
     col.names = F
   )
+  # Remove hubs from IBD data
   ibd <- ibd[!(ibd$ID1 %in% hubs), ]
+  # Select unrelated individuals based on IBD threshold
   Nohub <- ibd[which(ibd$IBD_CM_SUM >= max),]$ID1
+  # Write unrelated individuals to a text file
   write.table(
     Nohub,
     file = file.path(path, "output/Nohub.txt"),
@@ -42,44 +54,45 @@ ibd_network <- function (path, fname1, fname2, max, prune){
     row.names = F,
     col.names = F
   )
+  # Remove unrelated individuals from IBD data
   ibd <- ibd[!(ibd$ID1 %in% Nohub),]
+  # Convert IBD data to data frame format
   unrelated <- ibd
   print(dim(unrelated))
   unrelated_df <- unrelated[, c("ID1", "ID2", "IBD_CM_SUM")]
   colnames(unrelated_df) <- c("ID1", "ID2", "weight")
-  
+  # Extract unique IDs
   id1 <- cbind(unrelated$ID1, unrelated$ID2)
   id <- c(id1[, 1], id1[, 2])
   id <- unique(id)
-  
+  # Read additional information from second file
   info <-
     read.csv(file.path(path, fname2), sep = "\t", head = TRUE)
   info = info[, c(1, 5, 8)]
+  # Filter information based on IDs
   filtrado <- info[info[, 1] %in% id, ]
   id_order <- match(filtrado[, 1], id)
   id_ordenado <- filtrado[order(id_order),]
-  
+  # Extract unique genetic regions and corresponding colors
   info_nodup <-
     info[!duplicated(info$genetic_region, fromLast = FALSE), ]
   spop_color <- cbind(info_nodup$genetic_region, info_nodup$color)
   colnames(spop_color) <- c("genetic_region", "color")
-  
-  
+  # Create an igraph from the unrelated data
   ibd_graph <-
     graph_from_data_frame(unrelated_df, directed = F, vertices = id_ordenado)
-  
   print(length(V(ibd_graph)))
-  
+  # Set colors of vertices in the graph
   V(ibd_graph)$color <- V(ibd_graph)$color
-  
+   # Set widths of edges based on weight
   E(ibd_graph)$width <-
     (E(ibd_graph)$weight / max(E(ibd_graph)$weight))*50
-  
+  # Prune the network if requested
   if (prune)
   {
     ibd_graph <- prune_network(ibd_graph)
-    
   }
+  # Return the graph and the colors by superpopulation pr genetic region
   return(list(ibd_graph, spop_color))
 }
 
