@@ -208,15 +208,16 @@ ReadGRMBin = function(prefix, AllN = F, size = 4) {
 }
 # Function to create a genetic relationship matrix (GRM) network
 grm_network <- function (path, fname1, fname2, max) {
+  # Read the GRM binary files
   datafile = file.path(path, fname1)
   GRM = ReadGRMBin(datafile)
-  # Definir la diagonal y el triángulo superior de la matriz
-  diagonal <- GRM[[1]]  # Reemplaza con tus valores
-  triangulo_superior <- GRM[[2]]  # Reemplaza con tus valores
-  id <- GRM[[3]]# Read the GRM binary files
-  id <- id[, 2]
+  # Extract the diagonal and upper triangle of the matrix
+  diagonal <- GRM[[1]]  # Diagonal elements of the GRM
+  triangulo_superior <- GRM[[2]]  # Upper triangle elements of the GRM
+  id <- GRM[[3]] # Read the GRM binary files
+  id <- id[, 2] # Extract individual IDs
   
-  # Calcular el número de filas y columnas de la matriz
+  # Calculate the number of rows and columns in the matrix
   n <- length(diagonal)
   matriz_simetrica <- matrix(0, n, n)
   
@@ -224,8 +225,10 @@ grm_network <- function (path, fname1, fname2, max) {
   matriz_simetrica[upper.tri(matriz_simetrica)] <-
     triangulo_superior
   matriz_simetrica <- matriz_simetrica + t(matriz_simetrica)
+  # Fill the symmetric matrix with the GRM values
   rownames(matriz_simetrica) <- GRM$id[, 2]
   colnames(matriz_simetrica) <- GRM$id[, 2]
+  # Create an igraph from the adjacency matrix
   net_grm <-
     graph.adjacency(
       adjmatrix = matriz_simetrica,
@@ -233,29 +236,26 @@ grm_network <- function (path, fname1, fname2, max) {
       diag = F,
       mode = "lower"
     )
+  # Remove edges with weights below the threshold
   net_grm <- delete.edges(net_grm, which(E(net_grm)$weight < max))
-  
-  #Asignar colores y spop
+  # Read additional information for individuals
   infofile <- file.path(path, fname2)
   info <- read.csv(file.path(path, fname2), sep = "\t", head = TRUE)
   indv_spop_color <- info[, c(1, 5, 8)]
-  #vert <- as.data.frame(net_grm, what = "vertices")
   vert <- names(V(net_grm))
-  
+  # Match and order the individual information
   filtrado <- indv_spop_color[indv_spop_color[, 1] %in% vert,]
   id_order <- match(filtrado[, 1], vert)
   id_ordenado <- filtrado[order(id_order), ]
-  
+  # Create a color mapping for superpopulations
   info_nodup <-
     info[!duplicated(info$genetic_region, fromLast = FALSE), ]
   spop_color <- cbind(info_nodup$genetic_region, info_nodup$color)
   colnames(spop_color) <- c("genetic_region", "color")
-  
-  #Agregar en vertices los nombres de las superpoblaciones y sus colores como atributos.
-  #Ponerle los colores en info.
+  # Add superpopulation names and colors as vertex attributes
   V(net_grm)$spop <- id_ordenado[, 2]
   V(net_grm)$color <- id_ordenado[, 3]
-  
+  # Returns the igraph object and the the genetic regions and their corresponding colors.
   return(list(net_grm, spop_color))
 }
 
