@@ -344,7 +344,7 @@ nodebased <- function(Sloop) {
     Ssort[N - i,] <- Snew
     S1 <- Snew
   }
-  return(Ssort) #8940.427 6892.974 18566.67 1.035 0.2 GRM
+  return(Ssort)
 }
 
 relabel <- function(num, S1, S2, currentmax){
@@ -564,10 +564,13 @@ pollock <- function(Ssort, little, r, path) {
   # Returns a list with the individuals communities by level or resolution, the individal orders and the colors by community.
   return(list(im, order, ma))
 }
-
+# Function to plot Louvain clustering results colored by superpopulation
 plot_louvain_by_spop <- function(graph, cl_list, spop_color, R, lay, name) {
+  # Extract the clustering results for the given resolution
   cl <- cl_list[[as.character(R)]]
+  # Open an SVG device for plotting
   svg(file= paste(path,name,sep="/"), height = 20, width = 30)
+  # Plot the graph with Louvain clustering results
   plot(
     cl,
     graph,
@@ -577,6 +580,7 @@ plot_louvain_by_spop <- function(graph, cl_list, spop_color, R, lay, name) {
     edge.color = "gray",
     col = V(graph)$color
   )
+  # Add a legend to the plot
   legend(
     1.1,
     1.1,
@@ -590,6 +594,7 @@ plot_louvain_by_spop <- function(graph, cl_list, spop_color, R, lay, name) {
     col = spop_color[, 2]
   )
   dev.off()
+  # Return the clustering result
   return(cl)
 }
 
