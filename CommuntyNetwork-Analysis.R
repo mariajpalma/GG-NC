@@ -163,24 +163,28 @@ pca_network <- function (path, fname1, fname2, max) {
   # Return the graph and the colors by superpopulation per genetic region
   return(list(pca_graph, spop_color))
 }
-
+# The function ReadGRMBin was taken from https://yanglab.westlake.edu.cn/software/gcta/#MakingaGRM
+# R script to read the GRM binary file
 ReadGRMBin = function(prefix, AllN = F, size = 4) {
+  # Helper function to compute the sum of integers from 1 to i
   sum_i = function(i) {
     return(sum(1:i))
   }
+  # Define file names based on the given prefix
   BinFileName = paste(prefix, ".grm.bin", sep = "")
   NFileName = paste(prefix, ".grm.N.bin", sep = "")
   IDFileName = paste(prefix, ".grm.id", sep = "")
+  # Read IDs from the ID file
   id = read.table(IDFileName)
   n = dim(id)[1]
+  # Open binary GRM file and read data
   BinFile = file(BinFileName, "rb")
-  
   grm = readBin(BinFile,
                 n = n * (n + 1) / 2,
                 what = numeric(0),
                 size = size)
+  # Open binary N file and read data
   NFile = file(NFileName, "rb")
-  
   if (AllN == T) {
     N = readBin(NFile,
                 n = n * (n + 1) / 2,
@@ -192,7 +196,9 @@ ReadGRMBin = function(prefix, AllN = F, size = 4) {
                 n = 1,
                 what = numeric(0),
                 size = size)
+  # Compute indices for diagonal elements
   i = sapply(1:n, sum_i)
+  # Return the GRM data as a list
   return(list(
     diag = grm[i],
     off = grm[-i],
@@ -200,14 +206,14 @@ ReadGRMBin = function(prefix, AllN = F, size = 4) {
     N = N
   ))
 }
-
+# Function to create a genetic relationship matrix (GRM) network
 grm_network <- function (path, fname1, fname2, max) {
   datafile = file.path(path, fname1)
   GRM = ReadGRMBin(datafile)
   # Definir la diagonal y el triángulo superior de la matriz
   diagonal <- GRM[[1]]  # Reemplaza con tus valores
   triangulo_superior <- GRM[[2]]  # Reemplaza con tus valores
-  id <- GRM[[3]]
+  id <- GRM[[3]]# Read the GRM binary files
   id <- id[, 2]
   
   # Calcular el número de filas y columnas de la matriz
