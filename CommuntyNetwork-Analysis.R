@@ -710,8 +710,9 @@ stability_matrix_metrics <- function (network, R, metric){
   # The function returns the matrix mpair containing the pairwise metric values.
   return(mpair)
 }
-
+# Function to compute and aggregate stability metrics for various resolution (lambda) values
 df_metrics <- function(graph, metric_name, steps) {
+  # Initialize a data frame to store metric values and corresponding lambda values
   DF_lambda <- data.frame(matrix(ncol = 2, nrow = 0))
   colnames(DF_lambda) <- c(toupper(metric_name), "lambda")
   
@@ -725,20 +726,23 @@ df_metrics <- function(graph, metric_name, steps) {
   
   # Define the function to be executed in parallel
   calculate_stability <- function(lambda) {
+    # Compute the stability matrix for the given lambda and metric
     smn <- stability_matrix_metrics(graph, R = lambda,toupper(metric_name))
+    # Convert the upper triangular part of the stability matrix to a data frame
     tempo <- as.data.frame(smn[upper.tri(smn, diag = FALSE)])
-    tempo$lambda <- lambda
+    tempo$lambda <- lambda # Add the lambda value as a column
     colnames(tempo) <- c(toupper(metric_name), "lambda")
     return(tempo)
   }
   
-  # Perform parallel computation using foreach
+  # Use parallel processing to calculate stability metrics for each lambda value
   DF_lambda <- foreach(lambda = lambda_values, .combine = rbind, .export = "stability_matrix_metrics", .packages = c("igraph", "aricode")) %dopar% {
     calculate_stability(lambda)
   }
-  
+  # Stop the parallel cluster
   stopCluster(cluster)
-  
+  # A data frame containing the stability metric values and corresponding lambda values for the specified range of lambda values.
+  # Each row represents a pair of clusterings compared by the specified metric, along with the lambda value used for clustering.
   return(DF_lambda)
 }
 
