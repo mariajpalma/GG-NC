@@ -258,18 +258,18 @@ grm_network <- function (path, fname1, fname2, max) {
   # Returns the igraph object and the the genetic regions and their corresponding colors.
   return(list(net_grm, spop_color))
 }
-
+# This function makes an igraph object depending on the kind and values of the input data.
 input <- function(kind, path, data, info, max, prune) {
-  # Verificar si la carpeta ya existe
+  # Verify if the output directory already exists
   directorio = file.path(path,"output")
   if (!file.exists(directorio)) {
-    # Si no existe, crear la carpeta
+    # If it does not exist, create the directory
     dir.create(directorio)
     cat("Carpeta 'output' creada correctamente.\n")
   } else {
     cat("La carpeta 'output' ya existe.\n")
   }
-  
+  # Determine the type of network to create
   if(kind == "IBD") {
     network <-
       ibd_network(path, data, info, max, prune)
@@ -290,18 +290,24 @@ input <- function(kind, path, data, info, max, prune) {
       }
     }
   }
+  # Returns a list with the igraph object and the genetic regions and their corresponding colors.
   return(network)
 }
-
+# Function to perform clustering over a range of resolutions and save the results
 get_lambda_results <- function(input, steps, path, name) {
+  # An empty list to store the clustering results for each resolution.
   list_cl <- list()
+  # A numeric vector to store the number of communities for each resolution.
   ncom <- 0
   a <- 1
+  # Iterates over a sequence of resolution parameters
   for (i in logspace(-2, 2, n = steps)) {
     cat(a, "\n")
+    # The cluster_louvain function is called with the input data and the current resolution to perform clustering.
     cl <- cluster_louvain(input, resolution = i)
+    # The clustering result cl is stored in list_cl with the resolution value as the key.
     list_cl[[as.character(i)]] <- cl
-    
+    # The membership of the clustering result is transposed and written to the specified file.
     write.table(
       t(cl$membership),
       sep = ",",
@@ -311,9 +317,11 @@ get_lambda_results <- function(input, steps, path, name) {
       row.names = F,
       col.names = F
     )
+    # The number of communities (ncom[a]) is calculated and stored.
     ncom[a] <- max(cl$membership)
     a <- a + 1
   }
+  # The function returns the list list_cl, which contains the clustering results for each resolution.
   return(list_cl)
 }
 
@@ -553,11 +561,7 @@ pollock <- function(Ssort, little, r, path) {
     las = 1
   )
   dev.off()
-  
-  #order como lista de los individuos
-  #cl_name <- read.csv(file.path(path, cl_name_file), sep = ",", head = FALSE)
-  #cl_name_ord <- cl_name[order]
-  
+  # Returns a list with the individuals communities by level or resolution, the individal orders and the colors by community.
   return(list(im, order, ma))
 }
 
