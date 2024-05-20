@@ -671,18 +671,22 @@ overlap_hm <- function(path, fname2, cl_list, R, spop_color,name){
   dev.off()
 }
 
-# Stability plots 
-stability_matrix_metrics <- function (network, R, metric)
-{
+# Function to calculate stability metrics for Louvain clustering results
+stability_matrix_metrics <- function (network, R, metric){
+  # Initialize a 100x100 matrix to store pairwise metric values
   mpair <- matrix(nrow = 100, ncol = 100)
+  # Initialize a matrix to store clustering memberships from 100 iterations
   obj <- matrix(nrow=length(V(network)),ncol = 100)
+  # Perform Louvain clustering with the given resolution R and store the memberships
   cl <-  cluster_louvain(network, resolution = R)
   obj[,1] <- cl$membership
+  # Repeat the clustering process 100 times
   for (i in 2:100)
   {
     cl <- cluster_louvain(network, resolution = R)
     obj[,i] <- cl$membership
   }
+  # Compute pairwise metric values between different clustering results
   for (i in 1:100){
     for (j in i:100)
     {
@@ -703,6 +707,7 @@ stability_matrix_metrics <- function (network, R, metric)
       }
     }
   }
+  # The function returns the matrix mpair containing the pairwise metric values.
   return(mpair)
 }
 
