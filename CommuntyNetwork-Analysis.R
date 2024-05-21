@@ -745,16 +745,16 @@ df_metrics <- function(graph, metric_name, steps) {
   # Each row represents a pair of clusterings compared by the specified metric, along with the lambda value used for clustering.
   return(DF_lambda)
 }
-
+# Function to plot and save metric analysis results
 plots_metric <- function(DF_lambda, metric_name, path, name){
-  ### boxplot
+  ### Boxplot
   colnames(DF_lambda) <- c("metric", "lambda")
   box <- ggplot(DF_lambda, aes( x= lambda, y=metric, group=lambda)) + 
     geom_boxplot() + scale_x_continuous(trans='log10') + ggtitle(metric_name)
   ggsave(filename = paste(path,paste0(name,"_boxplot.png"),sep="/"), plot = box, width = 13, height = 7, units = "in",
          bg = "white",
          dpi = 300)
-  ####  Mean
+  ####  Mean plot
   DF_lambda_m <- DF_lambda %>% group_by(lambda) %>% 
     summarise(mean=mean(metric))
   # Convert tibble to df
@@ -764,7 +764,7 @@ plots_metric <- function(DF_lambda, metric_name, path, name){
   ggsave(filename = paste(path,paste0(name,"_mean.png"),sep="/"), plot = mean_plot, width = 13, height = 7, units = "in",
          bg = "white",
          dpi = 300)
-  #### Median
+  #### Median plot
   DF_lambda_m <- DF_lambda %>% group_by(lambda) %>% 
     summarise(median=median(metric))
   # Convert tibble to df
@@ -774,7 +774,7 @@ plots_metric <- function(DF_lambda, metric_name, path, name){
   ggsave(filename = paste(path,paste0(name,"_median.png"),sep="/"), plot = median_plot, width = 13, height = 7, units = "in",
          bg = "white",
          dpi = 300)
-  #### Variance
+  #### Variance plot
   DF_lambda_m <- DF_lambda %>% group_by(lambda) %>% 
     summarise(variance=var(metric))
   DF_lambda_m <- DF_lambda_m  %>% as.data.frame()
@@ -786,32 +786,32 @@ plots_metric <- function(DF_lambda, metric_name, path, name){
 }
 
 # Shiny App: Interactive Map input 
-#outputname es el nombre del archivo final que entrará a la carpeta output/
+# outputname es el nombre del archivo final que entrará a la carpeta output/
 
 info_map <- function(path, im, cl, ord, info, steps, outputname) {
-  #Cargar el metadata de los individuos
+  # Load the metadata of the individuals
   meta_file = file.path(path, info)
   metadata = read.csv(meta_file, sep = "\t", header = T)
-  #Dejar sólo a los individuos y su pop que estén en cl$names
-  #Recuerda que a la función nodebases entran en orden del cl$names
-  #y que en Pollock se les asigna un lugar diferente para mejorar la
-  #visualización y ese orden viene en el vector order que sale de Pollock
+  # Leave only individuals and their pop that are in cl$names
+  # Remember that they enter the nodebases function in order of cl$names
+  # and that in Pollock they are assigned a different place to improve the
+  # visualization and that order comes in the order vector that comes out of Pollock
   met_indv_pop <- metadata[,c(1, 4,3)]
   filtrado <-
     met_indv_pop[met_indv_pop$indv %in% as.character(cl$names), ]
-  #Ordenar como en pollock usando cl$names y ord
+  # Sort like Pollock using cl$names and ord
   cl_names_ord <- cl$names[ord[, 1]]
   id_order <- match(filtrado[, 1], as.character(cl_names_ord))
   id_ordenado <- filtrado[order(id_order),]
-  #Crear la tabla para las comunidades por individuo con su info
+  # Create the table for communities per individual with their info
   Lambda <-
     rep(logspace(-2, 2, n = steps), times = nrow(id_ordenado))
-  #Unimos las poblaciones de cada individuo ya ordenado con lambda
+  # Join the populations of each individual already ordered with lambda
   pp <- rep(id_ordenado$population, each = steps)
   pp_lmbd <- cbind(pp, Lambda)
-  #Ya que las pp están ordenadas por indv en im, unimos im con pp_lmbd
-  #Así cada individuo tendrá su comunidad según una lambda
-  #Primero obtenemos las comunidades en un vector
+  # Since pp are ordered by indv in im, we join im with pp_lmbd
+  # Thus each individual will have his community according to a lambda
+  # First obtain the communities in a vector
   imcols = ncol(im)
   imhils = nrow(im)
   comms <- matrix(data = 0,
@@ -825,10 +825,10 @@ info_map <- function(path, im, cl, ord, info, steps, outputname) {
     }
   }
   colnames(comms) <- "com"
-  #Unimos la población de cada individuo que ya viene con su lambda con la
-  #comunidad que haya obtenido en esa lambda
+  # Join the population of each individual that already comes with its lambda with the
+  # community that you have obtained in that lambda
   pp_lmbd_comms <- cbind(pp_lmbd[, c(1, 2)], comms)
-  #Obtenemos proporciones de comundiades por lambda y pop
+  # Get community ratios by lambda and pop
   tabla <- ftable(as.data.frame(pp_lmbd_comms))
   prop_by_row <- prop.table(as.matrix(tabla), margin = 1)
   prop_by_row_file = file.path(path, "output/comms_prop.txt")
@@ -840,31 +840,30 @@ info_map <- function(path, im, cl, ord, info, steps, outputname) {
     row.names = F,
     col.names = T
   )
-  #Al crearse la tabla de proporciones, se desordenan las poblaciones y las lambdas
-  #Y las comunidades no vienen ordenadas en forma ascendente
-  #Ordenamos comunidades en orden ascendete pasando cols a rows
+  # When the proportion table is created, the populations and lambdas are disordered
+  # And the communities are not in ascending order
+  # Sort communities in ascending order passing cols to rows
   tprop_by_row <- t(prop_by_row)
   numCom <- as.numeric(rownames(tprop_by_row))
   comms_order <- order(numCom)
   tprop_by_row_ord <- tprop_by_row[comms_order, ]
-  #Regresamos rows a cols y procedemos a sacar los nombres de las pops y los lambdas
+  # Return rows to cols and proceed to remove the names of the pops and lambdas
   prop_by_row_ord <- t(tprop_by_row_ord)
   prop_pp_lmbd <- rownames(prop_by_row_ord)
   split_pp_lmd <- strsplit(prop_pp_lmbd, "_")
   prop_pp_lmbd_df <- as.data.frame(do.call(rbind, split_pp_lmd))
   colnames(prop_pp_lmbd_df) <- c("population", "Lambda")
-  #Juntamos el resto de la información de las poblaciones del metadata
-  #Primero, de metadata quitamos duplicados
+  # We put together the rest of the information from the metadata populations
+  # First, remove duplicates from metadata
   metadata_nodup <-
     metadata[!duplicated(metadata$population, fromLast = FALSE),]
   
-  #metadata_nodup <- metadata_nodup[, c(-1,-7)]
   pp_merge <-
     merge(prop_pp_lmbd_df,
           metadata_nodup,
           by = "population",
           all.x = TRUE)
-  #ordenamos las columnas
+  # Sort columns
   pp_merge2 <-
     cbind(pp_merge$population,
           pp_merge$pop3code,
@@ -873,8 +872,7 @@ info_map <- function(path, im, cl, ord, info, steps, outputname) {
           pp_merge$latitude,
           pp_merge$longitude,
           pp_merge$Lambda)
-  #Renombramos
-  
+  # Rename
   colnames(pp_merge2) <-
     c("Pop",
       "Pop3code",
@@ -883,17 +881,17 @@ info_map <- function(path, im, cl, ord, info, steps, outputname) {
       "Latitud",
       "Longitud",
       "Lambda")
-  #Por fin, unimos la info de las poblaciones con sus comunidades
+  # Finally, unite the information of the populations with their communities
   prop <- prop_by_row_ord
   colnames(prop) <- paste0("C", 1:max(im))
-  #Convertimos los valores 0 a NA
+  # Convert zeros to NA
   prop[prop == 0] <- "NA"
   final_table <- cbind(pp_merge2, prop)
-  #Ordenamos por lambda y luego por pop
+  # Sort by lambda and pop
   indice_orden_2 <-
     order(final_table[, 1], as.numeric(final_table[, 6]))
   final_table_order <- final_table[indice_orden_2,]
-  #Guardamos
+  # Save
   final_table_file = file.path(path, outputname)
   write.table(
     final_table_order,
@@ -905,7 +903,7 @@ info_map <- function(path, im, cl, ord, info, steps, outputname) {
   )
 }
 
-# Heatmap: por comunidades
+# Heatmap: by communities
 overlap_by_comm <- function(path, info, graph, im, ord, step, name){
   #Tomamos los individuos de cl$name
   cl <- cluster_louvain(graph, r = 1) #No importa el valor de r
