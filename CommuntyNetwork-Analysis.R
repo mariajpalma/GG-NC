@@ -324,9 +324,18 @@ get_lambda_results <- function(input, steps, path, name) {
   # The function returns the list list_cl, which contains the clustering results for each resolution.
   return(list_cl)
 }
+# nodebased, relabel and pollock ar a set of functions that were developed by Dr. Lewis for the research paper titled
+# "The function of communities in protein interaction networks at multiple scales."
+# The functions have been adapted from Matlab to R by our research group.
+# For more detailed information, please refer to the publication by Lewis, Anna CF, et al., 2010.
+# We are available to assist and address any inquiries related to these functions.
 
+# This function `nodebased(Sloop)` is used to re-label communities in a way that preserves their identity.
+# In such a way that we can know how individuals are accommodating and reaccommodating in the different communities throughout lambda.
+# The function takes a matrix `Sloop`, which contains community assignments for each node at different parameter values
+# (assumed to be the highest resolution parameter) in the rows.
 nodebased <- function(Sloop) {
-  #This R function, `nodebased(Sloop)`, is utilized to re-label communities while ensuring their continuity.
+  #This R function, `nodebased(Sloop)`, is used to re-label communities while ensuring their continuity.
   #This re-labeling process allows us to ascertain how individuals are adapting and readapting within various communities across lambda.
   #The function requires a matrix, `Sloop`, which includes community assignments for each node at varying parameter values.
   #It is assumed that these parameter values represent the highest resolution.
@@ -334,8 +343,10 @@ nodebased <- function(Sloop) {
   Ssort <- matrix(0, nrow = N, ncol = ncol(Sloop))
   S1 <- Sloop[N,]
   Ssort[N,] <- S1
-  #The loop provided iterates from `i = 1` to `N - 1` in order to reassign labels to Ssort, starting from the N-1th row (N-i) and moving towards the first row in reverse order.
-  #The loop will continue until all parameter values (resolutions) have been processed. As a result, `Ssort` will hold the re-labeled communities for each parameter value.
+  #The loop provided iterates from `i = 1` to `N - 1` in order to reassign labels to Ssort, starting from the N-1th row (N-i)
+  # and moving towards the first row in reverse order.
+  #The loop will continue until all parameter values (resolutions) have been processed.
+  # As a result, `Ssort` will hold the re-labeled communities for each parameter value.
   for (i in 1:(N - 1)) {
     cat(i, "\n")
     S2 <- Sloop[N - i,]
@@ -346,26 +357,45 @@ nodebased <- function(Sloop) {
   }
   return(Ssort)
 }
-
+# This `relabel` function takes several arguments: `num`, `S1`, `S2`, and `currentmax`.
+# The purpose of this function is to re-label communities in `S2` based on the mapping provided by `S1`,
+# while ensuring that the re-labeled communities retain their identity.
 relabel <- function(num, S1, S2, currentmax){
-  #Function for pairwise re-labeling
-  #The purpose of the `relabel` function is to re-label communities in `S2` while preserving their identity.
-  #This function takes several arguments, including `num`, `S1`, `S2`, and `currentmax`.
-  #The communities in `S2` are relabeled based on the mapping provided by `S1`.
+  # Function for pairwise re-labeling
+  # The purpose of the `relabel` function is to re-label communities in `S2` while preserving their identity.
+  # This function takes several arguments, including `num`, `S1`, `S2`, and `currentmax`.
+  # The communities in `S2` are relabeled based on the mapping provided by `S1`.
+  
+  # Create a matrix `Snew` with 1 row and the same number of columns as `S1`.
+  #This will be used to store the re-labeled communities. It is filled with zeros.
   Snew <- matrix(0, nrow = 1, ncol = length(S1))
+  # Calculate the number of unique communities in `S2` and store it in `nocoms2`.
   nocoms2 <- length(unique(S2))
+  # Get the unique community labels in `S2`, sort them, and store them in `coms2`. Convert `coms2` to a vector.
   coms2 <- sort(unique(S2))
+  # Calculate the number of unique communities in `S1` and store it in `nocoms1`.
   nocoms1 <- length(unique(S1))
+  # Get the unique community labels in `S1`, sort them, and store them in `coms1`. Convert `coms1` to a vector.
   coms1 <- sort(unique(S1))
+  # Initialize a variable `n` to 0. This will be used to keep track of the iteration count for filling matrix `l`.
   n <- 0
+  # Create a matrix `C` filled with zeros, with dimensions `nocoms1` by `nocoms2`.
+  # This matrix will store the overlap values between communities in `S1` and `S2`.
   C <- matrix(0, nrow = nocoms1, ncol = nocoms2)
+  # Create an empty matrix `l` with dimensions `nocoms1 * nocoms2` by 3.
+  # This matrix will be used to store the overlap values, corresponding community labels in `S1`,
+  # and corresponding community labels in `S2`.
   l <- matrix(0, nrow = nocoms1 * nocoms2, ncol = 3)
+  # Create two matrices `A` and `B` to store the community memberships of each node in `S1` and `S2`,
+  # respectively, using a one-hot encoding scheme.
   A <- matrix(0, nrow = length(S1), ncol = nocoms1)
   for (i in 1:nocoms1)
     A[, i] <- (as.numeric(S1 == as.numeric(coms1[i])))
   B <- matrix(0, nrow = length(S2), ncol = nocoms2)
   for (i in 1:nocoms2)
     B[, i] <- (as.numeric(S2 == as.numeric(coms2[i])))
+  # Calculate the overlap values between communities in `S1` and `S2`, and store them in matrix `C`.
+  # Fill the matrix `l` with the overlap values and corresponding community labels.
   for (i in 1:nocoms1) {
     for (j in 1:nocoms2) {
       n <- n + 1
@@ -379,13 +409,17 @@ relabel <- function(num, S1, S2, currentmax){
       l[n, 3] <- as.numeric(coms2[j])
     }
   }
+  # Sort the rows of `l` based on the overlap values in descending order, and store the indices of the sorted rows in `ind`.
   val <- l[, 1]
   ind <- order(val, decreasing = TRUE)
+  # Create an empty matrix `l2` to store the sorted rows of `l`.
   l2 <-
     l[ind,] # this has highest overlap in top row, etc. First column is value of overlap, second is label you want, third is what it was called in the partition you want to relabel
+  # Initialize a variable `m` to 0. This will be used as a counter to iterate through the rows of `l2`.
   m <- 0
   assigned <-
     matrix(0, nrow = 1, ncol = 2) # just added to make coding easier, ignored later
+  # Enter a `while` loop to handle cases where there are more communities in `S2` than rows in `l2`.
   while (nrow(assigned) < (nocoms2 + 1)) {
     m = m + 1
     if (is.matrix(l2)) {
@@ -411,15 +445,15 @@ relabel <- function(num, S1, S2, currentmax){
           cat("SUPER ERROR")
         }
       }
+    # If there are more communities in `S2`, add new labels to the communities without labels in `assigned`,
+    # where `assigned` is a matrix that stores assigned community labels.
       if (m > filas_l2) {
-        # more coms. Unusual if looking at decreasing res parameter, but does happen.
-        # In this case give unlabeled coms brand new labels
         currentmax= currentmax + noverlap
         unassigned = sort(setdiff(coms2, assigned[, 2])) # communities without labels
         for (k in 1:length(unassigned)) {
           assigned = rbind(assigned, c(currentmax + k, unassigned[k]))
         }
-      } else {
+      } else { # If `m` is not greater than the number of rows in `l2`, proceed with the re-labeling process.
         if (is.matrix(l2)) {
           consider = l2[m, ]
         } else{
@@ -436,8 +470,6 @@ relabel <- function(num, S1, S2, currentmax){
             noverlap_coms <- c(noverlap_coms, consider[3])
             assigned = rbind(assigned, c(currentmax + noverlap, consider[3]))
           }
-          # first column assigned gives community label from old partition, second column gives label of new one.
-          ## Esta documentación está al revés
           else{
             assigned = rbind(assigned, consider[2:3])
           }
