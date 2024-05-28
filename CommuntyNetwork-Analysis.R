@@ -1167,11 +1167,16 @@ dens_con <- function(graph_by_comm) {
   # tabla_freq_nonzeros <- tabla_freq[nonzeros,]
   # tabla_freq_nonzeros <- as.matrix(tabla_freq_nonzeros)
   # colnames(tabla_freq_nonzeros) <- c("from","to","weight")
-  nonzeros2 <- which(tabla_freq2[,3] != 0)
-  tabla_freq_nonzeros2 <- tabla_freq2[nonzeros2,]
-  tabla_freq_nonzeros2 <- as.matrix(tabla_freq_nonzeros2)
-  colnames(tabla_freq_nonzeros2) <- c("from","to","weight")
-  
+  if(nrow(tabla_freq2) > 1) {
+    nonzeros2 <- which(tabla_freq2[, 3] != 0)
+    tabla_freq_nonzeros2 <- tabla_freq2[nonzeros2, ]
+    tabla_freq_nonzeros2 <- as.matrix(tabla_freq_nonzeros2)
+    colnames(tabla_freq_nonzeros2) <- c("from", "to", "weight")
+  }else{
+    tabla_freq_nonzeros2 <- tabla_freq2
+    tabla_freq_nonzeros2 <- as.matrix(tabla_freq_nonzeros2)
+    colnames(tabla_freq_nonzeros2) <- c("from", "to", "weight")
+  }
   return(tabla_freq_nonzeros2)
 }
 
@@ -1244,18 +1249,23 @@ plot_by_density <- function(graph_only_comms_no1, means_table, path, plotname) {
   comm_order <- match(as.numeric(V(graph_only_comms_no1)$carac),as.numeric(means_table[, 1]))
   means_table_ord_filt <- means_table[comm_order,]
   lay_mean <- as.matrix(means_table_ord_filt[,c(2,3)])
+  vsize = (rank(V(graph_only_comms_no1)$size) / length(V(graph_only_comms_no1)$size)) *
+    50
+  ewidth = (rank(E(graph_only_comms_no1)$width) / length(E(graph_only_comms_no1)$width)) *
+    20
+  if(length(rank(E(graph_only_comms_no1)$width)) == 1){
+    ecolor = NA
+  }else{ecolor = "gray"}
   #Graficamos y guardamos
   png(file.path(path, plotname))
   plot(
     graph_only_comms_no1,
     layout = lay_mean,
     #### Aquí inicia el cambio
-    vertex.size = (rank(V(graph_only_comms_no1)$size) / length(V(graph_only_comms_no1)$size)) *
-      50,
-    edge.width = (rank(E(graph_only_comms_no1)$width) / length(E(graph_only_comms_no1)$width)) *
-      20,
+    vertex.size = vsize,
+    edge.width = ewidth, 
     #### Aquí termina el cambio
-    edge.color = "gray",
+    edge.color = ecolor,
     col = V(graph_only_comms_no1)$color,
   )
   dev.off()
