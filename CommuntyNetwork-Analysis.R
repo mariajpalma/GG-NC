@@ -434,17 +434,7 @@ relabel <- function(num, S1, S2, currentmax){
 
   noverlap <- 0
   noverlap_coms <- c()
-  while (nrow(assigned) < (nocoms2 + 1)) {
-      m = m + 1
-      if (is.matrix(l2)) {
-        filas_l2 = nrow(l2)
-      } else{
-        if (is.vector(l2)) {
-          filas_l2 = 1
-        } else{
-          cat("SUPER ERROR")
-        }
-      }
+    # Handle cases with more communities in S2
     # If there are more communities in `S2`, add new labels to the communities without labels in `assigned`,
     # where `assigned` is a matrix that stores assigned community labels.
       if (m > filas_l2) {
@@ -485,7 +475,9 @@ relabel <- function(num, S1, S2, currentmax){
   return(Snew)
   }
 }
-
+# This `pollock` function takes three arguments: `Ssort`, `little`, and `r`.
+# The purpose of this function is to reorder the node labels in `Ssort` to make sense of the data for plotting.
+# It also assigns colors to communities based on their sizes, and provides a visualization of the communities with specified colors.
 pollock <- function(Ssort, little, r, path) {
   # to make pretty for plot. 
   # r is which layer (counting from bottom) will be perfectly sorted 
@@ -499,33 +491,43 @@ pollock <- function(Ssort, little, r, path) {
   # no way to keep all communities together over all values of parameter in
   # 1D! Usually best to ensure that largest communitites are fully ordered,
   # having made sure that smaller communities are fully ordered first.
+
+  # Calculate the number of rows in `Ssort` and store it in `N`.
   N <- nrow(Ssort)
+  # Create an initial ordering of node labels in `order`, ranging from 1 to the number of columns in `Ssort`.
   order <- 1:ncol(Ssort)
+  # Reorder the columns of `Ssort` and update the `order` based on the values of the `r`-th row of `Ssort`.
   for (l in 1:(N - r)) {
     # r will be the perfectly ordered partition
     ix <- order(order = Ssort[N + 1 - l,])
     Ssort <- Ssort[, ix]
     order <- order[ix]
   }
-  
   # Now arrange to colour all communities that are never over size 'little' to
   # be painted a uniform colour, here, white
+  # Create a vector `bigcoms` to store the community labels of communities that have a size greater than `little`.
   bigcoms <- integer(0)
+  # Find the maximum value in `Ssort` and store it in `m`.
   m <- max(Ssort)
+  # Create a matrix `sizes` filled with zeros, with dimensions `N` by `m`. This matrix will store the sizes of each community in `Ssort`.
   sizes <- matrix(0, nrow = N, ncol = m)
+  # Calculate the sizes of each community in `Ssort` and store them in the `sizes` matrix.
   for (i in 1:N) {
     b <- sort(unique(Ssort[i,]))
     for (j in 1:length(b)) {
       sizes[i, b[j]] <- sum(Ssort[i,] == b[j])
     }
   }
+  # Determine the community labels of communities with sizes greater than `little`, and store them in `bigcoms`.
   for (k in 1:m) {
     sizescom <- sizes[, k]
     if (sum(sizescom > little) > 1) {
       bigcoms <- c(bigcoms, k)
     }
   }
+  # Create a vector `smallcoms` that contains the community labels of communities with sizes less than or equal to `little`.
   smallcoms <- sort(setdiff(1:m, bigcoms))
+  # Create a copy of `Ssort`, named `Ssort2`, and set the community labels in `smallcoms` to 0.
   Ssort2 <- Ssort
   for (i in 1:length(smallcoms)) {
     y <- which(Ssort == smallcoms[i])
