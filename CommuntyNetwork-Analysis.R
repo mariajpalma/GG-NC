@@ -829,7 +829,6 @@ plots_metric <- function(DF_lambda, metric_name, path, name){
 
 # Shiny App: Interactive Map input 
 # outputname es el nombre del archivo final que entrará a la carpeta output/
-
 info_map <- function(path, im, cl, ord, info, steps, outputname) {
   # Load the metadata of the individuals
   meta_file = file.path(path, info)
@@ -947,20 +946,20 @@ info_map <- function(path, im, cl, ord, info, steps, outputname) {
 
 # Heatmap: by communities
 overlap_by_comm <- function(path, info, graph, im, ord, step, name){
-  #Tomamos los individuos de cl$name
+  # Take the individuals from cl$name
   cl <- cluster_louvain(graph, r = 1) #No importa el valor de r
   cl_name <- cl$name
-  #Ordenamos los individuos como los ordenó Pollock
+  # Order the individuals as Pollock ordered them
   cl_name_ord <- cl_name[ord]
-  #Metadata para tener las poblaciones
+  # Metadata to have the populations
   info <-
     read.csv(file.path(path, info), sep = "\t", head = TRUE)
   info = info[, c(1, 3, 5, 8)]
-  #Dejamos sólo individuos en cl_name_ord y en ese orden
+  # Leave only individuals in cl_name_ord and in that order
   filtrado <- info[info[, 1] %in% cl_name_ord, ]
   id_order <- match(filtrado[, 1], cl_name_ord)
   id_ordenado <- filtrado[order(id_order),]
-  #Obtenemos las comunidades de im
+  # Get the communities of im
   imcols = ncol(im)
   comm <- matrix(data = 0,
                  ncol = 1,
@@ -970,11 +969,12 @@ overlap_by_comm <- function(path, info, graph, im, ord, step, name){
     comm[count,1] = im[step, j]
     count = count + 1
   }
-  #Unimos id con comunidades
+  # Unite id with communities
   comm <- paste0("C",comm)
   idv_comm_pop_spop <-
     cbind(id_ordenado,comm)
   idv_comm_pop_spop <- idv_comm_pop_spop[,c(1,2,3,5,4)]
+  # Create the overlay table
   tabla <-
     xtabs( ~ idv_comm_pop_spop[, 4] + idv_comm_pop_spop[, 2], data = idv_comm_pop_spop)
   tabla_overlap <- tabla
@@ -987,7 +987,7 @@ overlap_by_comm <- function(path, info, graph, im, ord, step, name){
       tabla_overlap[hil, col] = tabla[hil, col] / sum_by_comm[hil]
     }
   }
-  #Damos nombres dependiendo de la cantidad de comunidades
+  # Give names depending on the number of communities
   num_2level <- length(unique(idv_comm_pop_spop[, 3]))
   list_pop_by_spop <-
     aggregate(
@@ -995,6 +995,8 @@ overlap_by_comm <- function(path, info, graph, im, ord, step, name){
       data = idv_comm_pop_spop,
       FUN = length
     )
+  # Graph with ComplexHeatmap. Info in: 
+  # https://jokergoo.github.io/2020/05/06/translate-from-pheatmap-to-complexheatmap/
   annotation_row_spop = data.frame(Spop = factor(list_pop_by_spop[, 1]))
   rownames(annotation_row_spop) = list_pop_by_spop[, 2]
   spop_color <- idv_comm_pop_spop[!duplicated(idv_comm_pop_spop[,5], fromLast = FALSE),]
@@ -1003,7 +1005,6 @@ overlap_by_comm <- function(path, info, graph, im, ord, step, name){
   names(Spop_colores) = spop_color[, 1]
   ann_colors_spop = list(Spop = Spop_colores)
   mat_overlap <- as.data.frame.matrix(tabla_overlap)
-  #https://jokergoo.github.io/2020/05/06/translate-from-pheatmap-to-complexheatmap/
   png(file= paste(path,name,sep="/"),width=1000, height=1000)
   HM <- ComplexHeatmap::pheatmap(
     t(mat_overlap),
@@ -1023,18 +1024,18 @@ overlap_by_comm <- function(path, info, graph, im, ord, step, name){
   dev.off()
 }
 
-#Funciones ara obtener las redes
-#Corrige que haya dos edges entre dos comunidades
-#1)plot_louvain_by_comm()
-#Función para graficar coloreando comunidades
-#Función necesaria para crear la tabla para el mapa de Shiny
+# Functions to obtain the networks
+# Fix that there are two edges between two communities
+# 1)plot_louvain_by_comm()
+# Function to graph coloring communities
+# Function needed to create the table for the Shiny map
 plot_louvain_by_comm <- function(ord, im, step, graph, mapbig, lay, name, path) {
-  #Aquí step se refiere a la hilera de im de donde sacaremos las comunidades
-  #Ordenar como en pollock usando cl$names y ord
-  cl <- cluster_louvain(graph, resolution = 1) #Cualquier r sirve, sólo necesitamos names
+  # Here step refers to the row of im from which we will get the communities
+  # Sort like Pollock using cl$names and ord
+  cl <- cluster_louvain(graph, resolution = 1) # Any r is ok, we just need names
   cl_names <- cl$names
   cl_names_ord <- cl_names[ord[,1]]
-  #Juntamos id y su comm
+  # Put together id and its comm
   imcols = ncol(im)
   id_comm <- matrix(data = 0,
                     ncol = 2,
@@ -1047,25 +1048,23 @@ plot_louvain_by_comm <- function(ord, im, step, graph, mapbig, lay, name, path) 
   id_comm[,1] <- cl_names_ord
   colnames(id_comm) <- c("ID","Comm")
   comms <- sort(unique(as.numeric(id_comm[,2])))
-  #Obtenemos los colores de esas comundidades
+  # Get the colors of those communities
   colors <- mapbig[comms,1]
   comms_colors <- cbind(comms,colors)
-  #Ordenamos las comunidades con su color de menor a mayor
-  #comm_color_ord <- order(as.numeric(comms_colors[, 1]))
-  #comms_colors <- comms_colors[comm_color_ord,]
+  # Order the communities with their color from smallest to largest
   colnames(comms_colors) <- c("Comm","Colors")
-  #Creamos matriz de individuos con su comundidad y color
+  # Create a matrix of individuals with their community and color
   id_colors <- merge(id_comm,comms_colors, by = "Comm")
   id_colors2 <- cbind(id_colors[,2],id_colors[,1],id_colors[,3])
   colnames(id_colors2) <- c("ID","Comm","Colors")
-  #Ordenamos la información con los individuos en en grafo
+  # Organize the information with the individuals in a graph
   vert <- V(graph)$name
   id_order <- match(id_colors2[,1], vert)
   id_ordenado <- id_colors2[order(id_order),]
-  #Asignamos los atributos de comunidad y color al grafo
+  # Assign the community and color attributes to the graph
   V(graph)$carac <- id_ordenado[,2]
   V(graph)$color <- id_ordenado[,3]
-  #Graficamos
+  # Graph
   svg(file= paste(path,name,sep="/"), width = 30, height = 20)
   plot(
     graph,
