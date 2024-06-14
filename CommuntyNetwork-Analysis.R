@@ -534,37 +534,43 @@ pollock <- function(Ssort, little, r, path) {
     Ssort2[y] <- 0
   }
   
-  # rename coms, to take into account have lost all littlecoms
+  # Rename coms, to take into account have lost all littlecoms
+  # Create a vector `rep` that contains the unique community labels in `Ssort2`, sorted in ascending order.
   rep <-
-    sort(unique(as.vector(Ssort2))) #Súper impoartante el as.vector
+    sort(unique(as.vector(Ssort2))) 
+  # Create a vector `a` that contains the integers from 1 to the length of `rep`.
   a <- 1:length(rep)
   im <- Ssort2
+  # Replace the community labels in `Ssort2` with their corresponding indices in `a`.
   for (i in 1:length(rep)) {
     z <- which(Ssort2 == rep[i])
     im[z] <- a[i]
   }
-  
+  # Number of communities
   m <- max(im)
-  cat("num comm: ", max(im), "\n")
+  # Select colors for communities.
   colores <- distinct_colors(
     (max(im) - 1),
     minimal_saturation = 33,
     minimal_lightness = 20,
     maximal_lightness = 80
   )
-  map <- colores$name #Colores en hex
+  # Obtain colors in hex
+  map <- colores$name
+  # Mix the colors
   map <- map[sample(length(map))]
+  # Store colors in vector ma
   ma <- vector("character", length = m)
   ma[2:m] <- map
+   # Makes first one white. Little coms all have label 0, so will appear white.
   ma[1] <-
-    c("#FFFFFF") # makes first one white. Little coms all have label 0, so will appear white
+    c("#FFFFFF")
   im2 <- apply(im, 2, rev)
-  
-  # Fijar los valores de los ejes
+  # Axis X values
   x_vals <- 1:ncol(Ssort)
-  #y_vals <- seq(-2, 2, length.out = 50)
+  # Axis Y values
   y_vals <- 1:nrow(Ssort)
-  # Crear la imagen con valores de ejes fijos
+  # Store the plot as a .png image.
   png(file= paste(path,"res_plot.png",sep="/"))
   image(
     x = x_vals,
@@ -584,10 +590,11 @@ pollock <- function(Ssort, little, r, path) {
     text = "Resolution value",
     cex = 1,
   )
+  # Y labels
   yticklabels <- rev(-2:2)
-  # Crear el vector de posiciones para los ticks del eje y
+  # Create the position vector for the y-axis ticks.
   yticks <- seq(1, nrow(Ssort), length.out = 5)
-  # Configurar los ticks y etiquetas del eje y
+  # Configure y-axis ticks and labels
   axis(
     side = 2,
     at = yticks,
@@ -598,6 +605,7 @@ pollock <- function(Ssort, little, r, path) {
   # Returns a list with the individuals communities by level or resolution, the individal orders and the colors by community.
   return(list(im, order, ma))
 }
+
 # Function to plot Louvain clustering results colored by superpopulation
 plot_louvain_by_spop <- function(graph, cl_list, spop_color, R, lay, name) {
   # Extract the clustering results for the given resolution
