@@ -1090,10 +1090,10 @@ plot_louvain_by_comm <- function(ord, im, step, graph, mapbig, lay, name, path) 
   return(graph)
 }
 
-#OJO!! Aquí necesitamos el graph que se genera en
-#plot_louvain_by_comm()
-#Obtener posición media de x y y de lay
-#vertex_attr_names(graph) ayuda a ver qué atributos hay
+# Here we need the graph that is generated in
+# plot_louvain_by_comm()
+# Get average position of x and y from lay
+# vertex_attr_names(graph) helps see what attributes are there
 media_graph <- function(graph_by_comm, lay) {
   pos <- cbind(V(graph_by_comm)$carac, lay)
   pos_x <- aggregate(as.numeric(pos[, 2]) ~ pos[, 1],
@@ -1106,16 +1106,14 @@ media_graph <- function(graph_by_comm, lay) {
   
   return(means_table)
 }
-#Número de nodos por comunidad
+# Number of nodes per community
 num_vert <- function(graph_by_comm) {
-  # Obtener la tabla de frecuencias
-  tabla_frecuencias <- table(V(graph_by_comm)$carac)
-  #También sale con table(as.numeric(im[1,]))
-  
-  # Convertir la tabla de frecuencias en un data frame
+  # Get the frequency table
+  tabla_frecuencias <- table(V(graph_by_comm)$carac)  
+  # Convert the frequency table into a data frame
   df_frecuencias <- as.data.frame(tabla_frecuencias)
   df_frecuencias <- as.matrix(df_frecuencias)
-  # Renombrar las columnas
+  # Rename columns
   colnames(df_frecuencias) <- c("Comm", "Frecuencia")
   ord <- order(as.numeric(df_frecuencias[,1]))
   freq_ordenado <- df_frecuencias[ord,]
@@ -1123,27 +1121,27 @@ num_vert <- function(graph_by_comm) {
   return(freq_ordenado)
 }
 
-#Densidad de conexiones
-#Atributos: edge_attr_names(graph)
+# Connection density
+# Attributes: edge_attr_names(graph)
 dens_con <- function(graph_by_comm) {
-  #Obtenemos pares de individuos del grafo y nombramos
+  # Obtain pairs of individuals from the graph and name
   conections <- get.edgelist(graph_by_comm)
   colnames(conections) <- c("ID1", "ID2")
-  #Obtenemos lista de individuos y la comunidad a la que pertenecen
+  # Obtain a list of individuals and the community to which they belong
   indv_comm <- cbind(V(graph_by_comm)$name, V(graph_by_comm)$carac)
   colnames(indv_comm) <- c("ID1", "Comm")
-  #Obtenemos las comunidades de ID1
+  # Get the communities from ID1
   merge_1 <- merge(conections, indv_comm, by = "ID1")
   colnames(merge_1) <- c("ID1", "ID2","Comm1")
-  #Cambiamos nombre para obtener comunidades para ID2
+  # We change name to obtain communities for ID2
   colnames(indv_comm) <- c("ID2", "Comm")
   merge_2 <- merge(merge_1, indv_comm, by = "ID2")
-  #Ordenamos y nombramos la matriz
+  # Sort and name the matrix
   merged <- merge_2[,c(2,1,3,4)]
   colnames(merged) <- c("ID1", "ID2","Comm1","Comm2")
-  #Ahora sólo nos quedamos con Comm1 y Comm2
+  # Now we are only left with Com1 and Com2
   comms <- cbind(merged$Comm1,merged$Comm2)
-  # Ordenar alfabéticamente los nombres de las entidades en cada fila
+  # Alphabetically sort the entity names in each row
   relaciones_ordenadas <- t(apply(comms, 1, function(row) {
     if (row[1] < row[2]) {
       return(c(row[1], row[2]))
@@ -1151,31 +1149,22 @@ dens_con <- function(graph_by_comm) {
       return(c(row[2], row[1]))
     }
   }))
-  #Convertir la matriz resultante en un data frame
+  # Convert the resulting matrix into a data frame
   relaciones_ordenadas <- as.data.frame(relaciones_ordenadas)
-  #Obtenemos tabla de frecuencias
-  ####AQUÍ ESTÁ EL ERROR!!! No era matriz cuadrada
-  #freq2 <- xtabs( ~ relaciones_ordenadas[,1] + relaciones_ordenadas[,2])
-  #Esto lo arregla:
+  # Obtain frequency table
   vector1 <- relaciones_ordenadas[,1]
   vector2 <- relaciones_ordenadas[,2]
   combined_levels <- unique(c(vector1, vector2))
   freq_table <- table(factor(vector1, levels = combined_levels), factor(vector2, levels = combined_levels))
-  
-  # Muestra la tabla de frecuencias
-  #Hay conexiones dentro de las comunidades
-  #Esas no las necesitamos y las hacemos 0
+  # Shows the frequency table
+  # There are connections within communities
+  # We don't need those and we make them 0
   for(i in 1:ncol(freq_table)){
     freq_table[i,i] = 0
   }
-  #tabla_freq <- as.data.frame(freq)
   tabla_freq2 <- as.data.frame(freq_table)
-  #En la tabla de frecuencia se integran todos contra todos
-  #Así que quedan muchos ceros. Los quitamos.
-  # nonzeros <- which(tabla_freq[,3] != 0)
-  # tabla_freq_nonzeros <- tabla_freq[nonzeros,]
-  # tabla_freq_nonzeros <- as.matrix(tabla_freq_nonzeros)
-  # colnames(tabla_freq_nonzeros) <- c("from","to","weight")
+  # In the frequency table all against all are integrated
+  # So there are many zeros left. We remove them.
   if(nrow(tabla_freq2) > 1) {
     nonzeros2 <- which(tabla_freq2[, 3] != 0)
     tabla_freq_nonzeros2 <- tabla_freq2[nonzeros2, ]
@@ -1189,22 +1178,21 @@ dens_con <- function(graph_by_comm) {
   return(tabla_freq_nonzeros2)
 }
 
-#Hacer el grafo y plotear
+# Make the graph and plot
 graph_comms <- function(graph_by_comm, tabla_freq_nonzeros, freq_ordenado) {
-  #Obtenemos los nombres de las comundiades de menor a mayor
+  # Obtain the names of the communities from smallest to largest
   vert <- sort(as.numeric(unique(V(graph_by_comm)$carac)))
-  #Obtenemos los colores de las comunidades
+  # Get the colors of the communities
   color <- unique(V(graph_by_comm)$color)
-  #Obtenemos el orden de los colores para que coincidan
-  #con la posición de las comunidades
+  # Obtain the order of the colors to match the position of the communities
   orden <- order(as.numeric(unique(V(graph_by_comm)$carac)))
   color <- color[orden]
-  #Creamos un grafo con esta información
+  # Create a graph with this information
   graph_only_comms <-
     graph_from_data_frame(tabla_freq_nonzeros,
                           directed = F,
                           vertices = vert)
-  #Asignamos atributos para graficar
+  # Assign attributes to graph
   V(graph_only_comms)$carac <- vert
   V(graph_only_comms)$size <- as.numeric(freq_ordenado[, 2])
   V(graph_only_comms)$color <- color
@@ -1214,12 +1202,12 @@ graph_comms <- function(graph_by_comm, tabla_freq_nonzeros, freq_ordenado) {
   return(graph_only_comms)
 }
 
-# Función para contar números únicos por fila
+# Function to count unique numbers per row
 contar_unicos <- function(fila) {
   longitud <- length(unique(fila))
   return(longitud)
 }
-#Medias de layout en 3D
+# 3D layout tights
 media_graph_3D <- function(graph_by_comm, lay_3D) {
   pos <- cbind(V(graph_by_comm)$carac, lay_3D)
   pos_x <- aggregate(as.numeric(pos[, 2]) ~ pos[, 1],
@@ -1236,28 +1224,17 @@ media_graph_3D <- function(graph_by_comm, lay_3D) {
   return(means_table_3D)
 }
 
-# Para graficar el nuevo grafo
-# En el archivo Pa_colores, no parece integrar la nueva normalización al grafo
-# o a la función que grafica, por lo que no veríamos esos cambios en la gráfica.
-# Vnorm = (rank(V(graph_only_comms_no1)$size) / length(V(graph_only_comms_no1)$size)) * 100
-# Enorm = (rank(E(graph_only_comms_no1)$width) / length(E(graph_only_comms_no1)$width)) * 100
-# Una forma de hacer lo anterior sería otorgando nuevos valores de la siguiente manera:
-# V(graph)$size <- Vnorm
-# E(graph)$width <- Enorm
-# Pero se perderían los datos originales. Podríamos copiar el grafo antes y hacer la
-# modificación en la copia.
-# Pero me parece más sencillo si sólo modificamos la función "plot_by_density_no_legend"
-# para que sea:
-# vertex.size = (rank(V(graph_only_comms_no1)$size) / length(V(graph_only_comms_no1)$size)) * 100,
-# edge.width = Enorm = (rank(E(graph_only_comms_no1)$width) / length(E(graph_only_comms_no1)$width)) * 100,
-# Y así no tener que modificar o copiar el grafo.
-# Como dice mi asesor de doctorado: Nos ahorramos tinta.
+# The plot_by_density function takes as input a graph with communities (without community 1),
+# a table of means, a file path, and a name for the output file.
+# The function sorts the nodes in the graph based on the mean table,
+# adjusts the size of the nodes and the width of the edges based on their relative ranking,
+# and then graphs and saves the resulting display.
 plot_by_density <- function(graph_only_comms_no1, means_table, path, plotname) {
-  # La función ya no necesita introducir a Vnorm y a Enorm como parámetros
-  #ordenar means_table
+  # Sort means_table
   comm_order <- match(as.numeric(V(graph_only_comms_no1)$carac),as.numeric(means_table[, 1]))
   means_table_ord_filt <- means_table[comm_order,]
   lay_mean <- as.matrix(means_table_ord_filt[,c(2,3)])
+  # Adjusts the size of the nodes and the width of the edges based on their relative ranking
   vsize = (rank(V(graph_only_comms_no1)$size) / length(V(graph_only_comms_no1)$size)) *
     50
   ewidth = (rank(E(graph_only_comms_no1)$width) / length(E(graph_only_comms_no1)$width)) *
@@ -1265,27 +1242,27 @@ plot_by_density <- function(graph_only_comms_no1, means_table, path, plotname) {
   if(length(rank(E(graph_only_comms_no1)$width)) == 1){
     ecolor = NA
   }else{ecolor = "gray"}
-  #Graficamos y guardamos
+  # Graph and save
   png(file.path(path, plotname))
   plot(
     graph_only_comms_no1,
     layout = lay_mean,
-    #### Aquí inicia el cambio
     vertex.size = vsize,
     edge.width = ewidth, 
-    #### Aquí termina el cambio
     edge.color = ecolor,
     col = V(graph_only_comms_no1)$color,
   )
   dev.off()
 }
-
+# The function takes a network as input and iteratively removes vertices
+# with specific characteristics to clean up the network
 prune_network <- function (net){
+  # Removes vertices with a degree of 1 or 0.
   while (sum(degree(net) == 1)> 0){
     net <- delete_vertices(net, names(which(degree(net) == 1)))
     net <- delete_vertices(net, names(which(degree(net) == 0)))
   }
-  
+  # Removes small communities based on a specified size threshold.
   clusters <- cluster_louvain(net, resolution = 0.01)
   to_remove <- names(which(table(clusters$membership)< 25))
   for (i in to_remove){
