@@ -419,24 +419,23 @@ relabel <- function(num, S1, S2, currentmax){
   m <- 0
   assigned <-
     matrix(0, nrow = 1, ncol = 2) # just added to make coding easier, ignored later
-  # Enter a `while` loop to handle cases where there are more communities in `S2` than rows in `l2`.
-  while (nrow(assigned) < (nocoms2 + 1)) {
-    m = m + 1
-    if (is.matrix(l2)) {
-      filas_l2 = nrow(l2)
-    } else{
-      if (is.vector(l2)) {
-        filas_l2 = 1
-      } else{
-        cat("SUPER ERROR")
-      }
-    }
-
   noverlap <- 0
   noverlap_coms <- c()
+  # Enter a `while` loop to handle cases where there are more communities in `S2` than rows in `l2`.
     # Handle cases with more communities in S2
     # If there are more communities in `S2`, add new labels to the communities without labels in `assigned`,
     # where `assigned` is a matrix that stores assigned community labels.
+   while (nrow(assigned) < (nocoms2 + 1)) {
+     m = m + 1
+     if (is.matrix(l2)) {
+       filas_l2 = nrow(l2)
+     } else{
+       if (is.vector(l2)) {
+       filas_l2 = 1
+       } else{
+         cat("SUPER ERROR")
+       }
+     }
       if (m > filas_l2) {
         currentmax= currentmax + noverlap
         unassigned = sort(setdiff(coms2, assigned[, 2])) # communities without labels
@@ -473,8 +472,8 @@ relabel <- function(num, S1, S2, currentmax){
       Snew[x] = assigned[j, 1]
     }  
   return(Snew)
-  }
 }
+
 # This `pollock` function takes three arguments: `Ssort`, `little`, and `r`.
 # The purpose of this function is to reorder the node labels in `Ssort` to make sense of the data for plotting.
 # It also assigns colors to communities based on their sizes, and provides a visualization of the communities with specified colors.
