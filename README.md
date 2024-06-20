@@ -105,7 +105,7 @@ Format of
 
 María J. Palma, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México.
 
-Yuridia Posadas, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México.
+Yuridia S. Posadas-García, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México.
 
 Claudia Quiroz, Escuela Nacional de Antropología e Historia, CDMX, México.
 
