@@ -1115,8 +1115,13 @@ num_vert <- function(graph_by_comm) {
   # Rename columns
   colnames(df_frecuencias) <- c("Comm", "Frecuencia")
   ord <- order(as.numeric(df_frecuencias[,1]))
-  freq_ordenado <- df_frecuencias[ord,]
-  
+  df_frecuencias_ord <- df_frecuencias[ord,]
+  # Make freq_ordenado a matrix
+  freq_ordenado <- matrix(0, nrow = length(ord), ncol = 2)
+  for (i in 1:length(ord)) {
+    freq_ordenado[i,1] = df_frecuencias[i,1]
+    freq_ordenado[i,2] = df_frecuencias[i,2]
+  }
   return(freq_ordenado)
 }
 
