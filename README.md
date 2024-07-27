@@ -72,7 +72,7 @@ If you want to know more about how the shiny app works and the interpretation of
  
  -s \<param6\>:   Number of steps inside lambda range
  
- -l \<param7\>:   Lambda or resolution value to explore (logarithmic space from -2 to 2)
+ -l \<param7\>:   Lambda value to explore 
  
  -n \<param8\>:   Metadata file to generate shiny input
 
