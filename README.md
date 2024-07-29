@@ -100,6 +100,39 @@ Format of
   bash ParametersV011223.sh -k IBD -p /path/to/files -d data_file_name -i info_file_name -m 100 -s 5 -l 0.5 -n shiny_info_file
  ``` 
    </center>
+   
+## Customization Option
+The GG-NC browser also offers a customization option based on the user's needs or preferences. For this, the user must set a resolution value index, which corresponds to the number of steps within the resolution range that spans from 1 to 50. Then, it is necessary to upload three text files, which are described below.
+
+### Shiny info file
+
+This text file contains information about the cohorts considered in the analysis. The columns include: 
+
+•	__Pop__: Names of the cohorts (e.g., Adygei in Caucasus, Russia; Bengali in Bangladesh).
+
+•	__Pop3code__: Three-letter identifiers for each cohort (e.g., ADR for Adygei, BEB for Bengali).
+
+•	__Genetic_region__: Three-letter continental region codes (e.g., EUR for Europe, CSA for Central South Asia).
+
+•	__Project__: Dataset names (e.g., HGDP, 1000 Genomes).
+
+•	__Latitud__ and __Longitud__: Geographic coordinates (latitude and longitude) provided by the 1000 Genomes Projects and HGDP.
+
+•	__Lambda__: 50 lambda values considered in the analysis.
+
+•	__C1__ to __Cn__: Values for each community according to the analyzed lambda value; missing values are indicated as NA.
+
+Note that each population spans 50 rows due to the 50 lambda values analyzed.
+
+### Shiny colors file
+
+The second text file contains the color codes for the resulting communities. It consists of a single column without a header. If you wish to use the similar colors option, you should use a shiny color file that contains the codes for the similar colors.
+
+### Resolution plot file 
+
+This file contains a matrix indicating the community number to which each individual belongs for each resolution value. The values should be separated by a comma.
+
+
 
 ## Authors 
 
