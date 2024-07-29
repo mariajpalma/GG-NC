@@ -31,7 +31,7 @@ As a result of setting the previous options, you will obtain:
 
 Note that colors in the resolution plot correspond to those displayed in the accompanying map.
 
-If you want to know more about how the shiny app works and the interpretation of the results you can consult the [paper]() and the [tutorials]() made by the research team 
+At the top of the browser, you will find two additional tabs. The first tab, labeled __"Tutorial"__, contains a [tutorial video](https://www.youtube.com/watch?v=2bdod1RuRVk) created by the research team, which guides you through using this tool and interpreting the results. This video is also available in [Spanish](https://www.youtube.com/watch?v=mVegRKbWSAI&t=105s). The second tab, labeled __"Customize"__, provides an option for users to tailor the tool according to their needs or preferences. This option is described at the end of this document.
 
 ## Run the pipeline on the command-line
 
