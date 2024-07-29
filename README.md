@@ -9,7 +9,7 @@ The Shiny app, was developed within the research titled "Beyond Continental Grou
 ## Shiny interface
 Follow [this link](https://sohail-lab.shinyapps.io/GG-NC/) for the interactive Shiny app. A screenshot of the interface is provided below.
 
-![Shiny app interface](app_image.jpg)
+![Shiny app interface](images/browser_example.jpg)
 
 The Shiny app contains a toolbar with the following options:
 
@@ -108,6 +108,8 @@ The GG-NC browser also offers a customization option based on the user's needs o
 
 This text file contains information about the cohorts considered in the analysis. The columns include: 
 
+![Shiny info file](images/Shiny_info_file_example.jpg)
+
 •	__Pop__: Names of the cohorts (e.g., Adygei in Caucasus, Russia; Bengali in Bangladesh).
 
 •	__Pop3code__: Three-letter identifiers for each cohort (e.g., ADR for Adygei, BEB for Bengali).
@@ -126,12 +128,13 @@ Note that each population spans 50 rows due to the 50 lambda values analyzed.
 
 ### Shiny colors file
 
-The second text file contains the color codes for the resulting communities. It consists of a single column without a header. If you wish to use the similar colors option, you should use a shiny color file that contains the codes for the similar colors.
+The second text file contains the color codes for the resulting communities. It consists of a single column without a header. If you wish to use the similar colors option, you should use a shiny color file that contains the codes for the similar colors. Below is an example of a shiny colors file.
+
+  <img src="images/Shiny_colors_file_example.jpg" alt="Shiny colors file example" width="70">
 
 ### Resolution plot file 
 
-This file contains a matrix indicating the community number to which each individual belongs for each resolution value. The values should be separated by a comma.
-
+This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values). In other words, each cell in the matrix would indicate which community a specific individual belongs to for a particular resolution value. For example, if we analyze 1,500 individuals then we will have a 50x1500 matrix. Keep in mind that the values within the matrix should be separated by commas.
 
 
 ## Authors 
