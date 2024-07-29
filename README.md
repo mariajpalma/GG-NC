@@ -118,7 +118,7 @@ This text file contains information about the cohorts considered in the analysis
 
 •	__Project__: Dataset names (e.g., HGDP, 1000 Genomes).
 
-•	__Latitud__ and __Longitud__: Geographic coordinates (latitude and longitude) provided by the 1000 Genomes Projects and HGDP.
+•	__Latitud__ and __Longitud__: Geographic coordinates (latitude and longitude) provided by the 1000 Genomes Project and HGDP.
 
 •	__Lambda__: 50 lambda values considered in the analysis.
 
