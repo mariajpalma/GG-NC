@@ -122,7 +122,7 @@ This text file contains information about the cohorts considered in the analysis
 
 •	__Lambda__: 50 lambda values considered in the analysis.
 
-•	__C1__ to __Cn__: Values for each community according to the analyzed lambda value; missing values are indicated as NA.
+•	__C1__ to __Cn__: Proportion of individuals from the cohort within each community (expressed in decimals) according to the analyzed lambda value; missing values are indicated as NA.
 
 Note that each population spans 50 rows due to the 50 lambda values analyzed.
 
@@ -135,6 +135,8 @@ The second text file contains the color codes for the resulting communities. It 
 ### Resolution plot file 
 
 This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values). In other words, each cell in the matrix would indicate which community a specific individual belongs to for a particular resolution value. For example, if we analyze 1,500 individuals then we will have a 50x1500 matrix. Keep in mind that the values within the matrix should be separated by commas.
+
+The [data](data)  folder contains the required inputs to perform some examples included in the paper using the customize option.
 
 
 ## Authors 
