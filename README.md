@@ -115,9 +115,9 @@ The pipeline outputs are organized into folders, which are described below.
 3. Community_networks: this folder contains community network images as well as the objects needed for 3D visualization.
 4. Network of Individuals: Includes the images of individual networks
 5. Browser_files: Contains the text files required to display the results in the browser (These files are described in the "Customization Option" section). Other color alternatives for the resulting communities are also included.
-•	Resolution_matrix.txt: This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values)
-•	shinny_info.txt: This text file contains information about the cohorts considered in the analysis.
-•	Similar_colors.txt: Contains the color codes for the resulting communities for the similar colors option.
+•	__Resolution_matrix.txt__: This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values).
+•	__shinny_info.txt__: This text file contains information about the cohorts considered in the analysis.
+•	__Similar_colors.txt__: Contains the color codes for the resulting communities for the similar colors option.
 •	Distinctive_colors.txt: Contains the color codes for the resulting communities for the distinctive colors option.
 •	alternative_colors_1.txt: First option of alternative colors.
 •	alternative_colors_2.txt: Second option of alternative colors.
