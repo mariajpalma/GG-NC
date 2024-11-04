@@ -104,6 +104,8 @@ Format of
 ## Customization Option
 The GG-NC browser also offers a customization option based on the user's needs or preferences. For this, the user must set a resolution value index, which corresponds to the number of steps within the resolution range that spans from 1 to 50. Then, it is necessary to upload three text files, which are described below.
 
+![Customize option interfase](images/customization_image.jpg)
+
 ### Shiny info file
 
 This text file contains information about the cohorts considered in the analysis. The columns include: 
