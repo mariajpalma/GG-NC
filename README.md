@@ -100,6 +100,27 @@ Format of
   bash ParametersV011223.sh -k IBD -p /path/to/files -d data_file_name -i info_file_name -m 100 -s 5 -l 0.5 -n shiny_info_file
  ``` 
    </center>
+
+## Pipeline outputs
+
+The pipeline outputs are organized into folders, which are described below.
+
+1. Stability_metrics: this folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
+2. Community detection: includes text files containing the resulting matrices, listed below.
+   •	Louvain_result_matrix_raw.txt
+   •	Louvain_result_matrix_relabeled__allcomm.txt
+   •	individual_index_order_GRM_common.txt
+   •	res_plot.png
+   •	resolution_plot_similarC.png
+3. Community_networks: this folder contains community network images as well as the objects needed for 3D visualization.
+4. Network of Individuals: Includes the images of individual networks
+5. Browser_files: Contains the text files required to display the results in the browser (These files are described in the "Customization Option" section). Other color alternatives for the resulting communities are also included.
+•	Resolution_matrix.txt: This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values)
+•	shinny_info.txt: This text file contains information about the cohorts considered in the analysis.
+•	Similar_colors.txt: Contains the color codes for the resulting communities for the similar colors option.
+•	Distinctive_colors.txt: Contains the color codes for the resulting communities for the distinctive colors option.
+•	alternative_colors_1.txt: First option of alternative colors.
+•	alternative_colors_2.txt: Second option of alternative colors.
    
 ## Customization Option
 The GG-NC browser also offers a customization option based on the user's needs or preferences (a screenshot of the customization option interface is provided below). For this, the user must set a resolution value index, which corresponds to the number of steps within the resolution range that spans from 1 to 50. Then, it is necessary to upload three text files, which are described below.
