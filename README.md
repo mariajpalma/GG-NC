@@ -105,7 +105,8 @@ Format of
 
 The pipeline outputs are organized into folders, which are described below.
 
-1. Stability_metrics: this folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
+1. __Stability_metrics__: this folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
+   
 2. __Community detection__: includes text files containing the resulting matrices, listed below.
    
 •	__Louvain_result_matrix_raw.txt__
@@ -119,7 +120,9 @@ The pipeline outputs are organized into folders, which are described below.
 •	__resolution_plot_similarC.png__
 
 3. __Community_networks__: this folder contains community networks images as well as the objects needed for 3D visualization.
+   
 4. __Network of Individuals__: Includes the images of individual networks.
+   
 5. __Browser_files__: Contains the text files required to display the results in the browser (these files are described in the "Customization Option" section). Other color alternatives for the resulting communities are also included.
 •	__Resolution_matrix.txt__: This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values).
 
