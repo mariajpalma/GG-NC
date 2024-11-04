@@ -114,13 +114,18 @@ The pipeline outputs are organized into folders, which are described below.
 •	resolution_plot_similarC.png
 3. Community_networks: this folder contains community network images as well as the objects needed for 3D visualization.
 4. Network of Individuals: Includes the images of individual networks
-5. Browser_files: Contains the text files required to display the results in the browser (These files are described in the "Customization Option" section). Other color alternatives for the resulting communities are also included.
+5. __Browser_files__: Contains the text files required to display the results in the browser (These files are described in the "Customization Option" section). Other color alternatives for the resulting communities are also included.
 •	__Resolution_matrix.txt__: This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values).
+
 •	__shinny_info.txt__: This text file contains information about the cohorts considered in the analysis.
+
 •	__Similar_colors.txt__: Contains the color codes for the resulting communities for the similar colors option.
-•	Distinctive_colors.txt: Contains the color codes for the resulting communities for the distinctive colors option.
-•	alternative_colors_1.txt: First option of alternative colors.
-•	alternative_colors_2.txt: Second option of alternative colors.
+
+•	__Distinctive_colors.txt__: Contains the color codes for the resulting communities for the distinctive colors option.
+
+•	__alternative_colors_1.txt__: First option of alternative colors.
+
+•	__alternative_colors_2.txt__: Second option of alternative colors.
    
 ## Customization Option
 The GG-NC browser also offers a customization option based on the user's needs or preferences (a screenshot of the customization option interface is provided below). For this, the user must set a resolution value index, which corresponds to the number of steps within the resolution range that spans from 1 to 50. Then, it is necessary to upload three text files, which are described below.
