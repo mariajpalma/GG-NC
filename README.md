@@ -107,11 +107,11 @@ The pipeline outputs are organized into folders, which are described below.
 
 1. Stability_metrics: this folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
 2. Community detection: includes text files containing the resulting matrices, listed below.
-   •	Louvain_result_matrix_raw.txt
-   •	Louvain_result_matrix_relabeled__allcomm.txt
-   •	individual_index_order_GRM_common.txt
-   •	res_plot.png
-   •	resolution_plot_similarC.png
+•	Louvain_result_matrix_raw.txt.
+•	Louvain_result_matrix_relabeled__allcomm.txt.
+•	individual_index_order_GRM_common.txt.
+•	res_plot.png.
+•	resolution_plot_similarC.png
 3. Community_networks: this folder contains community network images as well as the objects needed for 3D visualization.
 4. Network of Individuals: Includes the images of individual networks
 5. Browser_files: Contains the text files required to display the results in the browser (These files are described in the "Customization Option" section). Other color alternatives for the resulting communities are also included.
