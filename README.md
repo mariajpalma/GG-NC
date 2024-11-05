@@ -60,23 +60,34 @@ At the top of the browser, you will find two additional tabs. The first tab, lab
  ```
  Where each parameter refers to: 
  
- -k \<param1\>:   The genetic metric to consider. Kind: IBD, PCA or GRM
+ -k \<param1\>:   The genetic metric to consider. Kind: IBD, PCA or GRM.
  
- -p \<param2\>:   Path of your files
+ -p \<param2\>:   Path of your files.
  
- -d \<param3\>:   Name of your IBD/PCA/GRM files
+ -d \<param3\>:   Name of your IBD/PCA/GRM files.
  
  -i \<param4\>:    Name of your metadata file. In this file, it is expected to find information about the proposed grouping for your samples.
  
  -m \<param5\>:   Maximum value of the sum of the length of the IBD segments to be allowed.
  
- -s \<param6\>:   Number of steps inside lambda range
+ -s \<param6\>:   Steps in the log10 space to explore.
  
- -l \<param7\>:   Lambda value to explore 
+ -l \<param7\>:   Lambda value to explore. 
  
- -n \<param8\>:   Metadata file to generate shiny input
+ -u \<param8\>:   Prune option.
+ 
+ -c \<param9\>:   Minimun individuals in a community.
+ 
+ -a \<param10\>:  Lower limit of the log10 space to explore.
+ 
+ -z \<param11\>:  Upper limit of the log10 space to explore.
+ 
+ -r \<param12\>:  Set random seed.
+ 
+ -L            :  Use the Leiden algorithm instead of Louvain.
 
- -w \<param9\>:   Minimum size of the communities to be labeled and colored
+
+ 
  
 
    </center>
