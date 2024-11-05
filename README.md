@@ -139,7 +139,7 @@ The pipeline outputs are organized into folders, which are described below.
 ## Customization Option
 The GG-NC browser also offers a customization option based on the user's needs or preferences (a screenshot of the customization option interface is provided below). For this, the user must set a resolution value index, which corresponds to the number of steps within the resolution range that spans from 1 to 50. Then, it is necessary to upload three text files, which are described below.
 
-![Customize option interfase](images/customization_image.jpg)
+![Customize option interfase](images/browser_custom.jpg)
 
 ### Shiny info file
 
