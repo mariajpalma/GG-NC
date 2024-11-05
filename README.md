@@ -56,7 +56,7 @@ At the top of the browser, you will find two additional tabs. The first tab, lab
     
   For example:
 ```
-  bash ParametersV011223.sh -k <param1_value> -p <param2_value> -d <param3_value> -i <param4_value> -m <param5_value> -s <param6_value> -l <param7_value> -n <param8_value>
+  bash ParametersV011223.sh -k <param1> -p <param2> -d <param3> -i <param4> -m <param5> -s <param6> -l <param7> -u <param8> -c <param9> -a <param10> -z <param11> [-L]
  ```
  Where each parameter refers to: 
  
