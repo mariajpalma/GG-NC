@@ -151,8 +151,8 @@ The pipeline outputs are organized into folders, which are described below.
    • __Stability_NID_variance.png__: A dot plot showing the variance of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
 2. __Community_detection__: includes text files containing the resulting matrices, listed below.
-   
-  •	__Result_matrix_raw.txt__: Is a numerical matrix that presents the community classification of individuals promptly following their processing through either the Louvain algorithm at various resolution values. Communities do not align across resolutions, so this matrix requires further processing.
+
+   •	__Result_matrix_raw.txt__: Is a numerical matrix that presents the community classification of individuals promptly following their processing through either the Louvain algorithm at various resolution values. Communities do not align across resolutions, so this matrix requires further processing.
 
   •	__Result_matrix_relabeled_allcomm.txt__: This is the matrix after processing the "Result_matrix_raw.txt" to ensure that the communities are consistent across resolutions, individuals are sorted to group those belonging to the same communities, and very small communities have been combined (according to the -c parameter).
 
