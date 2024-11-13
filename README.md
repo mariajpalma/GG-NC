@@ -97,13 +97,20 @@ At the top of the browser, you will find two additional tabs. The first tab, lab
 **IBD:** The pipeline expects a three-column file with tab-separated values for IBD analysis. The first and second columns should correspond to the ID, and the third column should represent the sum of IBD segments.
 
 |ID1	    |ID2	    |IBD_CM_SUM       |
-|---------|:-------:|:---------------:|
+|---------|---------|-----------------|
 |HGDP00382|HGDP00397|5.72952          |
 |HGDP00995|HGDP01019|973.6069399999999|
 |HG01269	|HG01468	|111.25585        |
 |HGDP00557|HGDP00565|380.715259999999 |
 
 **PCA:** For PCA analysis, the input file should be tabulated with the first column representing the ID, and the subsequent columns (from the second column onwards) should correspond to the PCA values.
+
+|indv	  |PC1       |PC2       |PC3       |PC4       |PC5	      |PC6	      |PC7	      |PC8	     |PC9	      |PC10       |
+|-------|----------|----------|----------|----------|-----------|-----------|-----------|----------|----------|-----------|
+|HG00096|	-0.12578 |-0.24774  |-0.019454 |0.084224	|-0.011884  |-0.0012548	|-0.060939	|-0.018647 |-0.0017283|0.0063747  |
+|HG00097|	-0.126   |-0.24707  |-0.017057 |0.086622	|-0.010138  |0.005294	  |-0.059246	|-0.017177 |-0.0032765|-0.003018  |
+|HG00099|	-0.12443 |-0.24729  |-0.022543 |0.081816	|-0.0082434 |0.0018152	|-0.062343	|-0.01951	 |-0.0023126|-0.0025261 |
+
 
 **GRM:** To estimate the genetic relationship matrix (GRM), we utilized the [GCTA-GRM](https://gcta.freeforums.net/thread/175/gcta-estimating-genetic-relationship-using) tool, and the pipeline anticipates the presence of .bin and .id files only.
 
