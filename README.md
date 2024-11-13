@@ -141,6 +141,14 @@ The pipeline outputs are organized into folders, which are described below.
    -__Stability_ARI_median.png__: A dot plot showing the median of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
    -__Stability_ARI_variance.png__: A dot plot showing the variance of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+
+   -__Stability_NID_bloxplot.png__: Boxplots of pairwise estimates of Normalized Information Distance (NID) values for 100 runs for each resolution value were compared to the assumed continental-level clustering.
+   
+   -__Stability_NID_mean.png__: A dot plot showing the mean of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   
+   -__Stability_NID_median.png__: A dot plot showing the median of the pairwise estimates of Normalized Information Distance (NID)) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   
+   -__Stability_NID_variance.png__: A dot plot showing the variance of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
 3. __Community detection__: includes text files containing the resulting matrices, listed below.
    
