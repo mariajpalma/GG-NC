@@ -96,7 +96,12 @@ At the top of the browser, you will find two additional tabs. The first tab, lab
 
 **IBD:** The pipeline expects a three-column file with tab-separated values for IBD analysis. The first and second columns should correspond to the ID, and the third column should represent the sum of IBD segments.
 
-![IBD input example](images/IBD_input_example.png)
+|ID1	    |ID2	    |IBD_CM_SUM       |
+|---------|:-------:|:---------------:|
+|HGDP00382|HGDP00397|5.72952          |
+|HGDP00995|HGDP01019|973.6069399999999|
+|HG01269	|HG01468	|111.25585        |
+|HGDP00557|HGDP00565|380.715259999999 |
 
 **PCA:** For PCA analysis, the input file should be tabulated with the first column representing the ID, and the subsequent columns (from the second column onwards) should correspond to the PCA values.
 
