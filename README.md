@@ -132,35 +132,35 @@ The pipeline outputs are organized into folders, which are described below.
 
 1. __Stability_metrics__: this folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
 
-   -__Common_membership_file_R__: Is an matrix with the membership for the resolution "R" to store the number of times each pair of individuals shares the same cluster.
+   • __Common_membership_file_R__: Is an matrix with the membership for the resolution "R" to store the number of times each pair of individuals shares the same cluster.
    
-   -__Stability_ARI_bloxplot.png__: Boxplots of pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs for each resolution value were compared to the assumed continental-level clustering.
+   • __Stability_ARI_bloxplot.png__: Boxplots of pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs for each resolution value were compared to the assumed continental-level clustering.
    
-   -__Stability_ARI_mean.png__: A dot plot showing the mean of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_ARI_mean.png__: A dot plot showing the mean of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
-   -__Stability_ARI_median.png__: A dot plot showing the median of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_ARI_median.png__: A dot plot showing the median of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
-   -__Stability_ARI_variance.png__: A dot plot showing the variance of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_ARI_variance.png__: A dot plot showing the variance of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
 
-   -__Stability_NID_bloxplot.png__: Boxplots of pairwise estimates of Normalized Information Distance (NID) values for 100 runs for each resolution value were compared to the assumed continental-level clustering.
+   • __Stability_NID_bloxplot.png__: Boxplots of pairwise estimates of Normalized Information Distance (NID) values for 100 runs for each resolution value were compared to the assumed continental-level clustering.
    
-   -__Stability_NID_mean.png__: A dot plot showing the mean of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_NID_mean.png__: A dot plot showing the mean of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
-   -__Stability_NID_median.png__: A dot plot showing the median of the pairwise estimates of Normalized Information Distance (NID)) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_NID_median.png__: A dot plot showing the median of the pairwise estimates of Normalized Information Distance (NID)) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
-   -__Stability_NID_variance.png__: A dot plot showing the variance of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_NID_variance.png__: A dot plot showing the variance of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
-3. __Community detection__: includes text files containing the resulting matrices, listed below.
+2. __Community_detection__: includes text files containing the resulting matrices, listed below.
    
-•	__Louvain_result_matrix_raw.txt__
+  •	__Result_matrix_raw.txt__: Is a numerical matrix that presents the community classification of individuals promptly following their processing through either the Louvain algorithm at various resolution values. Communities do not align across resolutions, so this matrix requires further processing.
 
-•	__Louvain_result_matrix_relabeled__allcomm.txt__
+  •	__Result_matrix_relabeled_allcomm.txt__: This is the matrix after processing the file "Louvain_result_matrix_raw.txt" to ensure that the communities are consistent across resolutions, individuals are sorted to group those belonging to the same communities, and very small communities have been combined (according to the -c parameter).
 
-•	__individual_index_order_GRM_common.txt__
+  •	__individual_index_order.txt__: 
 
-•	__res_plot.png__
+  •	__res_plot.png__:
 
-•	__resolution_plot_similarC.png__
+  •	__resolution_plot_similarC.png__:
 
 3. __Community_networks__: this folder contains community networks images as well as the objects needed for 3D visualization.
    
