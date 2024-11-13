@@ -84,7 +84,7 @@ At the top of the browser, you will find two additional tabs. The first tab, lab
  
  -r \<param12\>:  Set random seed.
  
- -L            :  Use the Leiden algorithm instead of Louvain.
+ -L            :  This parameter is optional: use the Leiden algorithm instead of the Louvain algorithm.
 
 
  
