@@ -136,37 +136,37 @@ The pipeline outputs are organized into folders, which are described below.
    
    • __Stability_ARI_bloxplot.png__: Boxplots of pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs for each resolution value using the algorithm for community detection, along with boxplots when assumed continental-level clustering.
    
-   • __Stability_ARI_mean.png__: A dot plot showing the mean of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs for each resolution value using the algorithm for community detection, along with the mean comparing against the assumed continental-level clustering.
+   • __Stability_ARI_mean.png__: A dot plot showing the mean of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs for each resolution value using the algorithm for community detection.
    
-   • __Stability_ARI_median.png__: A dot plot showing the median of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_ARI_median.png__: A dot plot showing the median of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value.
    
-   • __Stability_ARI_variance.png__: A dot plot showing the variance of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_ARI_variance.png__: A dot plot showing the variance of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value.
 
    • __Stability_NID_bloxplot.png__: Boxplots of pairwise estimates of Normalized Information Distance (NID) values for 100 runs for each resolution value using the algorithm for community detection, along with boxplots when assumed continental-level clustering.
    
-   • __Stability_NID_mean.png__: A dot plot showing the mean of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_NID_mean.png__: A dot plot showing the mean of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value.
    
-   • __Stability_NID_median.png__: A dot plot showing the median of the pairwise estimates of Normalized Information Distance (NID)) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_NID_median.png__: A dot plot showing the median of the pairwise estimates of Normalized Information Distance (NID)) values for 100 runs at each resolution value.
    
-   • __Stability_NID_variance.png__: A dot plot showing the variance of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   • __Stability_NID_variance.png__: A dot plot showing the variance of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value.
    
 2. __Community_detection__: includes text files containing the resulting matrices, listed below.
 
    •	__Result_matrix_raw.txt__: Is a numerical matrix that presents the community classification of individuals promptly following their processing through either the Louvain algorithm at various resolution values. Communities do not align across resolutions, so this matrix requires further processing.
 
-  •	__Result_matrix_relabeled_allcomm.txt__: This is the matrix after processing the "Result_matrix_raw.txt" to ensure that the communities are consistent across resolutions, individuals are sorted to group those belonging to the same communities, and very small communities have been combined (according to the -c parameter).
+   •	__Result_matrix_relabeled_allcomm.txt__: This is the matrix after processing the "Result_matrix_raw.txt" to ensure that the communities are consistent across resolutions, individuals are sorted to group those belonging to the same communities, and very small communities have been combined (according to the -c parameter).
 
-  •	__individual_index_order.txt__: It is the new order of individuals after processing the "Result_matrix_raw.txt".
+   •	__individual_index_order.txt__: It is the new order of individuals after processing the "Result_matrix_raw.txt".
 
-  •	__res_plot.png__: Graphically represents the emergence of communities, colored with distinctive colors, as identified by the algorithm across varying resolution values.
+   •	__res_plot.png__: Graphically represents the emergence of communities, colored with distinctive colors, as identified by the algorithm across varying resolution values.
 
-  •	__resolution_plot_similarC.png__: Graphically represent the emergence of communities as shown in "res_plot.png" using similar color gradients that resemble the genetic similarity between individuals across varying resolution values.
+   •	__resolution_plot_similarC.png__: Graphically represent the emergence of communities as shown in "res_plot.png" using similar color gradients that resemble the genetic similarity between individuals across varying resolution values.
 
-3. __Community_networks__: this folder contains community networks images as well as the objects needed for 3D visualization.
+4. __Community_networks__: this folder contains community networks images as well as the objects needed for 3D visualization.
    
-4. __NetworksIndividuals__: Includes the images of individual networks.
+5. __NetworksIndividuals__: Includes the images of individual networks.
    
-5. __Browser_files__: Contains the text files required to display the results in the browser (these files are described in the "Customization Option" section). Other color alternatives for the resulting communities are also included.
+6. __Browser_files__: Contains the text files required to display the results in the browser (these files are described in the "Customization Option" section). Other color alternatives for the resulting communities are also included.
 •	__Resolution_matrix.txt__: This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values).
 
 •	__shinny_info.txt__: This text file contains information about the cohorts considered in the analysis.
