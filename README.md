@@ -27,7 +27,7 @@ As a result of setting the previous options, you will obtain:
 
 + __Pie chart__: The pie chart illustrates the distribution of individuals within a chosen cohort across various network communities.
 
-+ __Community network__: This network is constructed by averaging the positions of individuals within each community in the network of individuals. The node sizes are proportional to the respective community sizes. Edges indicate the density of connections between these communities.
++ __Community network__: This 3D interactive network is constructed by averaging the positions of individuals within each community in the network of individuals. The node sizes are proportional to the respective community sizes. Edges indicate the density of connections between these communities. You can move it to view different angles.
 
 Note that colors in the resolution plot correspond to those displayed in the accompanying map.
 
