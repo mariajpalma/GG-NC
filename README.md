@@ -132,15 +132,15 @@ The pipeline outputs are organized into folders, which are described below.
 
 1. __Stability_metrics__: this folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
 
-   .__Common_membership_file_R__: Is an matrix with the membership for the resolution "R" to store the number of times each pair of individuals shares the same cluster.
+   -__Common_membership_file_R__: Is an matrix with the membership for the resolution "R" to store the number of times each pair of individuals shares the same cluster.
    
-   .__Stability_ARI_bloxplot.png__: Boxplots of pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs for each resolution value were compared to the assumed continental-level clustering.
+   -__Stability_ARI_bloxplot.png__: Boxplots of pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs for each resolution value were compared to the assumed continental-level clustering.
    
-   .__Stability_ARI_mean.png__: A dot plot showing the mean of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   -__Stability_ARI_mean.png__: A dot plot showing the mean of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
-   .__Stability_ARI_median.png__: A dot plot showing the median of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   -__Stability_ARI_median.png__: A dot plot showing the median of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
-   .__Stability_ARI_variance.png__: A dot plot showing the variance of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
+   -__Stability_ARI_variance.png__: A dot plot showing the variance of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value, compared to the assumed continental-level clusters.
    
 3. __Community detection__: includes text files containing the resulting matrices, listed below.
    
