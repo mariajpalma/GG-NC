@@ -130,7 +130,21 @@ Format of
 
 The pipeline outputs are organized into folders, which are described below.
 
-1. __Stability_metrics__: This folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
+1. __Browser_files__: Contains the text files required to display the results in the browser (these files are described in the "Customization Option" section). Other color alternatives for the resulting communities are also included.
+   
+   •	__Distinctive_colors.txt__: Contains the color codes for the resulting communities for the distinctive colors option.
+
+   •	__Resolution_matrix.txt__: This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values).
+
+   •	__shinny_info.txt__: This text file contains information about the cohorts considered in the analysis.
+
+   •	__Similar_colors.txt__: Contains the color codes for the resulting communities for the similar colors option.
+
+   •	__alternative_colors_1.txt__: First option of alternative colors.
+
+   •	__alternative_colors_2.txt__: Second option of alternative colors.
+
+2. __Stability_metrics__: This folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
 
    • __Common_membership_file_R__: Is an matrix with the membership for the resolution "R" to store the number of times each pair of individuals shares the same cluster.
    
@@ -150,7 +164,7 @@ The pipeline outputs are organized into folders, which are described below.
    
    • __Stability_NID_variance.png__: A dot plot showing the variance of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value.
    
-2. __Community_detection__: Includes text files containing the resulting matrices, listed below.
+3. __Community_detection__: Includes text files containing the resulting matrices and their visual representation, listed below.
 
    • __Result_matrix_raw.txt__: Is a numerical matrix that presents the community classification of individuals promptly following their processing through either the Louvain algorithm at various resolution values. Communities do not align across resolutions, so this matrix requires further processing.
 
@@ -176,20 +190,8 @@ The pipeline outputs are organized into folders, which are described below.
 
    • __CommunityNetworks_2D_SimilarC_whiteComm_RIndex#.png__: They are 2D community networks with similar colors, one for each resolution level (#). Unlike the previous ones, these networks, if they are present, show the "white communities" which consist of aggregations of smaller communities (according to the -c parameter).
    
-6. __NetworksIndividuals__: Includes the images of individual networks.
-   
-7. __Browser_files__: Contains the text files required to display the results in the browser (these files are described in the "Customization Option" section). Other color alternatives for the resulting communities are also included.
-•	__Resolution_matrix.txt__: This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values).
+5. __NetworksIndividuals__: Includes the images of individual networks.
 
-•	__shinny_info.txt__: This text file contains information about the cohorts considered in the analysis.
-
-•	__Similar_colors.txt__: Contains the color codes for the resulting communities for the similar colors option.
-
-•	__Distinctive_colors.txt__: Contains the color codes for the resulting communities for the distinctive colors option.
-
-•	__alternative_colors_1.txt__: First option of alternative colors.
-
-•	__alternative_colors_2.txt__: Second option of alternative colors.
    
 ## Customization Option
 The GG-NC browser also offers a customization option based on the user's needs or preferences (a screenshot of the customization option interface is provided below). For this, the user must set a resolution value index, which corresponds to the number of steps within the resolution range that spans from 1 to 50. Then, it is necessary to upload three text files, which are described below.
