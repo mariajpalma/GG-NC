@@ -134,17 +134,23 @@ The pipeline outputs are organized into folders, which are described below.
    
    •	__Distinctive_colors.txt__: Contains the color codes for the resulting communities for the distinctive colors option.
 
-   •	__Resolution_matrix.txt__: This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values).
-
-   •	__shinny_info.txt__: This text file contains information about the cohorts considered in the analysis.
-
+   •	__Resolution_matrix.txt__: This file contains a matrix processed from the matrix "Result_matrix_relabeled_allcomm.txt", where each column represents an individual and each row represents a resolution value (50 values). Individuals are sorted to group those belonging to the same communities and very small communities have been combined (according to the -c parameter).
+   
    •	__Similar_colors.txt__: Contains the color codes for the resulting communities for the similar colors option.
 
    •	__alternative_colors_1.txt__: First option of alternative colors.
 
    •	__alternative_colors_2.txt__: Second option of alternative colors.
 
-2. __Stability_metrics__: This folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
+   •	__shinny_info.txt__: This text file contains information about the cohorts considered in the analysis.
+
+|Pop	                     |Pop3code|Genetic_region|Project|Latitud|Longitud|Lambda	            |C2|C3|C4|C5|
+|--------------------------|--------|--------------|-------|-------|--------|-------------------|--|--|--|--|
+|Adygei in Caucasus, Russia|ADR     |EUR	         |HGDP	 |44	   |39	    |0.001	            |1 |NA|NA|NA|
+|Adygei in Caucasus, Russia|ADR	    |EUR	         |HGDP	 |44	   |39	    |0.00115139539932645|1 |NA|NA|NA|
+|Adygei in Caucasus, Russia|ADR	    |EUR	         |HGDP	 |44	   |39	    |0.00132571136559011|1 |NA|NA|NA|
+
+3. __Stability_metrics__: This folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
 
    • __Common_membership_file_R__: Is an matrix with the membership for the resolution "R" to store the number of times each pair of individuals shares the same cluster.
    
@@ -164,11 +170,11 @@ The pipeline outputs are organized into folders, which are described below.
    
    • __Stability_NID_variance.png__: A dot plot showing the variance of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value.
    
-3. __Community_detection__: Includes text files containing the resulting matrices and their visual representation, listed below.
+4. __Community_detection__: Includes text files containing the resulting matrices and their visual representation, listed below.
 
    • __Result_matrix_raw.txt__: Is a numerical matrix that presents the community classification of individuals promptly following their processing through either the Louvain algorithm at various resolution values. Communities do not align across resolutions, so this matrix requires further processing.
 
-   • __Result_matrix_relabeled_allcomm.txt__: This is the matrix after processing the "Result_matrix_raw.txt" to ensure that the communities are consistent across resolutions, individuals are sorted to group those belonging to the same communities, and very small communities have been combined (according to the -c parameter).
+   • __Result_matrix_relabeled_allcomm.txt__: This is the matrix after processing the "Result_matrix_raw.txt" to ensure that the communities are consistent across resolutions.
 
    • __individual_index_order.txt__: It is the new order of individuals after processing the "Result_matrix_raw.txt".
 
@@ -176,7 +182,7 @@ The pipeline outputs are organized into folders, which are described below.
 
    • __resolution_plot_similarC.png__: Graphically represent the emergence of communities as shown in "res_plot.png" using similar color gradients that resemble the genetic similarity between individuals across varying resolution values.
 
-4. __Community_networks__: This folder contains community networks images as well as the objects needed for 3D visualization.
+5. __Community_networks__: This folder contains community networks images as well as the objects needed for 3D visualization.
    
    • __3Dplots_distinctive.rds__: This file contains a 3D individuals network, with each individual rendered in a distinctive color corresponding to their designated community.
 
@@ -190,7 +196,7 @@ The pipeline outputs are organized into folders, which are described below.
 
    • __CommunityNetworks_2D_SimilarC_whiteComm_RIndex#.png__: They are 2D community networks with similar colors, one for each resolution level (#). Unlike the previous ones, these networks, if they are present, show the "white communities" which consist of aggregations of smaller communities (according to the -c parameter).
    
-5. __NetworksIndividuals__: Includes the images of individual networks.
+6. __NetworksIndividuals__: Includes the images of individual networks.
 
    
 ## Customization Option
