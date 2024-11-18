@@ -142,7 +142,7 @@ The pipeline outputs are organized into folders, which are described below.
 
    •	__alternative_colors_2.txt__: Second option of alternative colors.
 
-   •	__shinny_info.txt__: This text file contains information about the cohorts considered in the analysis.
+   •	__shinny_info.txt__: This text file contains information about the cohorts considered in the analysis. Here, you can find the population name (Pop), the three-letter code for the population (Pop3code), the geographic region where the population is located (Genetic_region), the project from which the genetic information was obtained (Project), the latitude (Latitud) and longitude (Longitud) of the population's geographic location, the resolution level (Lambda), and the communities (C#) identified in the network. Within the communities, you can find estimates of the proportion of the population present in each one.
 
 |Pop	                     |Pop3code|Genetic_region|Project|Latitud|Longitud|Lambda	            |C2|C3|C4|C5|
 |--------------------------|--------|--------------|-------|-------|--------|-------------------|--|--|--|--|
