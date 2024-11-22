@@ -136,7 +136,7 @@ The pipeline outputs are organized into folders, which are described below.
 
    •	__Resolution_matrix.txt__: This file contains a matrix processed from the matrix "Result_matrix_relabeled_allcomm.txt", where each column represents an individual and each row represents a resolution value (50 values). Individuals are sorted to group those belonging to the same communities and very small communities have been combined (according to the -c parameter).
    
-   •	__Similar_colors.txt__: Contains the color codes for the resulting communities for the similar colors option.
+   •	__Similar_colors.txt__: Contains the color codes for the resulting communities for the similar colors option, where communities that are more genetically similar to each other receive more similar colors.
 
    •	__alternative_colors_1.txt__: First option of alternative colors.
 
@@ -186,7 +186,7 @@ The pipeline outputs are organized into folders, which are described below.
    
    • __3Dplots_distinctive.rds__: This file contains a 3D individuals network, with each individual rendered in a distinctive color corresponding to their designated community.
 
-   • __3Dplots_similar.rds__: This file contains a 3D individuals network, with each individual rendered in a similar color corresponding to their designated community.
+   • __3Dplots_similar.rds__: This file contains a 3D individuals network, with each individual rendered in a color palette corresponding to their designated community.
 
    • __CommunityNetworks_2D_DistinctiveC_RIndex#.png__: They are 2D community networks with distinctive colors, one for each resolution level (#).
 
@@ -197,6 +197,10 @@ The pipeline outputs are organized into folders, which are described below.
    • __CommunityNetworks_2D_SimilarC_whiteComm_RIndex#.png__: They are 2D community networks with similar colors, one for each resolution level (#). Unlike the previous ones, these networks, if they are present, show the "white communities" which consist of aggregations of smaller communities (according to the -c parameter).
    
 5. __NetworksIndividuals__: Includes the images of individual networks.
+   
+   • __Network_Individuals_Communities_DistinctiveColors_RIndex#.png__: They are 2D networks where each node represents an individual rendered in a distinctive color corresponding to their designated community formed at a given resolution level (#).
+
+   • __Network_Individuals_Communities_Similar_RIndex#.png__: They are 2D networks where each node represents an individual rendered in a similar color corresponding to their designated community formed at a given resolution level (#).
 
    
 ## Customization Option
