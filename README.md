@@ -149,8 +149,48 @@ The pipeline outputs are organized into folders, which are described below.
 |Adygei in Caucasus, Russia|ADR     |EUR	         |HGDP	 |44	   |39	    |0.001	            |1 |NA|NA|NA|
 |Adygei in Caucasus, Russia|ADR	    |EUR	         |HGDP	 |44	   |39	    |0.00115139539932645|1 |NA|NA|NA|
 |Adygei in Caucasus, Russia|ADR	    |EUR	         |HGDP	 |44	   |39	    |0.00132571136559011|1 |NA|NA|NA|
+   
+2. __Community_detection__: Includes text files containing the resulting matrices and their visual representation, listed below.
 
-2. __Stability_metrics__: This folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
+   • __Result_matrix_raw.txt__: Is a numerical matrix that presents the community classification of individuals promptly following their processing through either the Louvain algorithm at various resolution values. Communities do not align across resolutions, so this matrix requires further processing.
+
+   • __Result_matrix_relabeled_allcomm.txt__: This is the matrix after processing the "Result_matrix_raw.txt" to ensure that the communities are consistent across resolutions.
+
+   • __individual_index_order.txt__: It is the new order of individuals after processing the "Result_matrix_raw.txt".
+
+   • __res_plot.png__: Graphically represents the emergence of communities, colored with distinctive colors, as identified by the algorithm across varying resolution values.
+
+   • __resolution_plot_similarC.png__: Graphically represent the emergence of communities as shown in "res_plot.png" using similar color gradients that resemble the genetic similarity between individuals across varying resolution values.
+
+3. __Community_networks__: This folder contains community networks images as well as the objects needed for 3D visualization.
+   
+   • __3Dplots_distinctive.rds__: This file contains a 3D community network, with each community rendered in a distinctive color corresponding to their designated community.
+
+   • __3Dplots_similar.rds__: This file contains a 3D community network, with each community rendered in a similar color option corresponding to their designated community.
+
+   • __CommunityNetworks_2D_DistinctiveC_RIndex#.png__: They are 2D community networks with distinctive colors, one for each resolution level (#).
+
+   • __CommunityNetworks_2D_DistinctiveC_whiteComm_RIndex#.png__: They are 2D community networks with distinctive colors, one for each resolution level (#). Unlike the previous ones, these networks, if they are present, show the "white communities" which consist of aggregations of smaller communities (according to the -c parameter).
+
+   • __CommunityNetworks_2D_SimilarC_RIndex#.png__: They are 2D community networks with similar colors option, one for each resolution level (#).
+
+   • __CommunityNetworks_2D_SimilarC_whiteComm_RIndex#.png__: They are 2D community networks with similar colors option, one network for each resolution level (#). Unlike the previous ones, these networks, if they are present, show the "white communities" which consist of aggregations of smaller communities (according to the -c parameter).
+   
+4. __NetworksIndividuals__: Includes the images of individual networks.
+   
+   • __Network_Individuals_Communities_DistinctiveColors_RIndex#.png__: They are 2D networks where each node represents an individual rendered in a distinctive color corresponding to their designated community formed at a given resolution level (#).
+
+    • __Network_Individuals_Communities_DistinctiveColors_legend.png__: Contains a unique legend for all individual networks with community color coding.
+
+   • __Network_Individuals_Communities_DistinctiveColors_whiteComm_RIndex#.png__: They are 2D networks where each node represents an individual rendered in a distinctive color corresponding to their designated community formed at a given resolution level (#). Unlike the previous ones, these networks, if they are present, show the individuals in the "white communities", which consist of aggregations of smaller communities (according to the -c parameter).
+
+   • __Network_Individuals_Communities_SimilarColors_RIndex#.png__: They are 2D networks at a given resolution level (#), where each node represents an individual rendered in a similar color gradients that resemble the genetic similarity between individuals across varying resolution values.
+
+   • __Network_Individuals_Communities_whiteComm_SimilarColors_RIndex#.png__: They are 2D networks at a given resolution level (#), where each node represents an individual rendered in a similar color gradients that resemble the genetic similarity between individuals across varying resolution values. Unlike the previous ones, these networks, if they are present, show the individuals in the "white communities", which consist of aggregations of smaller communities (according to the -c parameter).
+   
+   • __Network_individuals_PredefinedGroups.png__: Is a 2D network where each node represents an individual rendered in a color corresponding to their respective continental or sub-continental geographic location annotated in the 1000 Genomes and HGDP studies.
+
+5. __Stability_metrics__: This folder contains stability plots using ARI and NID, as well as text files to perform common membership heatmaps across different resolutions, along with the heatmaps themselves for the specified values.
 
    • __Common_membership_file_R__: Is an matrix with the membership for the resolution "R" to store the number of times each pair of individuals shares the same cluster.
    
@@ -169,39 +209,6 @@ The pipeline outputs are organized into folders, which are described below.
    • __Stability_NID_median.png__: A dot plot showing the median of the pairwise estimates of Normalized Information Distance (NID)) values for 100 runs at each resolution value.
    
    • __Stability_NID_variance.png__: A dot plot showing the variance of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value.
-   
-3. __Community_detection__: Includes text files containing the resulting matrices and their visual representation, listed below.
-
-   • __Result_matrix_raw.txt__: Is a numerical matrix that presents the community classification of individuals promptly following their processing through either the Louvain algorithm at various resolution values. Communities do not align across resolutions, so this matrix requires further processing.
-
-   • __Result_matrix_relabeled_allcomm.txt__: This is the matrix after processing the "Result_matrix_raw.txt" to ensure that the communities are consistent across resolutions.
-
-   • __individual_index_order.txt__: It is the new order of individuals after processing the "Result_matrix_raw.txt".
-
-   • __res_plot.png__: Graphically represents the emergence of communities, colored with distinctive colors, as identified by the algorithm across varying resolution values.
-
-   • __resolution_plot_similarC.png__: Graphically represent the emergence of communities as shown in "res_plot.png" using similar color gradients that resemble the genetic similarity between individuals across varying resolution values.
-
-4. __Community_networks__: This folder contains community networks images as well as the objects needed for 3D visualization.
-   
-   • __3Dplots_distinctive.rds__: This file contains a 3D individuals network, with each individual rendered in a distinctive color corresponding to their designated community.
-
-   • __3Dplots_similar.rds__: This file contains a 3D individuals network, with each individual rendered in a color palette corresponding to their designated community.
-
-   • __CommunityNetworks_2D_DistinctiveC_RIndex#.png__: They are 2D community networks with distinctive colors, one for each resolution level (#).
-
-   • __CommunityNetworks_2D_DistinctiveC_whiteComm_RIndex#.png__: They are 2D community networks with distinctive colors, one for each resolution level (#). Unlike the previous ones, these networks, if they are present, show the "white communities" which consist of aggregations of smaller communities (according to the -c parameter).
-
-   • __CommunityNetworks_2D_SimilarC_RIndex#.png__: They are 2D community networks with similar colors, one for each resolution level (#).
-
-   • __CommunityNetworks_2D_SimilarC_whiteComm_RIndex#.png__: They are 2D community networks with similar colors, one for each resolution level (#). Unlike the previous ones, these networks, if they are present, show the "white communities" which consist of aggregations of smaller communities (according to the -c parameter).
-   
-5. __NetworksIndividuals__: Includes the images of individual networks.
-   
-   • __Network_Individuals_Communities_DistinctiveColors_RIndex#.png__: They are 2D networks where each node represents an individual rendered in a distinctive color corresponding to their designated community formed at a given resolution level (#).
-
-   • __Network_Individuals_Communities_Similar_RIndex#.png__: They are 2D networks where each node represents an individual rendered in a similar color corresponding to their designated community formed at a given resolution level (#).
-
    
 ## Customization Option
 The GG-NC browser also offers a customization option based on the user's needs or preferences (a screenshot of the customization option interface is provided below). For this, the user must set a resolution value index, which corresponds to the number of steps within the resolution range that spans from 1 to 50. Then, it is necessary to upload three text files, which are described below.
