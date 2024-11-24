@@ -8,7 +8,6 @@ packages <- list(
   "rgl" = "1.2.8",
   "ucie" = "1.0.2",
   "chameleon" = "0.2-3",
-  "ComplexHeatmap" = "2.14.0",
   "aricode" = "1.0.2",
   "ggplot2" = "3.4.3",
   "dplyr" = "1.1.3",
@@ -19,13 +18,21 @@ packages <- list(
   "igraph" = "1.5.1"
 )
 
-# Instalar versiones específicas de CRAN
 for (pkg in names(packages)) {
   remotes::install_version(pkg, version = packages[[pkg]], repos = "https://cran.rstudio.com/")
 }
 
-# Paquetes de Bioconductor
-if (!requireNamespace("BiocManager", quietly = TRUE)) {
-  install.packages("BiocManager", repos = "https://cran.rstudio.com/")
-}
-BiocManager::install("ComplexHeatmap", version = "2.14.0", update = FALSE)
+# Instalar ComplexHeatmap
+
+# Install ComplexHeatmap version 2.14.0 from tarball
+tarball_url <- "https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.16/bioc/src/contrib/ComplexHeatmap_2.14.0.tar.gz"
+destfile <- tempfile(fileext = ".tar.gz")
+
+# Download the tarball
+download.file(tarball_url, destfile)
+
+# Install the package from the tarball
+install.packages(destfile, repos = NULL, type = "source")
+
+# Clean up temporary tarball file
+unlink(destfile)
