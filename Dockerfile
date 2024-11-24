@@ -23,7 +23,7 @@ RUN Rscript install_dependencies.R
 COPY . .
 
 # Hacer el wrapper ejecutable
-RUN chmod +x run_pipeline.sh
+RUN chmod +x Parameters_GGNC.sh
 
 # Comando por defecto para iniciar
 CMD ["bash"]
