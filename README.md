@@ -72,7 +72,7 @@ At the top of the browser, you will find two additional tabs. The first tab, lab
  
  -s \<param6\>:   Steps in the log10 space to explore.
  
- -l \<param7\>:   Lambda value to explore. 
+ -l \<param7\>:   This is a file with the indexes of the resolution levels that will be used to generate the heatmaps and the networks of individuals with shaded communities. For example: 1, 2, 5, ...
  
  -u \<param8\>:   Prune option.
  
@@ -235,11 +235,11 @@ This text file contains information about the cohorts considered in the analysis
 
 •	__Latitud__ and __Longitud__: Geographic coordinates (latitude and longitude) provided by the 1000 Genomes Project and HGDP.
 
-•	__Lambda__: 50 lambda values considered in the analysis.
+•	__Lambda__: Represents the resolution values considered for exploration in the analysis for each population.
 
-•	__C1__ to __Cn__: Proportion of individuals from the cohort within each community (expressed in decimals) according to the analyzed lambda value; missing values are indicated as NA.
+•	__C1__ to __Cn__: Proportion of individuals from the cohort within each community (expressed in decimals) according to the analyzed resolution value; missing values are indicated as NA.
 
-Note that each population spans 50 rows due to the 50 lambda values analyzed.
+Note that each population spans 50 rows due to the 50 resolution values analyzed in this research.
 
 ### Shiny colors file
 
