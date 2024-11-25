@@ -9,7 +9,7 @@ The Shiny app, was developed within the research titled "Beyond Continental Grou
 ## Shiny interface
 Follow [this link](https://sohail-lab.shinyapps.io/GG-NC/) for the interactive Shiny app. A screenshot of the interface is provided below.
 
-![Shiny app interface](images/browser_example.jpg)
+![Shiny app interface](images/GG-NC_browser)
 
 The Shiny app contains a toolbar with the following options:
 
