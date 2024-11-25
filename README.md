@@ -33,6 +33,12 @@ Note that colors in the resolution plot correspond to those displayed in the acc
 
 At the top of the browser, you will find two additional tabs. The first tab, labeled __"Tutorial"__, contains a [tutorial video](https://www.youtube.com/watch?v=2bdod1RuRVk) created by the research team, which guides you through using this tool and interpreting the results. This video is also available in [Spanish](https://www.youtube.com/watch?v=mVegRKbWSAI&t=105s). The second tab, labeled __"Customize"__, provides an option for users to tailor the tool according to their needs or preferences. This option is described at the end of this document.
 
+## Docker
+
+## Version and libraries
+The pipeline was built in R4.2.2, using the following packages: rgl v(1.2.8), chameleon (v0.2-3), aricode (v1.0.2), ggplot2 (v3.4.3), dplyr (v1.1.3), pracma (v2.4.2), doParallel (v1.0.17), iterators (v1.0.14), foreach (v1.5.2), igraph (v1.5.1) and ComplexHeatmap (v2.14.0).
+
+
 ## Run the pipeline on the command-line
 
 + __Clone the repository__: First, you need to clone the GitHub repository. You can do this by using the __'git clone'__ command.
@@ -258,6 +264,8 @@ The second text file contains the color codes for the resulting communities. It 
 This file contains a matrix where each column represents an individual and each row represents a resolution value (50 values). In other words, each cell in the matrix would indicate which community a specific individual belongs to for a particular resolution value. For example, if we analyze 1,500 individuals then we will have a 50x1500 matrix. Keep in mind that the values within the matrix should be separated by commas.
 
 The [data](data)  folder contains the required inputs to perform some examples included in the paper using the customize option.
+
+## Demo
 
 
 ## Authors 
