@@ -38,7 +38,17 @@ At the top of the browser, you will find two additional tabs. The first tab, lab
 A Docker image is available to simplify the setup and ensure compatibility with all dependencies. You can pull the image using the following command:
 
 ```bash
-docker pull ghcr.io/your_username/your_image_name:tag
+## Pull the image
+docker pull mpalmamtz/ggnc:1.0
+
+## Run the Docker container
+
+docker run --rm -it -v $(pwd):/workspace mpalmamtz/pipeline_r:4.2.2
+
+### EXAMPLE for demo data
+
+
+
 ```
 
 ## Version and libraries
