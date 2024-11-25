@@ -43,11 +43,11 @@ docker pull mpalmamtz/ggnc:1.0
 
 ## Run the Docker container
 
-docker run --rm -it -v $(pwd):/workspace mpalmamtz/pipeline_r:4.2.2
+docker run --rm -it -v $(pwd):/workspace mpalmamtz/ggnc:1.0
 
 ### EXAMPLE for demo data
 
-
+./Parameters_GGNC.sh -k IBD -p /workspace/ -d autosomal_ibd_by_pair.columns.20150206.txt -i /info_file_1000G.txt -m 1000000 -s 10 -l RIndex.txt -u 0 -c 6 -a -2 -z 1 -r 123
 
 ```
 
