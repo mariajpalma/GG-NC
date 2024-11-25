@@ -50,6 +50,22 @@ docker run --rm -it -v $(pwd):/workspace mpalmamtz/ggnc:1.0
 ./Parameters_GGNC.sh -k IBD -p /workspace/ -d autosomal_ibd_by_pair.columns.20150206.txt -i /info_file_1000G.txt -m 1000000 -s 10 -l RIndex.txt -u 0 -c 6 -a -2 -z 1 -r 123
 
 ```
+The Docker image (mpalmamtz/ggnc:1.0) was pulled in 13.102 seconds:
+
+User time: 0.11s
+System time: 0.12s
+CPU usage: 1%
+
+
+Runtime for example for Demodata on iMac (Apple M1, 8 cores, 16 GB RAM, macOS Sonoma 14.2.1):
+
+Real: 14m57.774s
+User: 33m16.718s
+Sys: 0m18.289s.32
+
+The pipeline has been tested on 
+
+CentOS Linux release 6.9 and Ubuntu 22.04.4 LTS
 
 ## Version and libraries
 The pipeline was built in R4.2.2, using the following packages: 
