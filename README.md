@@ -270,6 +270,9 @@ Arslan Zaidi, Department of Genetics, cell biology, and Development, University 
 
 Mashaal Sohail, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México.
 
+## License
+This project is covered under the __Apache 2.0 License__.
+
 ## Contact
 
 mashaal@ccg.unam.mx
