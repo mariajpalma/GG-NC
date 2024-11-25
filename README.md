@@ -245,6 +245,7 @@ Note that each population spans 50 rows due to the 50 lambda values analyzed.
 
 The second text file contains the color codes for the resulting communities. It consists of a single column without a header. If you wish to use the similar colors option, you should use a shiny color file that contains the codes for the similar colors. Below is an example of a shiny colors file.
 
+|-------|
 |#FFFFFF|
 |#8F71F9|
 |#4D966F|
