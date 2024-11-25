@@ -55,6 +55,24 @@ The pipeline was built in R4.2.2, using the following packages:
 + igraph (v1.5.1)
 + ComplexHeatmap (v2.14.0).
 
+The Shiny app was built in R4.2.2, using the following packages:
+
++ shiny (v1.8.0)
++ shinytitle (v0.1.0)
++ pracma (v2.4.4)
++ leaflet (v2.2.1)
++ plotly (v4.10.3)
++ bslib (v0.5.1)
++ igraph (v1.5.1)
++ shinyalert (v3.0.0)
++ shinyWidgets (v0.8.0)
++ shinyBS (v0.61.1)
++ rgl (v1.2.8)
++ shinyscreenshot (v0.2.1)
++ DescTools (v0.99.54)
++ vembedr (v0.1.5)
++ leaflet.minicharts (v0.6.2)
+
 
 ## Run the pipeline on the command-line
 
