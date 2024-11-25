@@ -39,7 +39,7 @@ A Docker image is available to simplify the setup and ensure compatibility with 
 
 ```bash
 docker pull ghcr.io/your_username/your_image_name:tag
-
+```
 
 ## Version and libraries
 The pipeline was built in R4.2.2, using the following packages: 
