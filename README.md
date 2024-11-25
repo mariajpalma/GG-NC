@@ -36,7 +36,18 @@ At the top of the browser, you will find two additional tabs. The first tab, lab
 ## Docker
 
 ## Version and libraries
-The pipeline was built in R4.2.2, using the following packages: rgl v(1.2.8), chameleon (v0.2-3), aricode (v1.0.2), ggplot2 (v3.4.3), dplyr (v1.1.3), pracma (v2.4.2), doParallel (v1.0.17), iterators (v1.0.14), foreach (v1.5.2), igraph (v1.5.1) and ComplexHeatmap (v2.14.0).
+The pipeline was built in R4.2.2, using the following packages: 
++ rgl v(1.2.8)
++ chameleon (v0.2-3)
++ aricode (v1.0.2)
++ ggplot2 (v3.4.3)
++ dplyr (v1.1.3)
++ pracma (v2.4.2)
++ doParallel (v1.0.17)
++ iterators (v1.0.14)
++ foreach (v1.5.2)
++ igraph (v1.5.1)
++ ComplexHeatmap (v2.14.0).
 
 
 ## Run the pipeline on the command-line
