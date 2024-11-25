@@ -35,6 +35,12 @@ At the top of the browser, you will find two additional tabs. The first tab, lab
 
 ## Docker
 
+A Docker image is available to simplify the setup and ensure compatibility with all dependencies. You can pull the image using the following command:
+
+```bash
+docker pull ghcr.io/your_username/your_image_name:tag
+
+
 ## Version and libraries
 The pipeline was built in R4.2.2, using the following packages: 
 + rgl v(1.2.8)
