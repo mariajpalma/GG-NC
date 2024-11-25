@@ -219,7 +219,11 @@ The GG-NC browser also offers a customization option based on the user's needs o
 
 This text file contains information about the cohorts considered in the analysis. The columns include: 
 
-![Shiny info file](images/Shiny_info_file_example.jpg)
+|Pop	                     |Pop3code|Genetic_region|Project|Latitud|Longitud|Lambda	            |C2|C3|C4|C5|
+|--------------------------|--------|--------------|-------|-------|--------|-------------------|--|--|--|--|
+|Adygei in Caucasus, Russia|ADR     |EUR	         |HGDP	 |44	   |39	    |0.001	            |1 |NA|NA|NA|
+|Adygei in Caucasus, Russia|ADR	    |EUR	         |HGDP	 |44	   |39	    |0.00115139539932645|1 |NA|NA|NA|
+|Adygei in Caucasus, Russia|ADR	    |EUR	         |HGDP	 |44	   |39	    |0.00132571136559011|1 |NA|NA|NA|
 
 •	__Pop__: Names of the cohorts (e.g., Adygei in Caucasus, Russia; Bengali in Bangladesh).
 
@@ -241,7 +245,11 @@ Note that each population spans 50 rows due to the 50 lambda values analyzed.
 
 The second text file contains the color codes for the resulting communities. It consists of a single column without a header. If you wish to use the similar colors option, you should use a shiny color file that contains the codes for the similar colors. Below is an example of a shiny colors file.
 
-  <img src="images/Shiny_colors_file_example.jpg" alt="Shiny colors file example" width="70">
+|#FFFFFF|
+|#8F71F9|
+|#4D966F|
+|#3B9B3D|
+|#721BA5|
 
 ### Resolution plot file 
 
