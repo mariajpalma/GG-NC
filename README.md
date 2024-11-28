@@ -106,14 +106,14 @@ The Shiny app was built in R4.2.2, using the following packages:
   <center>
     
   For example:
-```
+```rb
   git clone https://github.com/mariajpalma/GG-NC.git
  ``` 
   </center>
   
 + __Change to the newly cloned directory__: Once the repository is cloned, access the directory that was created during cloning using the __'cd'__ command.
   <center>
-```    
+```rb    
   cd GG-NC
 ```  
   </center>
@@ -122,7 +122,7 @@ The Shiny app was built in R4.2.2, using the following packages:
    <center>
     
   For example:
-```
+```rb
   bash ParametersV011223.sh -k <param1> -p <param2> -d <param3> -i <param4> -m <param5> -s <param6> -l <param7> -u <param8> -c <param9> -a <param10> -z <param11> [-L]
  ```
  Where each parameter refers to: 
@@ -188,7 +188,7 @@ Format of
  + Make sure to replace \<paramX_value\> with the specific values you want to pass as arguments to the script.
  
   For example:
-```
+```rb
   bash ParametersV011223.sh -k IBD -p /path/to/files -d data_file_name -i info_file_name -m 100 -s 5 -l 0.5 -n shiny_info_file
  ``` 
    </center>
