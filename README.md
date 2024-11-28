@@ -329,7 +329,7 @@ The [data](data)  folder contains the required inputs to perform some examples i
 ## Demo
 
 ## Pipeline Workflow
-```rb
+```Ruby
 <iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVKozyEjI=/?moveToViewport=-14098,-2118,37698,19684&embedId=389371771141" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 ```
 ## Authors 
