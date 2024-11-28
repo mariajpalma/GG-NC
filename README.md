@@ -332,7 +332,7 @@ The [data](data)  folder contains the required inputs to perform some examples i
 
 [Ver el tablero interactivo en Miro](https://miro.com/app/live-embed/uXjVKozyEjI=/?moveToViewport=-14098,-2118,37698,19684&embedId=737906041622)
 
-![Shiny app interface](images/BCA_flowchart.png)
+![Workflow](images/BCA_flowchart.jpg)
 
 ## Authors 
 
