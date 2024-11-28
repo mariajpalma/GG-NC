@@ -330,7 +330,7 @@ The [data](data)  folder contains the required inputs to perform some examples i
 
 ## Pipeline Workflow
 
-[Ver el tablero interactivo en Miro](https://miro.com/app/live-embed/uXjVKozyEjI=/?moveToViewport=-14098,-2118,37698,19684&embedId=737906041622)
+[Explore the worlflow omnline](https://miro.com/app/live-embed/uXjVKozyEjI=/?moveToViewport=-14098,-2118,37698,19684&embedId=737906041622)
 
 ![Workflow](images/BCA_flowchart.jpg)
 
