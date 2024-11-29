@@ -161,6 +161,8 @@ The Shiny app was built in R4.2.2, using the following packages:
 
 **Format of IBD/PCA/GRM Input Files:** 
 
+Here, we show examples of the inputs that are needed to run the pipeline. For all inputs, it is necessary to keep the headers as shown, since the pipeline identifies some columns by their names.
+
 **IBD:** The pipeline expects a three-column file with tab-separated values for IBD analysis. The first and second columns should correspond to the ID, and the third column should represent the sum of IBD segments.
 
 |ID1	    |ID2	    |IBD_CM_SUM       |
@@ -182,6 +184,14 @@ The Shiny app was built in R4.2.2, using the following packages:
 **GRM:** To estimate the genetic relationship matrix (GRM), we utilized the [GCTA-GRM](https://gcta.freeforums.net/thread/175/gcta-estimating-genetic-relationship-using) tool, and the pipeline anticipates the presence of .bin and .id files only.
 
 With these steps, you should be able to run the shell script found in the GitHub repository from your system terminal. Remember that you will need to have Git installed on your system to clone the repository from GitHub.
+
+**Info_file:** The info_file is a file that contains the labels of the individuals (indv) along with their information about the project from which the information is obtained (project),the three-letter code for the population (Pop3code), the population name (population), the geographic region where the population is located (genetic_region), the latitude (Latitude) and longitude (Longitude) and the correspondent color code for the superpopulation annotated in their project (color).
+
+|indv             |project|pop3code|population	              |genetic_region|latitude|longitude|color|
+|-----------------|-------|--------|--------------------------|--------------|--------|---------|-----|
+|LP6005441-DNA_B01|HGDP	  |ADR	   |Adygei in Caucasus, Russia|EUR	         |44	    |39	      |blue |
+|HGDP01387        |HGDP	  |ADR	   |Adygei in Caucasus, Russia|EUR	         |44	    |39	      |blue |
+|HGDP01397        |HGDP	  |ADR	   |Adygei in Caucasus, Russia|EUR	         |44	    |39	      |blue |
 
 Format of 
    
