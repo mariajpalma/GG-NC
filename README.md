@@ -185,7 +185,7 @@ Here, we show examples of the inputs that are needed to run the pipeline. For al
 
 With these steps, you should be able to run the shell script found in the GitHub repository from your system terminal. Remember that you will need to have Git installed on your system to clone the repository from GitHub.
 
-**Info_file:** The info_file is a file that contains the labels of the individuals (indv) along with their information about the project from which the information is obtained (project),the three-letter code for the population (Pop3code), the population name (population), the geographic region where the population is located (genetic_region), the latitude (Latitude) and longitude (Longitude) and the correspondent color code for the superpopulation annotated in their project (color).
+**Info_file:** The info_file is a file that contains the labels of the individuals (indv) along with their information about the project from which the information is obtained (project),the three-letter code for the population (Pop3code), the population name (population), the geographic region where the population is located (genetic_region), the latitude (latitude) and longitude (longitude) and the correspondent color code for the superpopulation annotated in their project (color).
 
 |indv             |project|pop3code|population	              |genetic_region|latitude|longitude|color|
 |-----------------|-------|--------|--------------------------|--------------|--------|---------|-----|
