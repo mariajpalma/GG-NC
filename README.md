@@ -52,16 +52,17 @@ docker run --rm -it -v $(pwd):/workspace mpalmamtz/ggnc:1.0
 ```
 The Docker image (mpalmamtz/ggnc:1.0) was pulled in 13.102 seconds:
 
-User time: 0.11s
+User time: 0.09s
 System time: 0.12s
-CPU usage: 1%
+CPU usage: 4%
 
 
 Runtime for example for Demodata on iMac (Apple M1, 8 cores, 16 GB RAM, macOS Sonoma 14.2.1):
 
-Real: 14m57.774s
-User: 33m16.718s
-Sys: 0m18.289s.32
+Real: 31m31.370s
+User: 136m39.829s
+Sys: 0m24.365s
+
 
 The pipeline has been tested on 
 
