@@ -101,7 +101,9 @@ The Shiny app was built in R4.2.2, using the following packages:
 + leaflet.minicharts (v0.6.2)
 
 
-## Run the pipeline on the command-line
+## Alternatively to docker
+
++ __Clone the repository__: Install the R version and the libraries above
 
 + __Clone the repository__: First, you need to clone the GitHub repository. You can do this by using the __'git clone'__ command.
   <center>
@@ -128,15 +130,15 @@ The Shiny app was built in R4.2.2, using the following packages:
  ```
  Where each parameter refers to: 
  
- -k \<param1\>:   The genetic metric to consider. Kind: IBD, PCA or GRM.
+ -k \<param1\>:   The genetic metric to consider. Kind: IBD, PCA, or GRM.
  
  -p \<param2\>:   Path of your files.
  
  -d \<param3\>:   Name of your IBD/PCA/GRM files.
  
- -i \<param4\>:    Name of your metadata file. In this file, it is expected to find information about the proposed grouping for your samples.
+ -i \<param4\>:    Name of your metadata file. This file is expected to contain information about the proposed grouping for your samples.
  
- -m \<param5\>:   Maximum value of the sum of the length of the IBD segments to be allowed.
+ -m \<param5\>:   Maximum value of the sum of the length of the IBD segments to be allowed, when used with GRM and PCA it sets the minimum value accepted, we recommend using 0 in these cases
  
  -s \<param6\>:   Steps in the log10 space to explore.
  
@@ -272,22 +274,10 @@ The pipeline outputs are organized into folders, which are described below.
 
    • __Common_membership_file_R__: Is an matrix with the membership for the resolution "R" to store the number of times each pair of individuals shares the same cluster.
    
-   • __Stability_ARI_bloxplot.png__: Boxplots of pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs for each resolution value using the algorithm for community detection, along with boxplots when assumed continental-level clustering.
-   
-   • __Stability_ARI_mean.png__: A dot plot showing the mean of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs for each resolution value using the algorithm for community detection.
-   
-   • __Stability_ARI_median.png__: A dot plot showing the median of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value.
-   
-   • __Stability_ARI_variance.png__: A dot plot showing the variance of the pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs at each resolution value.
+   • __Stability_ARI_bloxplot_2.png__: Boxplots of pairwise estimates of Adjusted Rand Index (ARI) values for 100 runs for each resolution value using the algorithm for community detection, along with boxplots when assuming continental-level clustering.
 
-   • __Stability_NID_bloxplot.png__: Boxplots of pairwise estimates of Normalized Information Distance (NID) values for 100 runs for each resolution value using the algorithm for community detection, along with boxplots when assumed continental-level clustering.
-   
-   • __Stability_NID_mean.png__: A dot plot showing the mean of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value.
-   
-   • __Stability_NID_median.png__: A dot plot showing the median of the pairwise estimates of Normalized Information Distance (NID)) values for 100 runs at each resolution value.
-   
-   • __Stability_NID_variance.png__: A dot plot showing the variance of the pairwise estimates of Normalized Information Distance (NID) values for 100 runs at each resolution value.
-   
+   • __Stability_NID_bloxplot_2.png__: Boxplots of pairwise estimates of Normalized Information Distance (NID) values for 100 runs for each resolution value using the algorithm for community detection, along with boxplots when assuming continental-level clustering.
+
 ## Customization Option
 The GG-NC browser also offers a customization option based on the user's needs or preferences (a screenshot of the customization option interface is provided below). For this, the user must set a resolution value index, which corresponds to the number of steps within the resolution range that spans from 1 to 50. Then, it is necessary to upload three text files, which are described below.
 
