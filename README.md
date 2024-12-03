@@ -126,7 +126,7 @@ The Shiny app was built in R4.2.2, using the following packages:
     
   For example:
 ```rb
-  bash ParametersV011223.sh -k <param1> -p <param2> -d <param3> -i <param4> -m <param5> -s <param6> -l <param7> -u <param8> -c <param9> -a <param10> -z <param11> [-L]
+  bash Parameters_GGNC.sh -k <param1> -p <param2> -d <param3> -i <param4> -m <param5> -s <param6> -l <param7> -u <param8> -c <param9> -a <param10> -z <param11> [-L]
  ```
  Where each parameter refers to: 
  
