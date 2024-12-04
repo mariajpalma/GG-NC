@@ -1,4 +1,10 @@
 The scripts in this folder only have an internal set of the seeds we used, that's what is different from the general scripts.
 Commands to reproduce the results on the paper:
 
-
+bash ParametersV13Nov2024.sh -k IBD -p path/dirIBD -d IBD_cM_sum_NoDivision_segmentSize5_NoSelf_relatedrm -i info_file_200724.txt  -m 10000 -s 50 -l Lambda_values.txt -u 1 -c 6 -a -2 -z 2
+bash ParametersV13Nov2024.sh -k GRM -p path/dirGRM -d hgdp_tgp_qced_autosomesMergedGRM -i info_file_200724.txt  -m 0 -s 50 -l Lambda_values.txt -u 0 -c 6 -a -2 -z 2
+bash ParametersV13Nov2024.sh -k GRM -p path/dirGRM_rare -d hgdp_tgp_qced_autosomesMergedGRM_rare_NSingletons -i info_file_200724.txt  -m 0 -s 50 -l Lambda_values.txt -u 0 -c 6 -a -2 -z 2
+bash ParametersV13Nov2024.sh -k PCA -p path/PCA -d PCA_ind_values_NoNull_V2.txt -i info_file_200724.txt  -m 0 -s 50 -l Lambda_values.txt -u 0 -c 6 -a -2 -z 2
+bash ParametersV13Nov2024.sh -k PCA -p path/dirSKIN -d SkinPigmentation_genes.txt -i info_file_200724.txt  -m 0 -s 50 -l Lambda_values.txt -u 0 -c 6 -a -2 -z 2
+bash ParametersV13Nov2024.sh -k PCA -p path/dirT2D -d T2D_genes.txt -i info_file_200724.txt  -m 0 -s 50 -l Lambda_values.txt -u 0 -c 6 -a -2 -z 2
+bash ParametersV13Nov2024.sh -k PCA -p path/dirALT -d Altitude.txt -i info_file_200724.txt  -m 0 -s 50 -l Lambda_values.txt -u 0 -c 6 -a -2 -z 2
