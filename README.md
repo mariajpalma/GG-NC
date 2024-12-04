@@ -184,7 +184,7 @@ Here, we show examples of the inputs that are needed to run the pipeline. For al
 |HG00099|	-0.12443 |-0.24729  |-0.022543 |0.081816	|-0.0082434 |0.0018152	|-0.062343	|-0.01951	 |-0.0023126|-0.0025261 |
 
 
-**GRM:** To estimate the genetic relationship matrix (GRM), we utilized the [GCTA-GRM](https://gcta.freeforums.net/thread/175/gcta-estimating-genetic-relationship-using) tool, and the pipeline anticipates the presence of .bin and .id files only.
+**GRM:** To estimate the genetic relationship matrix (GRM), we utilized the [GCTA-GRM](https://gcta.freeforums.net/thread/175/gcta-estimating-genetic-relationship-using) tool, and the pipeline anticipates the presence of .grm.N.bin , .grm.bin, and .grm.id.
 
 With these steps, you should be able to run the shell script found in the GitHub repository from your system terminal. Remember that you will need to have Git installed on your system to clone the repository from GitHub.
 
