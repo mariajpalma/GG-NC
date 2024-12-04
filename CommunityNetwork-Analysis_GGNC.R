@@ -1233,7 +1233,7 @@ overlap_hm <- function(path, fname2, cl_list, R, spop_color, name) {
 
 
 # Function to calculate stability metrics for Louvain clustering resuls
-stability_matrix_metrics <- function (network, R, path, n_runs = 20, use_leiden=FALSE)
+stability_matrix_metrics <- function (network, R, path, n_runs = 100, use_leiden=FALSE)
 {
   #' Stability Metrics for Community detection (Louvain or Leiden)
   #'
