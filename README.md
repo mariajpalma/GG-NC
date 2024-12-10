@@ -144,7 +144,7 @@ The Shiny app was built in R4.2.2, using the following packages:
  
  -l \<param7\>:   This is a file with the indexes of the resolution levels that will be used to generate the heatmaps and the networks of individuals with shaded communities. For example: 1, 2, 5, ...
  
- -u \<param8\>:   Prune option.
+ -u \<param8\>:   Prune option (0=False, 1= True). This option iteratively removes low-degree nodes (1 and 0) and removes individuals in communities with less than 25 members (using Louvains and resolution value -2). 
  
  -c \<param9\>:   Minimun individuals in a community.
  
