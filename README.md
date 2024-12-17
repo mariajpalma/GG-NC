@@ -359,7 +359,9 @@ Mashaal Sohail, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México.
 This project is covered under the __Apache 2.0 License__.
 
 ## Cite this article
-"The multi-scale complexity of human genetic variation beyond continental groups"
+The multi-scale complexity of human genetic variation beyond continental groups
+María J. Palma-Martínez, Yuridia S. Posadas-García, Brenda E. López-Ángeles, Claudia Quiroz-López, Anna C.F. Lewis, Kevin A. Bird, Tina Lasisi, Arslan A. Zaidi, Mashaal Sohail
+bioRxiv 2024.12.11.627824; doi: https://doi.org/10.1101/2024.12.11.627824
 [Pre-print](https://www.biorxiv.org/content/10.1101/2024.12.11.627824v1)
 
 ## Contact
