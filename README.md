@@ -362,7 +362,7 @@ This project is covered under the __Apache 2.0 License__.
 The multi-scale complexity of human genetic variation beyond continental groups
 María J. Palma-Martínez, Yuridia S. Posadas-García, Brenda E. López-Ángeles, Claudia Quiroz-López, Anna C.F. Lewis, Kevin A. Bird, Tina Lasisi, Arslan A. Zaidi, Mashaal Sohail
 bioRxiv 2024.12.11.627824; doi: 
-[Pre-print https://doi.org/10.1101/2024.12.11.627824](https://www.biorxiv.org/content/10.1101/2024.12.11.627824v1)
+[https://doi.org/10.1101/2024.12.11.627824](https://www.biorxiv.org/content/10.1101/2024.12.11.627824v1)
 
 ## Contact
 
