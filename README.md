@@ -8,8 +8,6 @@ The Shiny app was developed within the research project titled "The multi-scale 
 
 ## Shiny interface
 Follow [this link](http://sohaillab.ccg.unam.mx/gg-nc/) for the interactive Shiny app. A screenshot of the interface is provided below.
-
-<img width="1900" height="913" alt="image" src="https://github.com/user-attachments/assets/8088aad8-ced6-4e1f-b3d3-bd3d66c04e78" />
 <img width="1900" height="913" alt="image" src="https://github.com/user-attachments/assets/8088aad8-ced6-4e1f-b3d3-bd3d66c04e78" />
 
 
