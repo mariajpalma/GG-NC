@@ -7,6 +7,7 @@ Input data are obtained from the [1000 Genomes Project](https://www.nature.com/a
 The Shiny app was developed within the research project titled "The multi-scale complexity of human genetic variation beyond continental groups", and aims to make the results of this research more interactive and allow engagement from the community of scientists and the general public alike. This Shiny app allows you to view the different communities that emerge at different resolution values and their geographic distribution considering different genetic metrics (Genetic Relationship Matrix based on common or rare variants, Identity By Descent and Principal Component Analysis)  
 
 ## Shiny interface
+### Map panel 
 Follow [this link](http://sohaillab.ccg.unam.mx/gg-nc/) for the interactive Shiny app. A screenshot of the interface is provided below.
 
 <img width="1900" height="913" alt="image" src="https://github.com/user-attachments/assets/8088aad8-ced6-4e1f-b3d3-bd3d66c04e78" />
@@ -33,6 +34,18 @@ As a result of setting the previous options, you will obtain:
 Note that colors in the resolution plot correspond to those displayed in the accompanying map.
 
 At the top of the browser, you will find three additional tabs. The first tab, labeled __"Networks"__, displays the network of individuals and community composition, allowing comparisons between genetic metrics and detected communities at each resolution. The second tab, labeled __"Tutorial"__, contains a [tutorial video](https://www.youtube.com/watch?v=2bdod1RuRVk)  created by the research team, which guides you through using this tool and interpreting the results. This video is also available in [Spanish](https://www.youtube.com/watch?v=mVegRKbWSAI&t=105s). The third tab, labeled __"Customize"__, provides users with the option to tailor the tool according to their needs or preferences. This option is described at the end of this document.
+
+### Networks panel 
+
+<img width="1919" height="788" alt="image" src="https://github.com/user-attachments/assets/7d7ccc42-0dd3-4264-869d-5a4fc1d15413" />
+
+This panel allows the user to explore the network of individuals colored by community composition detected across resolutions. This panel contains a toolbar with the following options:
+
++ __Network of individuals based on__: The network of individuals corresponding to the selected genetic metric that will be displayed on the left.
+
++ __Color nodes based on__: This option allows the user to color the previously selected network using the community composition detected with another metric. The chosen genetic metric will be displayed on the right side of the panel to allow a better comparison between metrics. 
+
++ __Select a resolution value__: Select one of the 50 resolution values to explore. The resolution values span a logarithmic space from -2 to 2.
 
 ## Docker
 
