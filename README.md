@@ -7,9 +7,11 @@ Input data are obtained from the [1000 Genomes Project](https://www.nature.com/a
 The Shiny app was developed within the research project titled "The multi-scale complexity of human genetic variation beyond continental groups", and aims to make the results of this research more interactive and allow engagement from the community of scientists and the general public alike. This Shiny app allows you to view the different communities that emerge at different resolution values and their geographic distribution considering different genetic metrics (Genetic Relationship Matrix based on common or rare variants, Identity By Descent and Principal Component Analysis)  
 
 ## Shiny interface
-Follow [this link](https://sohail-lab.shinyapps.io/GG-NC/) for the interactive Shiny app. A screenshot of the interface is provided below.
+Follow [this link](http://sohaillab.ccg.unam.mx/gg-nc/) for the interactive Shiny app. A screenshot of the interface is provided below.
 
-![Shiny app interface](images/GG-NC_browser.png)
+<img width="1900" height="913" alt="image" src="https://github.com/user-attachments/assets/8088aad8-ced6-4e1f-b3d3-bd3d66c04e78" />
+<img width="1900" height="913" alt="image" src="https://github.com/user-attachments/assets/8088aad8-ced6-4e1f-b3d3-bd3d66c04e78" />
+
 
 The Shiny app contains a toolbar with the following options:
 
@@ -366,7 +368,7 @@ Mashaal Sohail, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México.
 This project is covered under the __Apache 2.0 License__.
 
 ## Cite this article
-María J. Palma-Martínez, Yuridia S. Posadas-García, Brenda E. López-Ángeles, Claudia Quiroz-López, Anna C. F. Lewis, Kevin A. Bird, Tina Lasisi, Arslan A. Zaidi, Mashaal Sohail. The multi-scale complexity of human genetic variation beyond continental groups. BioRxiv (2024). [https://www.biorxiv.org/content/10.1101/2024.12.11.627824v1](https://www.biorxiv.org/content/10.1101/2024.12.11.627824v1)
+María J. Palma-Martínez, Yuridia S. Posadas-García, Brenda E. López-Ángeles, Claudia Quiroz-López, Diego Ortega-Del Vecchyo, Anna C. F. Lewis, Kevin A. Bird, Tina Lasisi, Arslan A. Zaidi, Mashaal Sohail. The multi-scale complexity of human genetic variation beyond continental groups. BioRxiv (2024). [https://www.biorxiv.org/content/10.1101/2024.12.11.627824v1](https://www.biorxiv.org/content/10.1101/2024.12.11.627824v1)
 
 ## Contact
 
