@@ -145,22 +145,22 @@ The Shiny app was built in R4.2.2, using the following packages:
  ```
  Where each parameter refers to: 
  
--k <param1>    Kind: IBD, PCA or GRM
--p <param2>    Path of your files
--d <param3>    Name of your data files
--i <param4>    Name of your info file
--m <param5>    Maximum value
--s <param6>    Steps in the log10 space to explore
--l <param7>    Lambda value to explore
--u <param8>    Prune option
--c <param9>    Minimun individuals in a community
--a <param10>   Lower limit of the log10 space to explore
--z <param11>   Upper limit of the log10 space to explore
--f <param12>   Skip network plots
--t <param13>   Number of cores
--r <param14>   (Optional) Set randome seed
--T <param15>   (Optional) File with pairwise mean TMRCA
--L <param16>    Use the Leiden algorithm instead of Louvain
++ -k <param1>    Kind: IBD, PCA or GRM
++ -p <param2>    Path of your files
++ -d <param3>    Name of your data files
++ -i <param4>    Name of your info file
++ -m <param5>    Maximum value
++ -s <param6>    Steps in the log10 space to explore
++ -l <param7>    Lambda value to explore
++ -u <param8>    Prune option
++ -c <param9>    Minimun individuals in a community
++ -a <param10>   Lower limit of the log10 space to explore
++ -z <param11>   Upper limit of the log10 space to explore
++ -f <param12>   Skip network plots
++ -t <param13>   Number of cores
++ -r <param14>   (Optional) Set randome seed
++ -T <param15>   (Optional) File with pairwise mean TMRCA
++ -L <param16>    Use the Leiden algorithm instead of Louvain
 
 
  
