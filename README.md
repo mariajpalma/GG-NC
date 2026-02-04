@@ -8,6 +8,7 @@ The Shiny app was developed within the research project titled "The multi-scale 
 
 ## Shiny interface
 Follow [this link](http://sohaillab.ccg.unam.mx/gg-nc/) for the interactive Shiny app. A screenshot of the interface is provided below.
+
 <img width="1900" height="913" alt="image" src="https://github.com/user-attachments/assets/8088aad8-ced6-4e1f-b3d3-bd3d66c04e78" />
 
 
@@ -31,7 +32,7 @@ As a result of setting the previous options, you will obtain:
 
 Note that colors in the resolution plot correspond to those displayed in the accompanying map.
 
-At the top of the browser, you will find two additional tabs. The first tab, labeled __"Tutorial"__, contains a [tutorial video](https://www.youtube.com/watch?v=2bdod1RuRVk) created by the research team, which guides you through using this tool and interpreting the results. This video is also available in [Spanish](https://www.youtube.com/watch?v=mVegRKbWSAI&t=105s). The second tab, labeled __"Customize"__, provides an option for users to tailor the tool according to their needs or preferences. This option is described at the end of this document.
+At the top of the browser, you will find three additional tabs. The first tab, labeled __"Networks"__, displays the network of individuals and community composition, allowing comparisons between genetic metrics and detected communities at each resolution. The second tab, labeled __"Tutorial"__, contains a [tutorial video](https://www.youtube.com/watch?v=2bdod1RuRVk)  created by the research team, which guides you through using this tool and interpreting the results. This video is also available in [Spanish](https://www.youtube.com/watch?v=mVegRKbWSAI&t=105s). The third tab, labeled __"Customize"__, provides users with the option to tailor the tool according to their needs or preferences. This option is described at the end of this document.
 
 ## Docker
 
