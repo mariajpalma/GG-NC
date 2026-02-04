@@ -38,12 +38,11 @@ At the top of the browser, you will find three additional tabs. The first tab, l
 ### Panel: Network of individuals
 
 <img width="1919" height="788" alt="image" src="https://github.com/user-attachments/assets/7d7ccc42-0dd3-4264-869d-5a4fc1d15413" />
-
 This panel allows the user to explore the network of individuals colored by community composition detected across resolutions. This panel contains a toolbar with the following options:
 
-+ __Network of individuals based on__: The network of individuals corresponding to the selected genetic metric that will be displayed on the left.
++ __Network of individuals based on__: You can choose one of the provided genetic metrics: Genetic Relationship Matrix (GRM) for rare or common variants, Identity by Descent (IBD) or Principal Component Analysis (PCA). The network of individuals corresponding to the selected genetic metric will be displayed on the left.
 
-+ __Color nodes based on__: This option allows the user to color the previously selected network using the community composition detected with another metric. The chosen genetic metric will be displayed on the right side of the panel to allow a better comparison between metrics. 
++ __Color nodes based on__: You can choose one of the provided genetic metrics: Genetic Relationship Matrix (GRM) for rare or common variants, Identity by Descent (IBD) or Principal Component Analysis (PCA). This option allows the user to color the previously selected network using the community composition detected in other metric. The chosen genetic metric will be displayed on the right side of the panel to allow a better comparison between metrics. 
 
 + __Select a resolution value__: Select one of the 50 resolution values to explore. The resolution values span a logarithmic space from -2 to 2.
 
