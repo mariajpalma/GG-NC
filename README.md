@@ -7,7 +7,7 @@ Input data are obtained from the [1000 Genomes Project](https://www.nature.com/a
 The Shiny app was developed within the research project titled "The multi-scale complexity of human genetic variation beyond continental groups", and aims to make the results of this research more interactive and allow engagement from the community of scientists and the general public alike. This Shiny app allows you to view the different communities that emerge at different resolution values and their geographic distribution considering different genetic metrics (Genetic Relationship Matrix based on common or rare variants, Identity By Descent and Principal Component Analysis)  
 
 ## Shiny interface
-### Map panel 
+### Panel: Map
 Follow [this link](http://sohaillab.ccg.unam.mx/gg-nc/) for the interactive Shiny app. A screenshot of the interface is provided below.
 
 <img width="1900" height="913" alt="image" src="https://github.com/user-attachments/assets/8088aad8-ced6-4e1f-b3d3-bd3d66c04e78" />
@@ -33,9 +33,9 @@ As a result of setting the previous options, you will obtain:
 
 Note that colors in the resolution plot correspond to those displayed in the accompanying map.
 
-At the top of the browser, you will find three additional tabs. The first tab, labeled __"Networks"__, displays the network of individuals and community composition, allowing comparisons between genetic metrics and detected communities at each resolution. The second tab, labeled __"Tutorial"__, contains a [tutorial video](https://www.youtube.com/watch?v=2bdod1RuRVk)  created by the research team, which guides you through using this tool and interpreting the results. This video is also available in [Spanish](https://www.youtube.com/watch?v=mVegRKbWSAI&t=105s). The third tab, labeled __"Customize"__, provides users with the option to tailor the tool according to their needs or preferences. This option is described at the end of this document.
+At the top of the browser, you will find three additional tabs. The first tab, labeled __"Network of individuals"__, displays the network of individuals and community composition, allowing comparisons between genetic metrics and detected communities at each resolution. The second tab, labeled __"Tutorial"__, contains a [tutorial video](https://www.youtube.com/watch?v=2bdod1RuRVk)  created by the research team, which guides you through using this tool and interpreting the results. This video is also available in [Spanish](https://www.youtube.com/watch?v=mVegRKbWSAI&t=105s). The third tab, labeled __"Customize"__, provides users with the option to tailor the tool according to their needs or preferences. This option is described at the end of this document.
 
-### Networks panel 
+### Panel: Network of individuals
 
 <img width="1919" height="788" alt="image" src="https://github.com/user-attachments/assets/7d7ccc42-0dd3-4264-869d-5a4fc1d15413" />
 
@@ -83,7 +83,7 @@ The pipeline has been tested on
 CentOS Linux release 6.9 and Ubuntu 22.04.4 LTS
 
 ## Version and libraries
-The pipeline was built in R4.2.2, using the following packages: 
+The pipeline was built in R (v4.4.1) and Python (v3.10.12), using the following packages: 
 
 + chameleon (v0.2-3)
 + iterators (v1.0.14)
