@@ -70,35 +70,49 @@ CentOS Linux release 6.9 and Ubuntu 22.04.4 LTS
 
 ## Version and libraries
 The pipeline was built in R4.2.2, using the following packages: 
-+ rgl v(1.2.8)
+
 + chameleon (v0.2-3)
-+ aricode (v1.0.2)
-+ ggplot2 (v3.4.3)
-+ dplyr (v1.1.3)
-+ pracma (v2.4.2)
-+ doParallel (v1.0.17)
 + iterators (v1.0.14)
 + foreach (v1.5.2)
-+ igraph (v1.5.1)
-+ ComplexHeatmap (v2.14.0).
++ viridis (v0.6.5)    
++ viridisLite (v0.4.2)
++ circlize (v0.4.16) 
++ data.table (v1.17.99)
++ pryr (v0.1.6)
++ rgl (v1.3.18)
++ ucie (v1.0.2)
++ ComplexHeatmap (v2.22.0)
++ aricode (v1.0.3)
++ ggplot2 (v3.5.2)
++ dplyr (v1.1.4)
++ pracma (v2.4.4)   
++ doParallel (v1.0.17)
++ igraph (v2.1.4)
++ numpy (v1.26.4)
++ pandas (v2.2.1)
++ seaborn (v0.13.2)
++ matplotlib (v3.8.3)
++ scipy (v1.12.0)
 
 The Shiny app was built in R4.2.2, using the following packages:
 
-+ shiny (v1.8.0)
-+ shinytitle (v0.1.0)
-+ pracma (v2.4.4)
-+ leaflet (v2.2.1)
-+ plotly (v4.10.3)
-+ bslib (v0.5.1)
-+ igraph (v1.5.1)
-+ shinyalert (v3.0.0)
-+ shinyWidgets (v0.8.0)
-+ shinyBS (v0.61.1)
-+ rgl (v1.2.8)
-+ shinyscreenshot (v0.2.1)
-+ DescTools (v0.99.54)
-+ vembedr (v0.1.5)
++ shinybusy (v0.3.3)
 + leaflet.minicharts (v0.6.2)
++ vembedr (v0.1.5)
++ DescTools (v0.99.54)
++ shinyscreenshot (v0.2.1)
++ rgl (v1.2.8)
++ shinyBS (v0.61.1)
++ shinyWidgets (v0.8.0)
++ shinyalert (v3.0.0)
++ igraph (v2.0.3)
++ bslib (v0.5.1)
++ plotly (v4.10.3)
++ ggplot2 (v3.5.2)
++ leaflet (v2.2.1)
++ pracma (v2.4.4)
++ shinytitle (v0.1.0)
++ shiny (v1.8.0)
 
 
 ## Alternatively to docker
@@ -130,31 +144,22 @@ The Shiny app was built in R4.2.2, using the following packages:
  ```
  Where each parameter refers to: 
  
- -k \<param1\>:   The genetic metric to consider. Kind: IBD, PCA, or GRM.
- 
- -p \<param2\>:   Path of your files.
- 
- -d \<param3\>:   Name of your IBD/PCA/GRM files.
- 
- -i \<param4\>:    Name of your metadata file. This file is expected to contain information about the proposed grouping for your samples.
- 
- -m \<param5\>:   Maximum value of the sum of the length of the IBD segments to be allowed, when used with GRM and PCA it sets the minimum value accepted, we recommend using 0 in these cases
- 
- -s \<param6\>:   Steps in the log10 space to explore.
- 
- -l \<param7\>:   This is a file with the indexes of the resolution levels that will be used to generate the heatmaps and the networks of individuals with shaded communities. For example: 1, 2, 5, ...
- 
- -u \<param8\>:   Prune option (0=False, 1= True). This option iteratively removes low-degree nodes (1 and 0) and removes individuals in communities with less than 25 members (using Louvains and resolution value -2). 
- 
- -c \<param9\>:   Minimun individuals in a community.
- 
- -a \<param10\>:  Lower limit of the log10 space to explore.
- 
- -z \<param11\>:  Upper limit of the log10 space to explore.
- 
- -r \<param12\>:  Set random seed.
- 
- -L            :  This parameter is optional: use the Leiden algorithm instead of the Louvain algorithm.
+-k <param1>    Kind: IBD, PCA or GRM
+-p <param2>    Path of your files
+-d <param3>    Name of your data files
+-i <param4>    Name of your info file
+-m <param5>    Maximum value
+-s <param6>    Steps in the log10 space to explore
+-l <param7>    Lambda value to explore
+-u <param8>    Prune option
+-c <param9>    Minimun individuals in a community
+-a <param10>   Lower limit of the log10 space to explore
+-z <param11>   Upper limit of the log10 space to explore
+-f <param12>   Skip network plots
+-t <param13>   Number of cores
+-r <param14>   (Optional) Set randome seed
+-T <param15>   (Optional) File with pairwise mean TMRCA
+-L <param16>    Use the Leiden algorithm instead of Louvain
 
 
  
@@ -341,9 +346,11 @@ María J. Palma, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México.
 
 Yuridia S. Posadas-García, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México.
 
+Brenda E. López, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México. 
+
 Claudia Quiroz, Escuela Nacional de Antropología e Historia, CDMX, México.
 
-Brenda E. López, Centro de Ciencias Genómicas, UNAM, Cuernavaca, México. 
+Diego Ortega-Del Vecchyo, Laboratorio Internacional de Investigación sobre el Genoma Humano, UNAM, Querétaro, México. 
 
 Anna Lewis, E J Safra Center for Ethics, Harvard University, Cambridge, MA.
 
