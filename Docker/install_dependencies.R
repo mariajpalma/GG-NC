@@ -24,7 +24,6 @@ packages <- list(
   "circlize" = "0.4.16",
   "data.table" = "1.18.2.1",
   "pryr" = "0.1.6"
-  #"ComplexHeatmap" = "2.22.0"
 )
 
 for (pkg in names(packages)) {
