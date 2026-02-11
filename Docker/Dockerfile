@@ -29,7 +29,7 @@ RUN Rscript install_dependencies.R
 # Copiar dependencias python
 COPY install_python_dependencies.txt .
 RUN python3.10 -m pip install --upgrade pip
-RUN python3.10 -m pip install -r requirements.txt
+RUN python3.10 -m pip install -r install_python_dependencies.txt
 
 # Copiar tu pipeline al contenedor
 COPY . .
