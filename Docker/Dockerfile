@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y \
     libglu1-mesa-dev \
     libgl1-mesa-dev \
     bash \
+    python3.10 \
+    python3.10-venv \
+    python3-pip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -22,6 +25,11 @@ WORKDIR /usr/src/app
 # Copiar el script de instalación de R y ejecutarlo
 COPY install_dependencies.R .
 RUN Rscript install_dependencies.R
+
+# Copiar dependencias python
+COPY install_python_dependencies.txt .
+RUN python3.10 -m pip install --upgrade pip
+RUN python3.10 -m pip install -r requirements.txt
 
 # Copiar tu pipeline al contenedor
 COPY . .
