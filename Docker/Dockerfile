@@ -1,5 +1,5 @@
 # Base de R específica
-FROM rocker/r-ver:4.2.2
+FROM rocker/r-ver:4.4.1
 
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libfontconfig1-dev \
     libxt-dev \
+    libx11-dev \
+    libglu1-mesa-dev \
+    libgl1-mesa-dev \
     bash \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -24,7 +27,7 @@ RUN Rscript install_dependencies.R
 COPY . .
 
 # Hacer el wrapper ejecutable
-RUN chmod +x Parameters_GGNC.sh
+RUN chmod +x Parameters_GGNC_v2.sh
 
 # Comando por defecto para iniciar
 CMD ["bash"]
