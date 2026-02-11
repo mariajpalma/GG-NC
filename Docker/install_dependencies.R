@@ -33,18 +33,3 @@ for (pkg in names(packages)) {
 
 # Instalar ComplexHeatmap desde Bioconductor
 BiocManager::install("ComplexHeatmap", ask = FALSE, update = FALSE)
-
-# Instalar ComplexHeatmap
-
-# Install ComplexHeatmap version 2.14.0 from tarball
-# <- "https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.16/bioc/src/contrib/ComplexHeatmap_2.14.0.tar.gz"
-#destfile <- tempfile(fileext = ".tar.gz")
-
-# Download the tarball
-#download.file(tarball_url, destfile)
-
-# Install the package from the tarball
-#install.packages(destfile, repos = NULL, type = "source")
-
-# Clean up temporary tarball file
-#unlink(destfile)
