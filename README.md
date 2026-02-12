@@ -60,7 +60,7 @@ docker run --rm -it -v $(pwd):/workspace mpalmamtz/ggnc:1.0
 
 ### EXAMPLE for demo data
 
-./Parameters_GGNC.sh -k IBD -p /workspace/ -d autosomal_ibd_by_pair.columns.20150206.txt -i /info_file_1000G.txt -m 1000000 -s 10 -l RIndex.txt -u 0 -c 6 -a -2 -z 1 -r 123
+./Parameters_GGNC.sh -k IBD -p /workspace/ -d autosomal_ibd_by_pair.columns.20150206.txt -i /info_file_1000G.txt -m 1000000 -s 10 -l RIndex.txt -u 0 -c 6 -a -2 -z 1 -r 123 -f 1 -L -t 4 
 
 ```
 The Docker image (mpalmamtz/ggnc:1.0) was pulled in 13.102 seconds:
@@ -161,16 +161,16 @@ The Shiny app was built in R4.2.2, using the following packages:
 + -p <param2>    Path of your files
 + -d <param3>    Name of your data files
 + -i <param4>    Name of your info file
-+ -m <param5>    Maximum value
++ -m <param5>    Maximum value (for IBD, max value between individuals to use, otherwise set to 0)
 + -s <param6>    Steps in the log10 space to explore
 + -l <param7>    Lambda value to explore
-+ -u <param8>    Prune option
-+ -c <param9>    Minimun individuals in a community
++ -u <param8>    Prune option (when set to 1, removes individuals from the network based on the Louvain partition at R = 0.01; set to 0 to retain all samples).
++ -c <param9>    Minimum individuals in a community (define small communities)
 + -a <param10>   Lower limit of the log10 space to explore
 + -z <param11>   Upper limit of the log10 space to explore
 + -f <param12>   Skip network plots
 + -t <param13>   Number of cores
-+ -r <param14>   (Optional) Set randome seed
++ -r <param14>   (Optional) Set random seed
 + -T <param15>   (Optional) File with pairwise mean TMRCA
 + -L <param16>    Use the Leiden algorithm instead of Louvain
 
@@ -213,15 +213,8 @@ With these steps, you should be able to run the shell script found in the GitHub
 |LP6005441-DNA_B01|HGDP	  |ADR	   |Adygei in Caucasus, Russia|EUR	         |44	    |39	      |blue |
 |HGDP01387        |HGDP	  |ADR	   |Adygei in Caucasus, Russia|EUR	         |44	    |39	      |blue |
 |HGDP01397        |HGDP	  |ADR	   |Adygei in Caucasus, Russia|EUR	         |44	    |39	      |blue |
-
-Format of 
-   
- + Make sure to replace \<paramX_value\> with the specific values you want to pass as arguments to the script.
  
-  For example:
-```rb
-  bash ParametersV011223.sh -k IBD -p /path/to/files -d data_file_name -i info_file_name -m 100 -s 5 -l 0.5 -n shiny_info_file
- ``` 
+
    </center>
 
 ## Pipeline outputs
