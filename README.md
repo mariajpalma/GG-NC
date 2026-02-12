@@ -161,7 +161,7 @@ The Shiny app was built in R4.2.2, using the following packages:
 + -p <param2>    Path of your files
 + -d <param3>    Name of your data files
 + -i <param4>    Name of your info file
-+ -m <param5>    Maximum value (for IBD, max value between individuals to use, otherwise set to 0)
++ -m <param5>    Maximum value (for IBD, max value between individuals to use, for other metrics set to 0)
 + -s <param6>    Steps in the log10 space to explore
 + -l <param7>    Lambda value to explore
 + -u <param8>    Prune option (when set to 1, removes individuals from the network based on the Louvain partition at R = 0.01; set to 0 to retain all samples).
