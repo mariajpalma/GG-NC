@@ -103,11 +103,29 @@ if [ -n "$TMRCA_file" ]; then
     fi
 fi
 
-DATA_path="${path%/}/$data_files"
+if [ "$kind" = "GRM" ]; then
+    # Treat -d as basename for GRM files
+    GRM_base="${path%/}/$data_files"
 
-if [ ! -f "$DATA_path" ]; then
-    echo "The data file does not exist: $DATA_path"
-    exit 1
+    if [ ! -f "${GRM_base}.grm.N.bin" ]; then
+        echo "Missing GRM file: ${GRM_base}.grm.N.bin"
+        exit 1
+    fi
+    if [ ! -f "${GRM_base}.grm.bin" ]; then
+        echo "Missing GRM file: ${GRM_base}.grm.bin"
+        exit 1
+    fi
+    if [ ! -f "${GRM_base}.grm.id" ]; then
+        echo "Missing GRM file: ${GRM_base}.grm.id"
+        exit 1
+    fi
+else
+    DATA_path="${path%/}/$data_files"
+
+    if [ ! -f "$DATA_path" ]; then
+        echo "The data file does not exist: $DATA_path"
+        exit 1
+    fi
 fi
 
 INFO_path="${path%/}/$info_file"
