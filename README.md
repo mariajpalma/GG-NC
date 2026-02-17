@@ -289,6 +289,12 @@ The pipeline outputs are organized into folders, which are described below.
 
    • __Stability_NID_bloxplot_2.png__: Boxplots of pairwise estimates of Normalized Information Distance (NID) values for 100 runs for each resolution value using the algorithm for community detection, along with boxplots when assuming continental-level clustering.
 
+## Execution Time of Main Processes (min)
+| Metric  | Samples | Steps | Range | Graph creation | Community detection | Resolution plot creation | Stability | Network plots | TMRCA (optiona) | Total time (min) |
+|---------|---------|-------|-------|----------------|---------------------|--------------------------|-----------|---------------|-----------------|------------------|
+|IBD > 2cM|3382     |70     |-6 to 1|0.2             |16.6                 |11.3                      |84.7       |38             |                 |167.6             |
+|IBD > 2cM|3382     |50     |-3 to 1|0.1             |10.2                 |11.2                      |48.2       |22.5           |264.3            |371               |
+
 ## Customization Option
 The GG-NC browser also offers a customization option based on the user's needs or preferences (a screenshot of the customization option interface is provided below). For this, the user must set a resolution value index, which corresponds to the number of steps within the resolution range that spans from 1 to 50. Then, it is necessary to upload three text files, which are described below.
 
