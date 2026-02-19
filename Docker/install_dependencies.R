@@ -23,7 +23,8 @@ packages <- list(
   "viridisLite" = "0.4.2",
   "circlize" = "0.4.16",
   "data.table" = "1.18.2.1",
-  "pryr" = "0.1.6"
+  "pryr" = "0.1.6",
+  "Matrix" = "1.6-5"
 )
 
 for (pkg in names(packages)) {
