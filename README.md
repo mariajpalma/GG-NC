@@ -290,10 +290,18 @@ The pipeline outputs are organized into folders, which are described below.
    • __Stability_NID_bloxplot_2.png__: Boxplots of pairwise estimates of Normalized Information Distance (NID) values for 100 runs for each resolution value using the algorithm for community detection, along with boxplots when assuming continental-level clustering.
 
 ## Execution Time of Main Processes (min)
-| Metric  | Samples | Steps | Range | Graph creation | Community detection | Resolution plot creation | Stability | Network plots | TMRCA (optiona) | Total time (min) |
-|---------|---------|-------|-------|----------------|---------------------|--------------------------|-----------|---------------|-----------------|------------------|
-|IBD > 2cM|3382     |70     |-6 to 1|0.2             |16.6                 |11.3                      |84.7       |38             |                 |167.6             |
-|IBD > 2cM|3382     |50     |-3 to 1|0.1             |10.2                 |11.2                      |48.2       |22.5           |264.3            |371               |
+| Metric            | Samples | Steps | Range  | Graph creation | Community detection | Resolution plot creation | Stability | Network plots | TMRCA (optiona) | Total time (min) |No. Cores|
+|-------------------|---------|-------|--------|----------------|---------------------|--------------------------|-----------|---------------|-----------------|------------------|---------|
+|IBD > 2cM          |3382     |70     |-6 to 1 |0.1             |15.1                 |10                        |12.2       |34             |                 |72.2              |30       |
+|IBD > 5cM          |3217     |70     |-6 to 1 |0               |0.5                  |73.5                      |7.5        |2.4            |                 |105.7             |30       |
+|PCA                |3399     |70     |-6 to 1 |0.1             |26.2                 |159.3                     |25         |64.9           |                 |276.9             |30       |
+|GRM common variants|3430     |70     |-6 to 1 |0.2             |37.8                 |263                       |36.6       |85.1           |                 |429.2             |30       |
+|GRM rare variants  |3430     |70     |-6 to 1 |0.2             |29.3                 |502.3                     |33.3       |67.7           |                 |643.1             |30       |
+|IBD > 2cM          |3382     |50     |-3 to 1 |0.1             |10                   |11.1                      |8.8        |22.2           |                 |59.1              |30       |
+|IBD > 5cM          |3217     |50     |-5 to 0 |0               |0.3                  |15.4                      |           |               |                 |                  |30       |
+|PCA                |3399     |50     |-3 to 0 |0.2             |26.8                 |1.9                       |28.1       |58.7           |                 |117.5             |30       |
+|GRM common variatns|3430     |50     |-5 to -1|0.2             |32.5                 |23                        |36.3       |74.9           |                 |181               |30       |
+|GRM rare variants  |3430     |50     |-6 to -2|0.2             |18.5                 |15.1                      |29.1       |50.7           |                 |121.8             |30       |
 
 ## Customization Option
 The GG-NC browser also offers a customization option based on the user's needs or preferences (a screenshot of the customization option interface is provided below). For this, the user must set a resolution value index, which corresponds to the number of steps within the resolution range that spans from 1 to 50. Then, it is necessary to upload three text files, which are described below.
