@@ -63,22 +63,17 @@ docker run --rm -it -v $(pwd):/workspace mpalmamtz/ggnc:v2.1
 ./Parameters_GGNC_v2.sh -k IBD -p /workspace/ -d autosomal_ibd_by_pair.columns.20150206.txt -i /info_file_1000G.txt -m 1000000 -s 10 -l RIndex.txt -u 0 -c 6 -a -2 -z 1 -r 123 -f 1 -L -t 4 
 
 ```
-The Docker image (mpalmamtz/ggnc:1.0) was pulled in 13.102 seconds:
-
-User time: 0.09s
-System time: 0.12s
-CPU usage: 4%
 
 
 Runtime for example for Demodata on iMac (Apple M1, 8 cores, 16 GB RAM, macOS Sequoia 15.6.1):
 
-Graph Creation =  StepTime: 0.0 min | Workers: 1 | Mem: 0.26 GB
-Community detection = StepTime: 0.1 min | Workers: 1 | Mem: 0.26 GB
-Resolution plot creation = StepTime: 3.8 min | Workers: 1 | Mem: 0.26 GB
-Stability = workers: 4 | Mem: 0.27 GB | Time: 4.9 min
-Network Plots = StepTime: 0.5 min | Workers: 4 | Mem: 0.41 GB
++ Graph Creation =  StepTime: 0.0 min | Workers: 1 | Mem: 0.26 GB
++ Community detection = StepTime: 0.1 min | Workers: 1 | Mem: 0.26 GB
++ Resolution plot creation = StepTime: 3.8 min | Workers: 1 | Mem: 0.26 GB
++ Stability = workers: 4 | Mem: 0.27 GB | Time: 4.9 min
++ Network Plots = StepTime: 0.5 min | Workers: 4 | Mem: 0.41 GB
 
-Total time = 18.2 min
++ Total time = 18.2 min
 
 
 The pipeline has been tested on 
