@@ -70,11 +70,15 @@ System time: 0.12s
 CPU usage: 4%
 
 
-Runtime for example for Demodata on iMac (Apple M1, 8 cores, 16 GB RAM, macOS Sonoma 14.2.1):
+Runtime for example for Demodata on iMac (Apple M1, 8 cores, 16 GB RAM, macOS Sequoia 15.6.1):
 
-Real: 31m31.370s
-User: 136m39.829s
-Sys: 0m24.365s
+Graph Creation =  StepTime: 0.0 min | Workers: 1 | Mem: 0.26 GB
+Community detection = StepTime: 0.1 min | Workers: 1 | Mem: 0.26 GB
+Resolution plot creation = StepTime: 3.8 min | Workers: 1 | Mem: 0.26 GB
+Stability = workers: 4 | Mem: 0.27 GB | Time: 4.9 min
+Network Plots = StepTime: 0.5 min | Workers: 4 | Mem: 0.41 GB
+
+Total time = 18.2 min
 
 
 The pipeline has been tested on 
