@@ -52,11 +52,11 @@ A Docker image is available to simplify the setup and ensure compatibility with 
 
 ```bash
 ## Pull the image
-docker pull --platform=linux/amd64 mpalmamtz/ggnc:v2.1
+docker pull --platform=linux/amd64 mpalmamtz/ggnc:v2.1.1 
 
 ## Run the Docker container
 
-docker run --rm -it -v $(pwd):/workspace mpalmamtz/ggnc:v2.1
+docker run --rm --platform=linux/amd64 -it -v $(pwd):/workspace mpalmamtz/ggnc:v2.1.1
 
 ### EXAMPLE for demo data
 
