@@ -52,15 +52,15 @@ A Docker image is available to simplify the setup and ensure compatibility with 
 
 ```bash
 ## Pull the image
-docker pull mpalmamtz/ggnc:2.1
+docker pull mpalmamtz/ggnc:v2.1
 
 ## Run the Docker container
 
-docker run --rm -it -v $(pwd):/workspace mpalmamtz/ggnc:1.0
+docker run --rm -it -v $(pwd):/workspace mpalmamtz/ggnc:v2.1
 
 ### EXAMPLE for demo data
 
-./Parameters_GGNC.sh -k IBD -p /workspace/ -d autosomal_ibd_by_pair.columns.20150206.txt -i /info_file_1000G.txt -m 1000000 -s 10 -l RIndex.txt -u 0 -c 6 -a -2 -z 1 -r 123 -f 1 -L -t 4 
+./Parameters_GGNC_v2.sh -k IBD -p /workspace/ -d autosomal_ibd_by_pair.columns.20150206.txt -i /info_file_1000G.txt -m 1000000 -s 10 -l RIndex.txt -u 0 -c 6 -a -2 -z 1 -r 123 -f 1 -L -t 4 
 
 ```
 The Docker image (mpalmamtz/ggnc:1.0) was pulled in 13.102 seconds:
