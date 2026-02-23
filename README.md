@@ -52,7 +52,7 @@ A Docker image is available to simplify the setup and ensure compatibility with 
 
 ```bash
 ## Pull the image
-docker pull mpalmamtz/ggnc:v2.1
+docker pull --platform=linux/amd64 mpalmamtz/ggnc:v2.1
 
 ## Run the Docker container
 
