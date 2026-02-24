@@ -11,4 +11,7 @@ Rscript Resolution_plot_aux_functions.R resplot_mash_up_all individual_ID_order_
 ### Color bar at the bottom is defined based on the colors provided in the pop-info file
 Rscript Resolution_plot_aux_functions.R resplot_superpop individual_ID_order_IBD.txt Resolution_matrix_IBD.csv Distinctive_colors_IBD.txt info_file_020425.txt -6 1 . Spop_IBD.png
 
+#### Color PCA resolution plot based on IBD colors
+Rscript Resolution_plot_aux_functions.R relabel_order_colors Resolution_matrix_IBD.csv Resolution_matrix_PCA.csv Distinctive_colors_IBD.txt . PCA_color-based_IBD.png 1 -6
+
 
