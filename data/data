@@ -8,3 +8,6 @@ bash ParametersV13Nov2024.sh -k PCA -p path/PCA -d PCA_ind_values_NoNull_V2.txt 
 bash ParametersV13Nov2024.sh -k PCA -p path/dirSKIN -d SkinPigmentation_genes.txt -i info_file_200724.txt  -m 0 -s 50 -l Lambda_values.txt -u 0 -c 6 -a -2 -z 2
 bash ParametersV13Nov2024.sh -k PCA -p path/dirT2D -d T2D_genes.txt -i info_file_200724.txt  -m 0 -s 50 -l Lambda_values.txt -u 0 -c 6 -a -2 -z 2
 bash ParametersV13Nov2024.sh -k PCA -p path/dirALT -d Altitude.txt -i info_file_200724.txt  -m 0 -s 50 -l Lambda_values.txt -u 0 -c 6 -a -2 -z 2
+
+
+#### New commands version 2 of the manuscript
