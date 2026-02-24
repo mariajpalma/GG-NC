@@ -1,0 +1,4 @@
+Remember to install the required packages:
+
+Examples to run Resolution_plot_aux_functions.R
+Rscript Resolution_plot_aux_functions.R resplot_mash_up_slice IBD PCA Resolution_matrix_IBD.csv Resolution_matrix_PCA.csv individual_ID_order_IBD.txt individual_ID_order_PCA.txt Distinctive_colors_IBD.txt Distinctive_colors_PCA.txt -6 1 -6 1 70 70 . Plot_IBD_PCA.png Plot_A Plot_B "step" 10 20
